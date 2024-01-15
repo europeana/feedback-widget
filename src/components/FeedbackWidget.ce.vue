@@ -27,10 +27,8 @@
   >
     <button
       ref="button"
-      variant="primary"
       aria-label="Feedback"
-      size="lg"
-      class="feedback-button text-decoration-none"
+      class="btn-primary btn-lg feedback-button text-decoration-none"
       :class="buttonClasses"
       @click="showFeedbackForm"
       @mouseover="bigButton = true"
@@ -47,10 +45,11 @@
 <style scoped lang="scss">
   @import 'bootstrap/scss/bootstrap';
   @import '@europeana/style/scss/variables';
+  @import '@europeana/style/scss/buttons-links';
   // FIXME: why do these not make the fonts available to the component?
+  @import '@europeana/style/scss/default';
   @import '@europeana/style/scss/fonts/open-sans';
   @import '@europeana/style/scss/fonts/icomoon';
-  @import '@europeana/style/scss/default';
   @import '@europeana/style/scss/icons';
 
   .feedback-container {
