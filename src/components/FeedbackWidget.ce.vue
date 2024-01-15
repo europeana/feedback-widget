@@ -1,9 +1,16 @@
+<script setup>
+  defineProps({
+    lang: 'en'
+  })
+</script>
+
 <template>
-  <h1>Feedback Widget</h1>
+  <div class="container py-4 px-3 mx-auto">
+    <h1>Feedback Widget</h1>
+    <p v-if="lang">lang: {{ lang }}</p>
+  </div>
 </template>
 
-<style>
-h1 {
-  font-family: monospace;
-}
+<style scoped lang="scss">
+  @import 'bootstrap/scss/bootstrap';
 </style>
