@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@europeana/style':
+    specifier: 1.138.0
+    version: 1.138.0
   bootstrap:
     specifier: ^5.3.2
     version: 5.3.2(@popperjs/core@2.11.8)
@@ -328,6 +331,10 @@ packages:
     resolution: {integrity: sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@europeana/style@1.138.0:
+    resolution: {integrity: sha512-LrV45T0CbrnWNw4+rzIMYyB4Ilzz7905zQVAnaxREtxobkOStX7popUfuaYKsDKJVuMHUGYIQVm4oeupJb4Ugg==}
+    dev: false
 
   /@humanwhocodes/config-array@0.11.13:
     resolution: {integrity: sha512-JSBDMiDKSzQVngfRjOdFXgFfklaXI4K9nLF49Auh21lmBWRLIK3+xTErTWD4KU54pb6coM6ESE7Awz/FNU3zgQ==}

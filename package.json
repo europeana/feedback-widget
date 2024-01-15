@@ -23,6 +23,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@europeana/style": "1.138.0",
     "bootstrap": "^5.3.2",
     "vue": "^3.3.11"
   },
