@@ -1,5 +1,6 @@
 <script setup>
   import { computed, ref } from 'vue'
+  import FeedbackIcon from '@europeana/style/img/icons/feedback.svg'
 
   defineProps({
     lang: 'en'
@@ -10,8 +11,8 @@
 
   const buttonClasses = computed(() => {
     return {
-      'hide-button': showWidget,
-      big: bigButton
+      'hide-button': showWidget.value,
+      big: bigButton.value
     }
   })
 
@@ -34,7 +35,9 @@
       @mouseover="bigButton = true"
       @mouseleave="bigButton = false"
     >
-      <span class="icon-ic-feedback d-inline-flex" />
+      <FeedbackIcon
+        class="icon-ic-feedback d-inline-flex"
+      />
       <span
         class="feedback-button-text"
       >Feedback</span>
@@ -43,20 +46,21 @@
 </template>
 
 <style scoped lang="scss">
-  @import 'bootstrap/scss/bootstrap';
   @import '@europeana/style/scss/variables';
   @import '@europeana/style/scss/buttons-links';
-  // FIXME: why do these not make the fonts available to the component?
   @import '@europeana/style/scss/default';
-  @import '@europeana/style/scss/fonts/open-sans';
-  @import '@europeana/style/scss/fonts/icomoon';
-  @import '@europeana/style/scss/icons';
+  @import 'bootstrap/scss/bootstrap';
 
   .feedback-container {
     position: fixed;
     right: 1rem;
     bottom: 1rem;
     z-index: 1050;
+
+    color: $textcolor;
+    font-family: $font-family-sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
 
     @media (min-width: $bp-small) {
       left: auto;
