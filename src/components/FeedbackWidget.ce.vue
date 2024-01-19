@@ -1,10 +1,8 @@
 <script setup>
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import FeedbackIcon from '@europeana/style/img/icons/feedback.svg'
-
-defineProps({
-  lang: 'en'
-})
+const { t } = useI18n()
 
 const bigButton = ref(true)
 const showWidget = ref(false)
@@ -35,7 +33,7 @@ function showFeedbackForm() {
       @mouseleave="bigButton = false"
     >
       <FeedbackIcon class="icon-ic-feedback d-inline-flex" />
-      <span class="feedback-button-text">Feedback</span>
+      <span class="feedback-button-text">{{ t('success') }}</span>
     </button>
   </div>
 </template>
