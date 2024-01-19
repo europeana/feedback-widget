@@ -28,8 +28,9 @@
   >
     <button
       ref="button"
+      type="button"
       aria-label="Feedback"
-      class="btn-primary btn-lg feedback-button text-decoration-none"
+      class="btn btn-primary btn-lg feedback-button text-decoration-none"
       :class="buttonClasses"
       @click="showFeedbackForm"
       @mouseover="bigButton = true"
