@@ -33,7 +33,7 @@ function showFeedbackForm() {
       @mouseleave="bigButton = false"
     >
       <FeedbackIcon class="icon-ic-feedback d-inline-flex" />
-      <span class="feedback-button-text">{{ t('success') }}</span>
+      <span class="feedback-button-text">{{ t('title') }}</span>
     </button>
   </div>
 </template>

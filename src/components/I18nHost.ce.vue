@@ -2,26 +2,27 @@
 import { defineComponent, provide, watchEffect } from 'vue'
 import { createI18n, I18nInjectionKey } from 'vue-i18n'
 
-const locales = ['en'];
+const props = defineProps({
+  locale: 'en'
+})
+
+const locales = ['en', 'nl'];
 const loadMessages = () => {
   const messages = {};
 
-  locales.forEach(locale => messages[locale] = import(`../locales/${locale}.js`));
+  locales.forEach(async (locale) => messages[locale] = (await import(`../locales/${locale}.js`)).default);
   return messages;
 }
 
 const i18n = createI18n({
   legacy: false,
-  locale: 'en',
+  locale: props.locale,
   fallbackLocale: 'en',
   silentFallbackWarn: true,
   globalInjection: true,
-  messages: { en: { success: "TRANSLATION SUCCESS!" } }
+  messages: loadMessages()
 })
 
-const props = defineProps({
-  locale: 'en'
-})
 
 provide(I18nInjectionKey, i18n)
 
