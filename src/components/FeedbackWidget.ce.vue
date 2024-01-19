@@ -47,10 +47,12 @@
 </template>
 
 <style scoped lang="scss">
+  // TODO: only import needed scss files.
+  //       see: https://github.com/twbs/examples/blob/main/vite/src/scss/styles.scss
+  @import 'bootstrap/scss/bootstrap';
   @import '@europeana/style/scss/variables';
   @import '@europeana/style/scss/buttons-links';
   @import '@europeana/style/scss/default';
-  @import 'bootstrap/scss/bootstrap';
 
   .feedback-container {
     position: fixed;
