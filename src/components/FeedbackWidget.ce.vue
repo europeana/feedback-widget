@@ -1,19 +1,9 @@
 <script setup>
 import { computed, ref } from 'vue'
-import FeedbackIcon from '@europeana/style/img/icons/feedback.svg'
+import FeedbackButton from './FeedbackButton.vue'
 
 defineProps({
   lang: 'en'
-})
-
-const bigButton = ref(true)
-const showWidget = ref(false)
-
-const buttonClasses = computed(() => {
-  return {
-    'hide-button': showWidget.value,
-    big: bigButton.value
-  }
 })
 
 function showFeedbackForm() {
@@ -24,23 +14,13 @@ function showFeedbackForm() {
 
 <template>
   <div class="feedback-container">
-    <button
-      ref="button"
-      type="button"
-      aria-label="Feedback"
-      class="btn btn-primary btn-lg feedback-button text-decoration-none"
-      :class="buttonClasses"
+    <FeedbackButton
       @click="showFeedbackForm"
-      @mouseover="bigButton = true"
-      @mouseleave="bigButton = false"
-    >
-      <FeedbackIcon class="icon-ic-feedback d-inline-flex" />
-      <span class="feedback-button-text">Feedback</span>
-    </button>
+    />
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '@/assets/bootstrap';
 
 @import '@europeana/style/scss/variables';
@@ -62,6 +42,7 @@ function showFeedbackForm() {
     left: auto;
   }
 
+  // TODO: move to FeedbackButton.vue
   .feedback-button {
     position: fixed;
     right: 1rem;
