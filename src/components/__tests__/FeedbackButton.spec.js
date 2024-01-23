@@ -1,17 +1,17 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import FeedbackWidget from '../FeedbackWidget.vue'
+import FeedbackButton from '../FeedbackButton.vue'
 
-describe('FeedbackWidget', () => {
+describe('FeedbackButton', () => {
   it('is labelled "Feedback"', () => {
-    const wrapper = mount(FeedbackWidget)
+    const wrapper = mount(FeedbackButton)
 
     expect(wrapper.text()).toContain('Feedback')
   })
 
   it('shows the feedback icon in a button', () => {
-    const wrapper = mount(FeedbackWidget)
+    const wrapper = mount(FeedbackButton)
 
     const icon = wrapper.find('button svg.icon-ic-feedback')
 
