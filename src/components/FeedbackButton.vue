@@ -17,13 +17,13 @@ const buttonClasses = computed(() => {
   <button
     ref="button"
     type="button"
-    aria-label="Feedback"
+    :aria-label="$t('actions.feedback')"
     class="btn btn-primary btn-lg europeana-feedback-button text-decoration-none"
     :class="buttonClasses"
     @mouseover="bigButton = true"
     @mouseleave="bigButton = false"
   >
     <FeedbackIcon class="icon-ic-feedback d-inline-flex" />
-    <span class="europeana-feedback-button-text">Feedback</span>
+    <span class="europeana-feedback-button-text">{{ $t('actions.feedback') }}</span>
   </button>
 </template>
