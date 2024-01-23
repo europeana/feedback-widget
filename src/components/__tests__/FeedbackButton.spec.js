@@ -7,7 +7,7 @@ describe('FeedbackButton', () => {
   it('is labelled "Feedback"', () => {
     const wrapper = mount(FeedbackButton)
 
-    expect(wrapper.text()).toContain('Feedback')
+    expect(wrapper.text()).toContain('feedback')
   })
 
   it('shows the feedback icon in a button', () => {

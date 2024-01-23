@@ -24,6 +24,6 @@ const buttonClasses = computed(() => {
     @mouseleave="bigButton = false"
   >
     <FeedbackIcon class="icon-ic-feedback d-inline-flex" />
-    <span class="europeana-feedback-button-text">{{ $t('thankYou') }}</span>
+    <span class="europeana-feedback-button-text">{{ $t('feedback') }}</span>
   </button>
 </template>

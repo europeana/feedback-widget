@@ -7,11 +7,7 @@ import App from './App.vue'
 
 const mountElement = document.querySelector(mountSelector)
 
-const locales = ['en'];
-locales.push(mountElement.dataset.locale)
-const messages = {}
-locales.forEach(async (locale) => messages[locale] = (await import(`./locales/${locale}.js`)).default)
-
+import * as messages from './locales/index.js'
 
 const i18n = createI18n({
   legacy: false,
