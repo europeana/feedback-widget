@@ -1,5 +1,9 @@
-import { defineCustomElement } from 'vue'
+import { createApp } from 'vue'
 
-import FeedbackWidget from './components/FeedbackWidget.ce.vue'
+const mountSelector = '#europeana-feedback-widget'
 
-customElements.define('europeana-feedback-widget', defineCustomElement(FeedbackWidget))
+import App from './App.vue'
+
+const mountElement = document.querySelector(mountSelector)
+
+createApp(App, { ...mountElement.dataset }).mount(mountSelector)
