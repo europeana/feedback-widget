@@ -23,31 +23,32 @@ function showFeedbackForm() {
 </script>
 
 <template>
-  <div class="feedback-container">
+  <div class="europeana-feedback-container">
     <button
       ref="button"
       type="button"
       aria-label="Feedback"
-      class="btn btn-primary btn-lg feedback-button text-decoration-none"
+      class="btn btn-primary btn-lg europeana-feedback-button text-decoration-none"
       :class="buttonClasses"
       @click="showFeedbackForm"
       @mouseover="bigButton = true"
       @mouseleave="bigButton = false"
     >
       <FeedbackIcon class="icon-ic-feedback d-inline-flex" />
-      <span class="feedback-button-text">Feedback</span>
+      <span class="europeana-feedback-button-text">Feedback</span>
     </button>
   </div>
 </template>
 
-<style scoped lang="scss">
-@import '@/assets/bootstrap';
-
+<style lang="scss">
 @import '@europeana/style/scss/variables';
-@import '@europeana/style/scss/buttons-links';
-@import '@europeana/style/scss/default';
 
-.feedback-container {
+.europeana-feedback-container {
+  @import '@/assets/bootstrap';
+
+  @import '@europeana/style/scss/buttons-links';
+  @import '@europeana/style/scss/default';
+
   position: fixed;
   right: 1rem;
   bottom: 1rem;
@@ -62,7 +63,7 @@ function showFeedbackForm() {
     left: auto;
   }
 
-  .feedback-button {
+  .europeana-feedback-button {
     position: fixed;
     right: 1rem;
     bottom: 1rem;
@@ -84,7 +85,7 @@ function showFeedbackForm() {
       line-height: 1;
     }
 
-    .feedback-button-text {
+    .europeana-feedback-button-text {
       transition: opacity 0.3s ease-out;
       opacity: 0;
     }
@@ -100,7 +101,7 @@ function showFeedbackForm() {
         max-width 0.75s ease-out,
         border-radius 0.25s ease-out;
 
-      .feedback-button-text {
+      .europeana-feedback-button-text {
         opacity: 1;
         transition: opacity 0.3s ease-out;
       }
@@ -115,7 +116,7 @@ function showFeedbackForm() {
         max-width: 50px;
         border-radius: 50%;
 
-        .feedback-button-text {
+        .europeana-feedback-button-text {
           opacity: 0;
         }
 
@@ -127,7 +128,7 @@ function showFeedbackForm() {
   }
 }
 
-.feedback-widget {
+.europeana-feedback-widget {
   border-radius: 0.3rem;
   background-color: $white;
   color: $mediumgrey;
@@ -149,7 +150,7 @@ function showFeedbackForm() {
     width: 540px;
   }
 
-  &.show-feedback-widget {
+  &.show-europeana-feedback-widget {
     opacity: 1;
     visibility: visible;
     transform: none;
@@ -171,7 +172,7 @@ function showFeedbackForm() {
     }
   }
 
-  .feedback-form {
+  .europeana-feedback-form {
     padding: 1rem;
 
     .form-fields {
