@@ -12,6 +12,11 @@ export default defineConfig({
       name: 'EuropeanaFeedbackWidget',
       fileName: 'europeana-feedback-widget',
       formats: ['es']
+    },
+    rollupOptions: {
+      output: {
+        assetFileNames: "europeana-feedback-widget.[ext]",
+      },
     }
   },
   define: {

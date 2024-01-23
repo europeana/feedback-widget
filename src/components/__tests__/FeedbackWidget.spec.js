@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import FeedbackWidget from '../FeedbackWidget.ce.vue'
+import FeedbackWidget from '../FeedbackWidget.vue'
 
 describe('FeedbackWidget', () => {
   it('is labelled "Feedback"', () => {

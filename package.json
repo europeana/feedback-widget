@@ -6,14 +6,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/europeana-feedback-widget.umd.cjs",
   "module": "./dist/europeana-feedback-widget.js",
   "exports": {
     ".": {
-      "import": "./dist/europeana-feedback-widget.js",
-      "require": "./dist/europeana-feedback-widget.umd.cjs"
+      "import": "./dist/europeana-feedback-widget.js"
     }
   },
+  "style": "./dist/europeana-feedback-widget.css",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

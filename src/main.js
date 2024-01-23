@@ -1,5 +1,5 @@
-import { defineCustomElement } from 'vue'
+import { createApp } from 'vue'
 
-import FeedbackWidget from './components/FeedbackWidget.ce.vue'
+import FeedbackWidget from './components/FeedbackWidget.vue'
 
-customElements.define('europeana-feedback-widget', defineCustomElement(FeedbackWidget))
+createApp(FeedbackWidget).mount('#europeana-feedback-widget')
