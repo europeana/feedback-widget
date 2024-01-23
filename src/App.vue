@@ -13,7 +13,7 @@ const props = defineProps({
 const { t } = useI18n()
 
 onMounted(() => {
-  console.log(`lang prop: ${props.locale}`)
+  console.log(`locale prop: ${props.locale}`)
 })
 
 function showFeedbackForm() {
