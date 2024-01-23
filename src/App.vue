@@ -1,11 +1,16 @@
 <script setup>
-import FeedbackButton from './FeedbackButton.vue'
+import { onMounted } from 'vue'
+import FeedbackButton from '@/components/FeedbackButton.vue'
 
-defineProps({
+const props = defineProps({
   lang: {
     type: String,
     default: () => 'en'
   }
+})
+
+onMounted(() => {
+  console.log(`lang prop: ${props.lang}`)
 })
 
 function showFeedbackForm() {
