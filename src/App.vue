@@ -1,16 +1,19 @@
 <script setup>
 import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import FeedbackButton from '@/components/FeedbackButton.vue'
 
 const props = defineProps({
-  lang: {
+  locale: {
     type: String,
     default: () => 'en'
   }
 })
 
+const { t } = useI18n()
+
 onMounted(() => {
-  console.log(`lang prop: ${props.lang}`)
+  console.log(`lang prop: ${props.locale}`)
 })
 
 function showFeedbackForm() {
