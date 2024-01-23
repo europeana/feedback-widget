@@ -18,8 +18,78 @@ const showSkipButton = computed(() => currentStep.value === 2)
 const showSendButton = computed(() => currentStep.value === 2 || ((currentStep.value === 3) && !requestSuccess.value))
 const showCloseButton = computed(() => !showCancelButton.value)
 
-function localePath(path) {
-  return `/en${path}`
+const localePath = (path) => `/en${path}`
+
+const wordLength = (text) => text?.trim()?.match(/\w+/g)?.length || 0
+
+const validateFeedbackLength = () => wordLength(feedback) >= 5;
+
+const goToStep = (step) => currentStep.value = step
+
+const postFeedbackMessage = () => {
+  return Promise.resolve()
+
+  // TODO: re-implement using configurable endpoint url and native `fetch`
+
+  // const postData = {
+  //   feedback: this.feedback,
+  //   pageUrl: window.location.href,
+  //   browser: navigator.userAgent,
+  //   screensize: `${window.innerWidth} x ${window.innerHeight}`
+  // };
+  // if (this.email && (this.email !== '')) {
+  //   postData.email = this.email;
+  // }
+  //
+  // // For testing purposes, uncomment the following `if` block to cause the
+  // // request always to fail on the first attempt, showing the error message,
+  // // but then succeeding on subsequent attempts.
+  // // if (this.requestSuccess === null) {
+  // //   delete postData.summary;
+  // // }
+  //
+  // return axios.create({
+  //   baseURL: this.$config.app.baseUrl
+  // }).post(
+  //   '/_api/jira-service-desk/feedback',
+  //   postData
+  // );
+}
+
+const sendFeedback = () => {
+  sending.value = true
+
+  return postFeedbackMessage()
+    .then(() => {
+      requestSuccess.value = true
+      if (currentStep.value < 3) {
+        goToStep(currentStep.value + 1)
+      }
+    })
+    .catch(() => {
+      requestSuccess.value = false
+    })
+    .finally(() => {
+      sending.value = false
+    })
+}
+
+const submitForm = async() => {
+  // If this handler gets called, then the fields are valid
+  feedbackInputState.value = true
+  emailInputState.value = true
+
+  if (currentStep.value === 1 && !validateFeedbackLength()) {
+    feedbackInputState.value = false
+    return
+  }
+
+  if (currentStep > 1) {
+    await sendFeedback()
+  }
+  if (currentStep < 3) {
+    goToStep(currentStep + 1)
+  }
 }
 </script>
 
