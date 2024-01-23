@@ -104,6 +104,7 @@ const submitForm = async() => {
         <div v-if="currentStep === 1">
           <textarea
             id="feedback-widget-feedback-input"
+            class="form-control"
             ref="input"
             v-model="feedback"
             name="feedback"
@@ -170,8 +171,7 @@ const submitForm = async() => {
         <button
           v-if="showCancelButton"
           data-qa="feedback cancel button"
-          variant="outline-primary"
-          class="mt-3"
+          class="btn btn-outline-primary mt-3"
           @click.prevent="hideFeedbackForm"
         >
           {{ $t('actions.cancel') }}
@@ -180,8 +180,7 @@ const submitForm = async() => {
           <button
             v-if="showSkipButton"
             data-qa="feedback skip button"
-            variant="outline-primary"
-            class="mt-3 ml-2"
+            class="btn btn-outline-primary mt-3 ml-2"
             :disabled="disableSkipButton"
             @click="skipEmail"
           >
@@ -191,7 +190,7 @@ const submitForm = async() => {
             v-if="showNextButton"
             data-qa="feedback next button"
             variant="primary"
-            class="button-next-step mt-3 ml-2"
+            class="btn btn-primary button-next-step mt-3 ml-2"
             type="submit"
             :disabled="disableNextButton"
           >
@@ -200,8 +199,7 @@ const submitForm = async() => {
           <button
             v-if="showSendButton"
             data-qa="feedback send button"
-            variant="primary"
-            class="mt-3 ml-2"
+            class="btn btn-primary mt-3 ml-2"
             type="submit"
             :disabled="disableSendButton"
           >
@@ -210,8 +208,7 @@ const submitForm = async() => {
           <button
             v-if="showCloseButton"
             data-qa="feedback close button"
-            variant="primary"
-            class="mt-3 ml-2"
+            class="btn btn-primary mt-3 ml-2"
             @click.prevent="hideFeedbackForm"
           >
             {{ $t('actions.close') }}
