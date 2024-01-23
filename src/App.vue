@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
 import FeedbackButton from '@/components/FeedbackButton.vue'
 
 const props = defineProps({
@@ -9,8 +8,6 @@ const props = defineProps({
     default: () => 'en'
   }
 })
-
-const { t } = useI18n()
 
 onMounted(() => {
   console.log(`locale prop: ${props.locale}`)
