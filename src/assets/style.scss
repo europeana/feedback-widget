@@ -47,10 +47,6 @@
       opacity: 0;
     }
 
-    &.hide-button {
-      display: none;
-    }
-
     &.big {
       border-radius: 0.3rem;
       max-width: 220px;
@@ -85,12 +81,10 @@
   }
 }
 
-.europeana-feedback-widget {
+.europeana-feedback-dialog {
   border-radius: 0.3rem;
   background-color: $white;
   color: $mediumgrey;
-  visibility: hidden;
-  opacity: 0;
   transform: translate(0, 50px);
   transition:
     opacity 0.15s linear,
@@ -105,12 +99,6 @@
   @media (min-width: $bp-small) {
     left: auto;
     width: 540px;
-  }
-
-  &.show-europeana-feedback-widget {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
   }
 
   .feedback-header {

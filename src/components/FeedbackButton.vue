@@ -2,12 +2,17 @@
 import { computed, ref } from 'vue'
 import FeedbackIcon from '@europeana/style/img/icons/feedback.svg'
 
+const props = defineProps({
+  hide: {
+    type: String,
+    default: () => 'en'
+  }
+})
+
 const bigButton = ref(true)
-const showWidget = ref(false)
 
 const buttonClasses = computed(() => {
   return {
-    'hide-button': showWidget.value,
     big: bigButton.value
   }
 })

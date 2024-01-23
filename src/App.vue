@@ -1,6 +1,8 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+
 import FeedbackButton from '@/components/FeedbackButton.vue'
+import FeedbackDialog from '@/components/FeedbackDialog.vue'
 
 const props = defineProps({
   lang: {
@@ -9,19 +11,32 @@ const props = defineProps({
   }
 })
 
+const showDialog = ref(false)
+
 onMounted(() => {
   console.log(`lang prop: ${props.lang}`)
 })
 
-function showFeedbackForm() {
-  // TODO: implement
-  console.log('showFeedbackForm')
+// TODO: re-implement
+function handleClickFeedbackButton() {
+  // this.resetForm()
+  showDialog.value = true
+  // this.$nextTick(() => {
+  //   const textarea = this.$refs.input
+  //   textarea.focus()
+  // })
 }
 </script>
 
 <template>
   <div class="europeana-feedback-container">
-    <FeedbackButton @click="showFeedbackForm" />
+    <FeedbackButton
+      v-show="!showDialog"
+      @click="handleClickFeedbackButton"
+    />
+    <FeedbackDialog
+      v-show="showDialog"
+    />
   </div>
 </template>
 
