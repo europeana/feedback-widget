@@ -16,7 +16,7 @@ describe('FeedbackButton', () => {
   it('is labelled "Feedback"', () => {
     const wrapper = factory()
 
-    expect(wrapper.text()).toContain('actions.feedback')
+    expect(wrapper.text()).toContain('feedback')
   })
 
   it('shows the feedback icon in a button', () => {

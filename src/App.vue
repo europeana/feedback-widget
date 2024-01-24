@@ -1,21 +1,10 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
 import FeedbackButton from '@/components/FeedbackButton.vue'
 import FeedbackDialog from '@/components/FeedbackDialog.vue'
 
-const props = defineProps({
-  lang: {
-    type: String,
-    default: () => 'en'
-  }
-})
-
 const showDialog = ref(false)
-
-onMounted(() => {
-  console.log(`lang prop: ${props.lang}`)
-})
 
 // TODO: re-implement
 function handleClickFeedbackButton() {
@@ -30,13 +19,8 @@ function handleClickFeedbackButton() {
 
 <template>
   <div class="europeana-feedback-container">
-    <FeedbackButton
-      v-show="!showDialog"
-      @click="handleClickFeedbackButton"
-    />
-    <FeedbackDialog
-      v-show="showDialog"
-    />
+    <FeedbackButton v-show="!showDialog" @click="handleClickFeedbackButton" />
+    <FeedbackDialog v-show="showDialog" />
   </div>
 </template>
 

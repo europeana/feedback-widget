@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import FeedbackIcon from '@europeana/style/img/icons/feedback.svg'
 
-const props = defineProps({
+defineProps({
   hide: {
     type: String,
     default: () => 'en'
@@ -29,6 +29,6 @@ const buttonClasses = computed(() => {
     @mouseleave="bigButton = false"
   >
     <FeedbackIcon class="icon-ic-feedback d-inline-flex" />
-    <span class="europeana-feedback-button-text">{{ $t('actions.feedback') }}</span>
+    <span class="europeana-feedback-button-text">{{ $t('feedback') }}</span>
   </button>
 </template>

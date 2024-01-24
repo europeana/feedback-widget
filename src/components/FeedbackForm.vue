@@ -9,22 +9,28 @@ const emailInputState = ref(true)
 const requestSuccess = ref(null)
 const sending = ref(false)
 
-const showCancelButton = computed(() => (currentStep.value < 3) || !requestSuccess.value)
+const showCancelButton = computed(() => currentStep.value < 3 || !requestSuccess.value)
 const showNextButton = computed(() => currentStep.value < 2)
-const disableNextButton = computed(() => ((currentStep.value === 1) && (feedback.value === '')) || sending.value)
-const disableSendButton = computed(() => ((currentStep.value === 2) && (email.value === '')) || sending.value)
+const disableNextButton = computed(
+  () => (currentStep.value === 1 && feedback.value === '') || sending.value
+)
+const disableSendButton = computed(
+  () => (currentStep.value === 2 && email.value === '') || sending.value
+)
 const disableSkipButton = computed(() => sending.value)
 const showSkipButton = computed(() => currentStep.value === 2)
-const showSendButton = computed(() => currentStep.value === 2 || ((currentStep.value === 3) && !requestSuccess.value))
+const showSendButton = computed(
+  () => currentStep.value === 2 || (currentStep.value === 3 && !requestSuccess.value)
+)
 const showCloseButton = computed(() => !showCancelButton.value)
 
 const localePath = (path) => `/en${path}`
 
 const wordLength = (text) => text?.trim()?.match(/\w+/g)?.length || 0
 
-const validateFeedbackLength = () => wordLength(feedback) >= 5;
+const validateFeedbackLength = () => wordLength(feedback) >= 5
 
-const goToStep = (step) => currentStep.value = step
+const goToStep = (step) => (currentStep.value = step)
 
 const postFeedbackMessage = () => {
   return Promise.resolve()
@@ -74,7 +80,7 @@ const sendFeedback = () => {
     })
 }
 
-const submitForm = async() => {
+const submitForm = async () => {
   // If this handler gets called, then the fields are valid
   feedbackInputState.value = true
   emailInputState.value = true
@@ -84,21 +90,17 @@ const submitForm = async() => {
     return
   }
 
-  if (currentStep > 1) {
+  if (currentStep.value > 1) {
     await sendFeedback()
   }
-  if (currentStep < 3) {
-    goToStep(currentStep + 1)
+  if (currentStep.value < 3) {
+    goToStep(currentStep.value + 1)
   }
 }
 </script>
 
 <template>
-  <form
-    class="europeana-feedback-form"
-    data-qa="feedback widget form"
-    @submit.prevent="submitForm"
-  >
+  <form class="europeana-feedback-form" data-qa="feedback widget form" @submit.prevent="submitForm">
     <div class="d-flex flex-wrap">
       <div class="form-fields">
         <div v-if="currentStep === 1">
@@ -116,7 +118,11 @@ const submitForm = async() => {
             aria-describedby="input-live-feedback"
             @invalid="flagInvalidFeedback"
           />
-          <div class="b-form-invalid-feedback" id="input-live-feedback" data-qa="feedback message invalid">
+          <div
+            class="b-form-invalid-feedback"
+            id="input-live-feedback"
+            data-qa="feedback message invalid"
+          >
             {{ $t('feedback.validFeedback') }}
           </div>
         </div>
@@ -132,7 +138,11 @@ const submitForm = async() => {
             data-qa="feedback email input"
             @invalid="flagInvalidEmail"
           />
-          <div class="b-form-invalid-feedback" id="input-live-feedback" data-qa="feedback email invalid">
+          <div
+            class="b-form-invalid-feedback"
+            id="input-live-feedback"
+            data-qa="feedback email invalid"
+          >
             {{ $t('feedback.validEmail') }}
           </div>
           <div class="b-form-text" id="input-live-help">
@@ -149,11 +159,7 @@ const submitForm = async() => {
             </p>
           </div>
         </div>
-        <div
-          v-if="currentStep == 3"
-          id="step3"
-          class="feedback-success d-flex align-items-center"
-        >
+        <div v-if="currentStep == 3" id="step3" class="feedback-success d-flex align-items-center">
           <span :class="requestSuccess ? 'icon-check-circle mr-3' : 'icon-cancel-circle mr-3'" />
           <span v-if="requestSuccess">
             <p class="mb-0">{{ $t('feedback.success') }}</p>
@@ -184,7 +190,7 @@ const submitForm = async() => {
             :disabled="disableSkipButton"
             @click="skipEmail"
           >
-            {{ $t('actions.skipSend') }} </button
+            {{ $t('actions.skipSend') }}</button
           ><!-- This comment removes white space
           --><button
             v-if="showNextButton"
