@@ -1,13 +1,11 @@
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 
-const mountSelector = '#europeana-feedback-widget'
-
 import App from './App.vue'
-
-const mountElement = document.querySelector(mountSelector)
-
 import * as messages from './locales/index.js'
+
+const mountSelector = '#europeana-feedback-widget'
+const mountElement = document.querySelector(mountSelector)
 
 const i18n = createI18n({
   legacy: false,

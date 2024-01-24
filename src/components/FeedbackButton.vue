@@ -2,12 +2,17 @@
 import { computed, ref } from 'vue'
 import FeedbackIcon from '@europeana/style/img/icons/feedback.svg'
 
+defineProps({
+  hide: {
+    type: String,
+    default: () => 'en'
+  }
+})
+
 const bigButton = ref(true)
-const showWidget = ref(false)
 
 const buttonClasses = computed(() => {
   return {
-    'hide-button': showWidget.value,
     big: bigButton.value
   }
 })
@@ -17,7 +22,7 @@ const buttonClasses = computed(() => {
   <button
     ref="button"
     type="button"
-    aria-label="Feedback"
+    :aria-label="$t('feedback')"
     class="btn btn-primary btn-lg europeana-feedback-button text-decoration-none"
     :class="buttonClasses"
     @mouseover="bigButton = true"

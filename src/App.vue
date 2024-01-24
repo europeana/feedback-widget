@@ -1,15 +1,16 @@
 <script setup>
-import FeedbackButton from '@/components/FeedbackButton.vue'
+import { ref } from 'vue'
 
-function showFeedbackForm() {
-  // TODO: implement
-  console.log('showFeedbackForm')
-}
+import FeedbackButton from '@/components/FeedbackButton.vue'
+import FeedbackDialog from '@/components/FeedbackDialog.vue'
+
+const showDialog = ref(false)
 </script>
 
 <template>
   <div class="europeana-feedback-container">
-    <FeedbackButton @click="showFeedbackForm" />
+    <FeedbackDialog v-if="showDialog" @hide="showDialog = false" />
+    <FeedbackButton v-else @click="showDialog = true" />
   </div>
 </template>
 
