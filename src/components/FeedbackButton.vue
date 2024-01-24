@@ -22,7 +22,7 @@ const buttonClasses = computed(() => {
   <button
     ref="button"
     type="button"
-    :aria-label="$t('actions.feedback')"
+    :aria-label="$t('feedback')"
     class="btn btn-primary btn-lg europeana-feedback-button text-decoration-none"
     :class="buttonClasses"
     @mouseover="bigButton = true"
