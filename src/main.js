@@ -18,6 +18,6 @@ const i18n = createI18n({
   messages
 })
 
-const app = createApp(App, { ...mountElement.dataset })
-app.use(i18n)
-app.mount(mountSelector)
+createApp(App, { ...mountElement.dataset })
+  .use(i18n)
+  .mount(mountSelector)

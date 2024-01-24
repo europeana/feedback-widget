@@ -1,17 +1,5 @@
 <script setup>
-import { onMounted } from 'vue'
 import FeedbackButton from '@/components/FeedbackButton.vue'
-
-const props = defineProps({
-  locale: {
-    type: String,
-    default: () => 'en'
-  }
-})
-
-onMounted(() => {
-  console.log(`locale prop: ${props.locale}`)
-})
 
 function showFeedbackForm() {
   // TODO: implement
