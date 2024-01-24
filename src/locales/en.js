@@ -1,5 +1,6 @@
 export default {
-  cancel: 'cancel',
+  cancel: 'Cancel',
+  close: 'Close',
   emailOptional:
     "We may wish to follow up. Enter your email if you're happy for us to contact you.",
   failed: 'The request failed. Please try again.',
@@ -11,9 +12,11 @@ export default {
       feedback: 'Enter your feedback here'
     }
   },
-  next: 'next',
+  next: 'Next',
   policies: 'By continuing, you agree to our {0} and acknowledge our {1}.',
   privacyPolicy: 'Privacy Policy',
+  send: 'Send',
+  skipSend: 'Skip and send',
   success: 'Your feedback has been sent.',
   termsOfService: 'Terms of Service',
   thankYou: 'Thank you!',

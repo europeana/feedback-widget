@@ -1,59 +1,57 @@
 <script setup>
 import { computed, ref } from 'vue'
 
+import CancelCircleIcon from '@europeana/style/img/icons/cancel_circle.svg'
+import CheckCircleIcon from '@europeana/style/img/icons/check_circle.svg'
+import ExternalLinkIcon from '@europeana/style/img/icons/external-link.svg'
+
 const currentStep = ref(1)
-const feedback = ref('')
-const feedbackInputState = ref(true)
 const email = ref('')
-const emailInputState = ref(true)
+const emailInput = ref(null)
+const feedback = ref('')
+const feedbackTextarea = ref(null)
 const requestSuccess = ref(null)
 const sending = ref(false)
 
-const showCancelButton = computed(() => (currentStep.value < 3) || !requestSuccess.value)
-const showNextButton = computed(() => currentStep.value < 2)
-const disableNextButton = computed(() => ((currentStep.value === 1) && (feedback.value === '')) || sending.value)
-const disableSendButton = computed(() => ((currentStep.value === 2) && (email.value === '')) || sending.value)
+const disableNextButton = computed(
+  () => (currentStep.value === 1 && feedback.value === '') || sending.value
+)
+const disableSendButton = computed(
+  () => (currentStep.value === 2 && email.value === '') || sending.value
+)
 const disableSkipButton = computed(() => sending.value)
-const showSkipButton = computed(() => currentStep.value === 2)
-const showSendButton = computed(() => currentStep.value === 2 || ((currentStep.value === 3) && !requestSuccess.value))
+const showCancelButton = computed(() => currentStep.value < 3 || !requestSuccess.value)
 const showCloseButton = computed(() => !showCancelButton.value)
+const showNextButton = computed(() => currentStep.value < 2)
+const showSendButton = computed(
+  () => currentStep.value === 2 || (currentStep.value === 3 && !requestSuccess.value)
+)
+const showSkipButton = computed(() => currentStep.value === 2)
 
 const localePath = (path) => `/en${path}`
 
 const wordLength = (text) => text?.trim()?.match(/\w+/g)?.length || 0
 
-const validateFeedbackLength = () => wordLength(feedback) >= 5;
+const goToStep = (step) => (currentStep.value = step)
 
-const goToStep = (step) => currentStep.value = step
+const handleInputFeedback = () => {
+  if (wordLength(feedback.value) < 5) {
+    // TODO: i18n
+    feedbackTextarea.value.setCustomValidity('Your feedback has to consist of 5 words at minimum')
+  } else {
+    feedbackTextarea.value.setCustomValidity('')
+  }
+}
 
 const postFeedbackMessage = () => {
+  console.log('postFeedbackMessage')
+  // TODO: for early development testing purposes only; remove!
+  if (feedback.value === 'no no no no no') {
+    return Promise.reject()
+  }
   return Promise.resolve()
 
   // TODO: re-implement using configurable endpoint url and native `fetch`
-
-  // const postData = {
-  //   feedback: this.feedback,
-  //   pageUrl: window.location.href,
-  //   browser: navigator.userAgent,
-  //   screensize: `${window.innerWidth} x ${window.innerHeight}`
-  // };
-  // if (this.email && (this.email !== '')) {
-  //   postData.email = this.email;
-  // }
-  //
-  // // For testing purposes, uncomment the following `if` block to cause the
-  // // request always to fail on the first attempt, showing the error message,
-  // // but then succeeding on subsequent attempts.
-  // // if (this.requestSuccess === null) {
-  // //   delete postData.summary;
-  // // }
-  //
-  // return axios.create({
-  //   baseURL: this.$config.app.baseUrl
-  // }).post(
-  //   '/_api/jira-service-desk/feedback',
-  //   postData
-  // );
 }
 
 const sendFeedback = () => {
@@ -74,16 +72,7 @@ const sendFeedback = () => {
     })
 }
 
-const submitForm = async() => {
-  // If this handler gets called, then the fields are valid
-  feedbackInputState.value = true
-  emailInputState.value = true
-
-  if (currentStep.value === 1 && !validateFeedbackLength()) {
-    feedbackInputState.value = false
-    return
-  }
-
+const submitForm = async () => {
   if (currentStep.value > 1) {
     await sendFeedback()
   }
@@ -94,45 +83,46 @@ const submitForm = async() => {
 </script>
 
 <template>
-  <form
-    class="europeana-feedback-form"
-    data-qa="feedback widget form"
-    @submit.prevent="submitForm"
-  >
+  <form class="europeana-feedback-form" data-qa="feedback widget form" @submit.prevent="submitForm">
     <div class="d-flex flex-wrap">
       <div class="form-fields">
         <div v-if="currentStep === 1">
           <textarea
+            v-model="feedback"
             id="feedback-widget-feedback-input"
             class="form-control"
-            ref="input"
-            v-model="feedback"
+            ref="feedbackTextarea"
+            autofocus
+            required
             name="feedback"
-            required="required"
             :placeholder="$t('validFeedback')"
-            :state="feedbackInputState"
             rows="5"
-            data-qa="feedback textarea"
             aria-describedby="input-live-feedback"
-            @invalid="flagInvalidFeedback"
+            @input="handleInputFeedback"
           />
-          <div class="b-form-invalid-feedback" id="input-live-feedback" data-qa="feedback message invalid">
+          <div
+            class="b-form-invalid-feedback"
+            id="input-live-feedback"
+            data-qa="feedback message invalid"
+          >
             {{ $t('validFeedback') }}
           </div>
         </div>
         <div v-if="currentStep === 2" id="step2">
           <input
             v-model="email"
+            ref="emailInput"
             autofocus
             type="email"
             name="email"
             :placeholder="$t('form.placeholders.email')"
-            :state="emailInputState"
             aria-describedby="input-live-feedback"
-            data-qa="feedback email input"
-            @invalid="flagInvalidEmail"
           />
-          <div class="b-form-invalid-feedback" id="input-live-feedback" data-qa="feedback email invalid">
+          <div
+            class="b-form-invalid-feedback"
+            id="input-live-feedback"
+            data-qa="feedback email invalid"
+          >
             {{ $t('validEmail') }}
           </div>
           <div class="b-form-text" id="input-live-help">
@@ -149,17 +139,14 @@ const submitForm = async() => {
             </p>
           </div>
         </div>
-        <div
-          v-if="currentStep == 3"
-          id="step3"
-          class="feedback-success d-flex align-items-center"
-        >
-          <span :class="requestSuccess ? 'icon-check-circle mr-3' : 'icon-cancel-circle mr-3'" />
+        <div v-if="currentStep == 3" id="step3" class="feedback-success d-flex align-items-center">
           <span v-if="requestSuccess">
+            <CheckCircleIcon class="icon-check-circle mr-3" />
             <p class="mb-0">{{ $t('success') }}</p>
             <p class="mb-0">{{ $t('thankYou') }}</p>
           </span>
           <span v-else-if="requestSuccess === false">
+            <CancelCircleIcon class="icon-cancel-circle mr-3" />
             <span class="mb-0">{{ $t('failed') }}</span>
           </span>
         </div>
@@ -172,7 +159,7 @@ const submitForm = async() => {
           v-if="showCancelButton"
           data-qa="feedback cancel button"
           class="btn btn-outline-primary mt-3"
-          @click.prevent="hideFeedbackForm"
+          @click.prevent="$emit('hide')"
         >
           {{ $t('cancel') }}
         </button>
@@ -184,7 +171,7 @@ const submitForm = async() => {
             :disabled="disableSkipButton"
             @click="skipEmail"
           >
-            {{ $t('skipSend') }} </button
+            {{ $t('skipSend') }}</button
           ><!-- This comment removes white space
           --><button
             v-if="showNextButton"
@@ -209,7 +196,7 @@ const submitForm = async() => {
             v-if="showCloseButton"
             data-qa="feedback close button"
             class="btn btn-primary mt-3 ml-2"
-            @click.prevent="hideFeedbackForm"
+            @click.prevent="$emit('hide')"
           >
             {{ $t('close') }}
           </button>
@@ -221,7 +208,7 @@ const submitForm = async() => {
         class="faq-link mt-4 mb-2 p-0 w-100 text-decoration-none"
       >
         {{ $t('faq') }}
-        <span class="icon-external-link" />
+        <ExternalLinkIcon class="icon-external-link" />
       </a>
     </div>
   </form>

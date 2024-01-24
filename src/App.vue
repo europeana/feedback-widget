@@ -5,22 +5,12 @@ import FeedbackButton from '@/components/FeedbackButton.vue'
 import FeedbackDialog from '@/components/FeedbackDialog.vue'
 
 const showDialog = ref(false)
-
-// TODO: re-implement
-function handleClickFeedbackButton() {
-  // this.resetForm()
-  showDialog.value = true
-  // this.$nextTick(() => {
-  //   const textarea = this.$refs.input
-  //   textarea.focus()
-  // })
-}
 </script>
 
 <template>
   <div class="europeana-feedback-container">
-    <FeedbackButton v-show="!showDialog" @click="handleClickFeedbackButton" />
-    <FeedbackDialog v-show="showDialog" />
+    <FeedbackDialog v-if="showDialog" @hide="showDialog = false" />
+    <FeedbackButton v-else @click="showDialog = true" />
   </div>
 </template>
 
