@@ -28,7 +28,7 @@ const buttonClasses = computed(() => {
     @mouseover="bigButton = true"
     @mouseleave="bigButton = false"
   >
-    <FeedbackIcon class="icon-ic-feedback d-inline-flex" />
+    <FeedbackIcon class="icon-ic-feedback d-inline-flex" width="20px" height="20px" viewBox="0 0 32 32"/>
     <span class="europeana-feedback-button-text">{{ $t('feedback') }}</span>
   </button>
 </template>
