@@ -1,11 +1,13 @@
 <script setup>
-import { computed, ref } from 'vue'
-
-import FeedbackTextarea from './FeedbackTextarea.vue'
+import { computed, inject, ref } from 'vue'
 
 import CancelCircleIcon from '@europeana/style/img/icons/cancel_circle.svg'
 import CheckCircleIcon from '@europeana/style/img/icons/check_circle.svg'
 import ExternalLinkIcon from '@europeana/style/img/icons/external-link.svg'
+
+import FeedbackTextarea from './FeedbackTextarea.vue'
+
+const config = inject('config')
 
 const currentStep = ref(1)
 const email = ref('')
@@ -33,32 +35,42 @@ const localePath = (path) => `/en${path}`
 const goToStep = (step) => (currentStep.value = step)
 
 const postFeedbackMessage = () => {
-  console.log('postFeedbackMessage')
-  // TODO: for early development testing purposes only; remove!
-  if (feedback.value === 'no no no no no') {
-    return Promise.reject()
+  const postData = {
+    feedback: feedback.value,
+    pageUrl: window.location.href,
+    browser: navigator.userAgent,
+    screensize: `${window.innerWidth} x ${window.innerHeight}`
   }
-  return Promise.resolve()
+  if (email.value && email.value !== '') {
+    postData.email = email.value
+  }
 
-  // TODO: re-implement using configurable endpoint url and native `fetch`
+  return fetch(config.apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(postData)
+  })
 }
 
-const sendFeedback = () => {
+const sendFeedback = async () => {
   sending.value = true
 
-  return postFeedbackMessage()
-    .then(() => {
-      requestSuccess.value = true
-      if (currentStep.value < 3) {
-        goToStep(currentStep.value + 1)
-      }
-    })
-    .catch(() => {
-      requestSuccess.value = false
-    })
-    .finally(() => {
-      sending.value = false
-    })
+  try {
+    const response = await postFeedbackMessage()
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
+    requestSuccess.value = true
+    if (currentStep.value < 3) {
+      goToStep(currentStep.value + 1)
+    }
+  } catch {
+    requestSuccess.value = false
+  } finally {
+    sending.value = false
+  }
 }
 
 const submitForm = async () => {
