@@ -202,7 +202,7 @@ const submitForm = async() => {
         class="faq-link mt-4 mb-2 p-0 w-100 text-decoration-none"
       >
         {{ $t('faq') }}
-        <ExternalLinkIcon class="icon-external-link" />
+        <ExternalLinkIcon class="icon-external-link" width="16px" height="16px" viewBox="0 0 32 32" />
       </a>
     </div>
   </form>

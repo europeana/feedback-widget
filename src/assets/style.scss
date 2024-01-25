@@ -1,3 +1,7 @@
+body {
+  background-color: lightgray;
+}
+
 // Nest all styles inside container class to inherit bootstrap and prevent leaking to page
 .europeana-feedback-container {
   @import '@europeana/style/scss/variables';
@@ -5,6 +9,7 @@
   // Define neccessary bootstrap root.scss variables here:
   --bs-border-width: 1px;
   --bs-border-radius: 0.25rem;
+  --bs-box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 
   @import './bootstrap';
 
@@ -182,9 +187,18 @@
   .faq-link {
     transition: $standard-transition;
 
+    svg path {
+      transition: $standard-transition;
+    }
+
     &:hover {
       color: $blue;
       transition: $standard-transition;
+
+      svg path {
+        fill: $blue;
+        transition: $standard-transition;
+      }
     }
 
     .icon-external-link {
