@@ -1,9 +1,11 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, inject, ref } from 'vue'
 
-import CancelCircleIcon from  '@europeana/style/img/icons/cancel_circle.svg'
-import CheckCircleIcon from  '@europeana/style/img/icons/check_circle.svg'
-import ExternalLinkIcon from  '@europeana/style/img/icons/external-link.svg'
+import CancelCircleIcon from '@europeana/style/img/icons/cancel_circle.svg'
+import CheckCircleIcon from '@europeana/style/img/icons/check_circle.svg'
+import ExternalLinkIcon from '@europeana/style/img/icons/external-link.svg'
+
+const config = inject('config')
 
 const currentStep = ref(1)
 const email = ref('')
@@ -13,20 +15,26 @@ const feedbackTextarea = ref(null)
 const requestSuccess = ref(null)
 const sending = ref(false)
 
-const disableNextButton = computed(() => ((currentStep.value === 1) && (feedback.value === '')) || sending.value)
-const disableSendButton = computed(() => ((currentStep.value === 2) && (email.value === '')) || sending.value)
+const disableNextButton = computed(
+  () => (currentStep.value === 1 && feedback.value === '') || sending.value
+)
+const disableSendButton = computed(
+  () => (currentStep.value === 2 && email.value === '') || sending.value
+)
 const disableSkipButton = computed(() => sending.value)
-const showCancelButton = computed(() => (currentStep.value < 3) || !requestSuccess.value)
+const showCancelButton = computed(() => currentStep.value < 3 || !requestSuccess.value)
 const showCloseButton = computed(() => !showCancelButton.value)
 const showNextButton = computed(() => currentStep.value < 2)
-const showSendButton = computed(() => currentStep.value === 2 || ((currentStep.value === 3) && !requestSuccess.value))
+const showSendButton = computed(
+  () => currentStep.value === 2 || (currentStep.value === 3 && !requestSuccess.value)
+)
 const showSkipButton = computed(() => currentStep.value === 2)
 
 const localePath = (path) => `/en${path}`
 
 const wordLength = (text) => text?.trim()?.match(/\w+/g)?.length || 0
 
-const goToStep = (step) => currentStep.value = step
+const goToStep = (step) => (currentStep.value = step)
 
 const handleInputFeedback = () => {
   if (wordLength(feedback.value) < 5) {
@@ -38,35 +46,45 @@ const handleInputFeedback = () => {
 }
 
 const postFeedbackMessage = () => {
-  console.log('postFeedbackMessage')
-  // TODO: for early development testing purposes only; remove!
-  if (feedback.value === 'no no no no no') {
-    return Promise.reject()
+  const postData = {
+    feedback: feedback.value,
+    pageUrl: window.location.href,
+    browser: navigator.userAgent,
+    screensize: `${window.innerWidth} x ${window.innerHeight}`
   }
-  return Promise.resolve()
+  if (email.value && email.value !== '') {
+    postData.email = email.value
+  }
 
-  // TODO: re-implement using configurable endpoint url and native `fetch`
+  return fetch(config.apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(postData)
+  })
 }
 
-const sendFeedback = () => {
+const sendFeedback = async () => {
   sending.value = true
 
-  return postFeedbackMessage()
-    .then(() => {
-      requestSuccess.value = true
-      if (currentStep.value < 3) {
-        goToStep(currentStep.value + 1)
-      }
-    })
-    .catch(() => {
-      requestSuccess.value = false
-    })
-    .finally(() => {
-      sending.value = false
-    })
+  try {
+    const response = await postFeedbackMessage()
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
+    requestSuccess.value = true
+    if (currentStep.value < 3) {
+      goToStep(currentStep.value + 1)
+    }
+  } catch {
+    requestSuccess.value = false
+  } finally {
+    sending.value = false
+  }
 }
 
-const submitForm = async() => {
+const submitForm = async () => {
   if (currentStep.value > 1) {
     await sendFeedback()
   }
@@ -77,11 +95,7 @@ const submitForm = async() => {
 </script>
 
 <template>
-  <form
-    class="europeana-feedback-form"
-    data-qa="feedback widget form"
-    @submit.prevent="submitForm"
-  >
+  <form class="europeana-feedback-form" data-qa="feedback widget form" @submit.prevent="submitForm">
     <div class="d-flex flex-wrap">
       <div class="form-fields">
         <div v-if="currentStep === 1">
@@ -98,7 +112,11 @@ const submitForm = async() => {
             aria-describedby="input-live-feedback"
             @input="handleInputFeedback"
           />
-          <div class="b-form-invalid-feedback" id="input-live-feedback" data-qa="feedback message invalid">
+          <div
+            class="b-form-invalid-feedback"
+            id="input-live-feedback"
+            data-qa="feedback message invalid"
+          >
             {{ $t('validFeedback') }}
           </div>
         </div>
@@ -112,7 +130,11 @@ const submitForm = async() => {
             :placeholder="$t('form.placeholders.email')"
             aria-describedby="input-live-feedback"
           />
-          <div class="b-form-invalid-feedback" id="input-live-feedback" data-qa="feedback email invalid">
+          <div
+            class="b-form-invalid-feedback"
+            id="input-live-feedback"
+            data-qa="feedback email invalid"
+          >
             {{ $t('validEmail') }}
           </div>
           <div class="b-form-text" id="input-live-help">
@@ -129,11 +151,7 @@ const submitForm = async() => {
             </p>
           </div>
         </div>
-        <div
-          v-if="currentStep == 3"
-          id="step3"
-          class="feedback-success d-flex align-items-center"
-        >
+        <div v-if="currentStep == 3" id="step3" class="feedback-success d-flex align-items-center">
           <span v-if="requestSuccess">
             <CheckCircleIcon class="icon-check-circle mr-3" />
             <p class="mb-0">{{ $t('success') }}</p>
@@ -165,7 +183,7 @@ const submitForm = async() => {
             :disabled="disableSkipButton"
             @click="skipEmail"
           >
-            {{ $t('skipSend') }} </button
+            {{ $t('skipSend') }}</button
           ><!-- This comment removes white space
           --><button
             v-if="showNextButton"
