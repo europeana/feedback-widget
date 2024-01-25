@@ -105,6 +105,7 @@ const submitForm = async() => {
         <div v-if="currentStep === 2" id="step2">
           <input
             v-model="email"
+            class="form-control"
             ref="emailInput"
             autofocus
             type="email"
@@ -134,13 +135,21 @@ const submitForm = async() => {
           id="step3"
           class="feedback-success d-flex align-items-center"
         >
-          <span v-if="requestSuccess">
-            <CheckCircleIcon class="icon-check-circle mr-3" />
-            <p class="mb-0">{{ $t('success') }}</p>
-            <p class="mb-0">{{ $t('thankYou') }}</p>
+          <span 
+            v-if="requestSuccess"           
+            class="d-flex align-items-center"
+          >
+            <CheckCircleIcon class="icon-check-circle me-3" />
+            <span>
+              <p class="mb-0">{{ $t('success') }}</p>
+              <p class="mb-0">{{ $t('thankYou') }}</p>
+            </span>
           </span>
-          <span v-else-if="requestSuccess === false">
-            <CancelCircleIcon class="icon-cancel-circle mr-3" />
+          <span 
+            v-else-if="requestSuccess === false"           
+            class="d-flex align-items-center"
+          >
+            <CancelCircleIcon class="icon-cancel-circle me-3" />
             <span class="mb-0">{{ $t('failed') }}</span>
           </span>
         </div>
@@ -161,7 +170,7 @@ const submitForm = async() => {
           <button
             v-if="showSkipButton"
             data-qa="feedback skip button"
-            class="btn btn-outline-primary mt-3 ml-2"
+            class="btn btn-outline-primary mt-3 ms-2"
             :disabled="disableSkipButton"
             @click="skipEmail"
           >
@@ -171,7 +180,7 @@ const submitForm = async() => {
             v-if="showNextButton"
             data-qa="feedback next button"
             variant="primary"
-            class="btn btn-primary button-next-step mt-3 ml-2"
+            class="btn btn-primary button-next-step mt-3 ms-2"
             type="submit"
             :disabled="disableNextButton"
           >
@@ -180,7 +189,7 @@ const submitForm = async() => {
           <button
             v-if="showSendButton"
             data-qa="feedback send button"
-            class="btn btn-primary mt-3 ml-2"
+            class="btn btn-primary mt-3 ms-2"
             type="submit"
             :disabled="disableSendButton"
           >
@@ -189,7 +198,7 @@ const submitForm = async() => {
           <button
             v-if="showCloseButton"
             data-qa="feedback close button"
-            class="btn btn-primary mt-3 ml-2"
+            class="btn btn-primary mt-3 ms-2"
             @click.prevent="$emit('hide')"
           >
             {{ $t('close') }}
