@@ -1,7 +1,3 @@
-body {
-  background-color: lightgray;
-}
-
 // Nest all styles inside container class to inherit bootstrap and prevent leaking to page
 .europeana-feedback-container {
   @import '@europeana/style/scss/variables';
