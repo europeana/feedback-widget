@@ -12,6 +12,7 @@ const email = ref('')
 const emailInput = ref(null)
 const feedback = ref('')
 const feedbackTextarea = ref(null)
+const feedbackForm = ref(null)
 const requestSuccess = ref(null)
 const sending = ref(false)
 const feedbackTextareaValidityState = ref(true)
@@ -99,23 +100,20 @@ const submitForm = async () => {
 }
 
 const validateForm = () => {
-  const validations = []
-
   if (currentStep.value === 1) {
     feedbackTextareaValidityState.value = feedbackTextarea.value?.validity.valid
-    validations.push(feedbackTextareaValidityState.value)
   } else if (currentStep.value === 2) {
     emailInputValidityState.value = emailInput.value?.validity.valid
-    validations.push(emailInputValidityState.value)
   }
 
-  return validations.every((valid) => valid)
+  return feedbackForm.value.checkValidity()
 }
 </script>
 
 <template>
   <form
     class="europeana-feedback-form"
+    ref="feedbackForm"
     data-qa="feedback widget form"
     @submit.prevent="submitForm"
     novalidate
