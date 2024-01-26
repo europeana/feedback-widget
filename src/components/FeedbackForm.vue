@@ -1,11 +1,13 @@
 <script setup>
 import { computed, inject, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import CancelCircleIcon from '@europeana/style/img/icons/cancel_circle.svg'
 import CheckCircleIcon from '@europeana/style/img/icons/check_circle.svg'
 import ExternalLinkIcon from '@europeana/style/img/icons/external-link.svg'
 
 const config = inject('config')
+const { t } = useI18n()
 
 const currentStep = ref(1)
 const email = ref('')
@@ -38,8 +40,7 @@ const goToStep = (step) => (currentStep.value = step)
 
 const handleInputFeedback = () => {
   if (wordLength(feedback.value) < 5) {
-    // TODO: i18n
-    feedbackTextarea.value.setCustomValidity('Your feedback has to consist of 5 words at minimum')
+    feedbackTextarea.value.setCustomValidity(t('validFeedback'))
   } else {
     feedbackTextarea.value.setCustomValidity('')
   }
