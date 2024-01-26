@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, ref } from 'vue'
+import { computed, inject, ref, nextTick } from 'vue'
 
 import CancelCircleIcon from '@europeana/style/img/icons/cancel_circle.svg'
 import CheckCircleIcon from '@europeana/style/img/icons/check_circle.svg'
@@ -90,6 +90,12 @@ const submitForm = async () => {
   }
   if (currentStep.value < 3) {
     goToStep(currentStep.value + 1)
+
+    if(currentStep.value === 2) {
+      nextTick(() => {
+        emailInput.value.focus()
+      })
+    }
   }
 }
 </script>
