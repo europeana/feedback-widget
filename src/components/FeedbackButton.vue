@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import FeedbackIcon from '@europeana/style/img/icons/feedback.svg'
 
 defineProps({
@@ -12,8 +12,14 @@ defineProps({
 const bigButton = ref(true)
 
 onMounted(() => {
-  window.addEventListener('scroll', () => bigButton.value = false, { once: true });
+  window.addEventListener('scroll', shrinkButton, { once: true });
 })
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', shrinkButton, { once: true });
+})
+
+const shrinkButton = () => bigButton.value = false;
 
 const buttonClasses = computed(() => {
   return {
