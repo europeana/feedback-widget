@@ -164,7 +164,7 @@ const validateEmailInput = () => {
             v-else-if="requestSuccess === false"           
             class="d-flex align-items-center"
           >
-            <CancelCircleIcon class="icon-cancel-circle me-3" />
+            <CancelCircleIcon class="icon-cancel-circle me-3" width="20px" height="20px" viewBox="0 0 24 24" />
             <span class="mb-0">{{ $t('failed') }}</span>
           </span>
         </div>

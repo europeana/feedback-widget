@@ -175,13 +175,8 @@ body {
       color: $greyblack;
     }
 
-    .icon-check-circle::before {
-      font-size: 1.5rem;
-    }
-
-    .icon-cancel-circle::before {
-      color: $red;
-      font-size: 1.25rem;
+    .icon-cancel-circle {
+      fill: $red;
     }
   }
 
