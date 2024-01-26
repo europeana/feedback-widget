@@ -1,6 +1,7 @@
 export default {
   cancel: 'Cancel',
   close: 'Close',
+  "emailAddress": "Email address",
   emailOptional:
     "We may wish to follow up. Enter your email if you're happy for us to contact you.",
   failed: 'The request failed. Please try again.',

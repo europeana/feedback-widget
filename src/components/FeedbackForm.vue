@@ -99,6 +99,7 @@ const submitForm = async () => {
     <div class="d-flex flex-wrap">
       <div class="form-fields">
         <div v-if="currentStep === 1">
+          <label for="feedback-widget-feedback-input" class="d-block">{{ $t('feedback') }}</label>
           <textarea
             v-model="feedback"
             id="feedback-widget-feedback-input"
@@ -121,7 +122,9 @@ const submitForm = async () => {
           </div>
         </div>
         <div v-if="currentStep === 2" id="step2">
+          <label for="feedback-widget-email-input" class="d-block">{{ $t('emailAddress') }}</label>
           <input
+            id="feedback-widget-email-input"
             v-model="email"
             ref="emailInput"
             autofocus

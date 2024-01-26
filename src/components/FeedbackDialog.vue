@@ -11,7 +11,7 @@ import FeedbackForm from '@/components/FeedbackForm.vue'
   >
     <div id="dialogHeader" class="feedback-header">
       <h2>
-        <label for="feedback-widget-feedback-input">{{ $t('title') }}</label>
+        {{ $t('title') }}
       </h2>
     </div>
     <FeedbackForm @hide="$emit('hide')" />

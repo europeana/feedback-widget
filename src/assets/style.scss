@@ -113,15 +113,16 @@
         line-height: 1.5;
         font-weight: 600;
         margin: 0;
-
-        label {
-          display: inline;
-        }
       }
     }
 
     .europeana-feedback-form {
       padding: 1rem;
+
+      label {
+        color: $black;
+        font-size: $font-size-small;
+      }
 
       .form-fields {
         flex: 0 1 100%;
