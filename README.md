@@ -13,13 +13,11 @@ Implemented as a [Vue 3](https://vuejs.org/) component and embeddable as an HTML
 <!DOCTYPE html>
 <html>
   <head>
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget/dist/europeana-feedback-widget.js"
-    ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget/dist/europeana-feedback-widget.css" />
   </head>
   <body>
-    <europeana-feedback-widget></europeana-feedback-widget>
+    <div id="europeana-feedback-widget"></div>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget/dist/europeana-feedback-widget.js"></script>
   </body>
 </html>
 ```
