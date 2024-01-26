@@ -87,6 +87,9 @@ const sendFeedback = async () => {
 }
 
 const submitForm = async () => {
+  if (!validateForm()) {
+    return
+  }
   if (currentStep.value > 1) {
     await sendFeedback()
   }
@@ -95,17 +98,28 @@ const submitForm = async () => {
   }
 }
 
-const validateTextArea = () => {
-  feedbackTextareaValidityState.value = feedbackTextarea.value?.validity.valid
-}
+const validateForm = () => {
+  const validations = []
 
-const validateEmailInput = () => {
-  emailInputValidityState.value = emailInput.value?.validity.valid
+  if (currentStep.value === 1) {
+    feedbackTextareaValidityState.value = feedbackTextarea.value?.validity.valid
+    validations.push(feedbackTextareaValidityState.value)
+  } else if (currentStep.value === 2) {
+    emailInputValidityState.value = emailInput.value?.validity.valid
+    validations.push(emailInputValidityState.value)
+  }
+
+  return validations.every((valid) => valid)
 }
 </script>
 
 <template>
-  <form class="europeana-feedback-form" data-qa="feedback widget form" @submit.prevent="submitForm">
+  <form
+    class="europeana-feedback-form"
+    data-qa="feedback widget form"
+    @submit.prevent="submitForm"
+    novalidate
+  >
     <div class="d-flex flex-wrap">
       <div class="form-fields">
         <div v-if="currentStep === 1">
@@ -169,22 +183,25 @@ const validateEmailInput = () => {
             </p>
           </div>
         </div>
-        <div v-if="currentStep == 3" id="step3" class="feedback-success d-flex align-items-center mb-3 mb-sm-0">
-          <span 
-            v-if="requestSuccess"
-            class="d-flex align-items-center"
-          >
+        <div
+          v-if="currentStep == 3"
+          id="step3"
+          class="feedback-success d-flex align-items-center mb-3 mb-sm-0"
+        >
+          <span v-if="requestSuccess" class="d-flex align-items-center">
             <CheckCircleIcon class="icon-check-circle" />
             <span class="ms-3">
               <p class="mb-0">{{ $t('success') }}</p>
               <p class="mb-0">{{ $t('thankYou') }}</p>
             </span>
           </span>
-          <span 
-            v-else-if="requestSuccess === false"           
-            class="d-flex align-items-center"
-          >
-            <CancelCircleIcon class="icon-cancel-circle" width="20px" height="20px" viewBox="0 0 24 24" />
+          <span v-else-if="requestSuccess === false" class="d-flex align-items-center">
+            <CancelCircleIcon
+              class="icon-cancel-circle"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+            />
             <span class="mb-0 ms-3">{{ $t('failed') }}</span>
           </span>
         </div>
@@ -209,15 +226,14 @@ const validateEmailInput = () => {
             :disabled="disableSkipButton"
             @click="skipEmail"
           >
-            {{ $t('skipSend') }}</button
-          >
+            {{ $t('skipSend') }}
+          </button>
           <button
             v-if="showNextButton"
             data-qa="feedback next button"
             class="btn btn-primary button-next-step mt-3"
             type="submit"
             :disabled="disableNextButton"
-            @click="validateTextArea"
           >
             {{ $t('next') }}
           </button>
@@ -227,7 +243,6 @@ const validateEmailInput = () => {
             class="btn btn-primary mt-3"
             type="submit"
             :disabled="disableSendButton"
-            @click="validateEmailInput"
           >
             {{ $t('send') }}
           </button>
@@ -247,7 +262,12 @@ const validateEmailInput = () => {
         class="faq-link d-inline-flex align-items-center mt-4 mb-2 p-0 w-100 text-decoration-none"
       >
         <span>{{ $t('faq') }}</span>
-        <ExternalLinkIcon class="icon-external-link ms-1" width="16px" height="16px" viewBox="0 0 32 32" />
+        <ExternalLinkIcon
+          class="icon-external-link ms-1"
+          width="16px"
+          height="16px"
+          viewBox="0 0 32 32"
+        />
       </a>
     </div>
   </form>
