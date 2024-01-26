@@ -16,7 +16,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', shrinkButton, { once: true });
+  window.removeEventListener('scroll', shrinkButton);
 })
 
 const shrinkButton = () => bigButton.value = false;
