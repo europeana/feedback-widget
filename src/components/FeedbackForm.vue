@@ -134,6 +134,7 @@ const submitForm = async () => {
             v-model="email"
             ref="emailInput"
             autofocus
+            autocomplete="email"
             type="email"
             name="email"
             :placeholder="$t('form.placeholders.email')"
