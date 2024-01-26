@@ -12,7 +12,6 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   ignorePatterns: [
-    'dev/',
     'src/locales/'
   ]
 }
