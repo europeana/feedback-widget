@@ -12,6 +12,8 @@ const feedback = ref('')
 const feedbackTextarea = ref(null)
 const requestSuccess = ref(null)
 const sending = ref(false)
+const feedbackTextareaValidityState = ref(true)
+const emailInputValidityState = ref(true)
 
 const disableNextButton = computed(() => ((currentStep.value === 1) && (feedback.value === '')) || sending.value)
 const disableSendButton = computed(() => ((currentStep.value === 2) && (email.value === '')) || sending.value)
@@ -74,6 +76,14 @@ const submitForm = async() => {
     goToStep(currentStep.value + 1)
   }
 }
+
+const validateTextArea = () => {
+  feedbackTextareaValidityState.value = feedbackTextarea.value?.validity.valid
+}
+
+const validateEmailInput = () => {
+  emailInputValidityState.value = emailInput.value?.validity.valid
+}
 </script>
 
 <template>
@@ -89,6 +99,7 @@ const submitForm = async() => {
             v-model="feedback"
             id="feedback-widget-feedback-input"
             class="form-control"
+            :class="{ 'is-invalid': !feedbackTextareaValidityState }"
             ref="feedbackTextarea"
             autofocus
             required
@@ -96,9 +107,11 @@ const submitForm = async() => {
             :placeholder="$t('validFeedback')"
             rows="5"
             aria-describedby="input-live-feedback"
+            aria-required="true"
+            :aria-invalid="feedbackTextareaValidityState ? null : true"
             @input="handleInputFeedback"
           />
-          <div class="b-form-invalid-feedback" id="input-live-feedback" data-qa="feedback message invalid">
+          <div v-if="!feedbackTextareaValidityState" class="d-inline invalid-feedback" id="input-live-feedback" data-qa="feedback message invalid">
             {{ $t('validFeedback') }}
           </div>
         </div>
@@ -106,17 +119,19 @@ const submitForm = async() => {
           <input
             v-model="email"
             class="form-control"
+            :class="{ 'is-invalid': !emailInputValidityState }"
             ref="emailInput"
             autofocus
             type="email"
             name="email"
             :placeholder="$t('form.placeholders.email')"
             aria-describedby="input-live-feedback"
+            :aria-invalid="emailInputValidityState ? null : true"
           />
-          <div class="b-form-invalid-feedback" id="input-live-feedback" data-qa="feedback email invalid">
+          <div v-if="!emailInputValidityState" class="d-inline invalid-feedback" id="input-live-feedback" data-qa="feedback email invalid">
             {{ $t('validEmail') }}
           </div>
-          <div class="b-form-text" id="input-live-help">
+          <div class="form-text" id="input-live-help">
             <p class="mb-0">
               {{ $t('emailOptional') }}
               <i18n-t keypath="policies" tag="span">
@@ -183,6 +198,7 @@ const submitForm = async() => {
             class="btn btn-primary button-next-step mt-3 ms-2"
             type="submit"
             :disabled="disableNextButton"
+            @click="validateTextArea"
           >
             {{ $t('next') }}
           </button>
@@ -192,6 +208,7 @@ const submitForm = async() => {
             class="btn btn-primary mt-3 ms-2"
             type="submit"
             :disabled="disableSendButton"
+            @click="validateEmailInput"
           >
             {{ $t('send') }}
           </button>
