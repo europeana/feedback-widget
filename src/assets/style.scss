@@ -39,6 +39,7 @@
     border-radius: 50%;
     transition: border-radius 0.3s ease-out;
     box-shadow: 0 2px 8px rgb(26 26 26 / 25%);
+    line-height: 1;
 
     .europeana-feedback-button-text {
       display: inline-block;
@@ -59,7 +60,7 @@
         }
 
         .icon-ic-feedback {
-          padding-right: 0.25rem;
+          margin-right: 0.5rem;
         }
       }
     }
@@ -120,12 +121,20 @@
 
         @media (max-width: $bp-small) {
           flex-wrap: wrap;
+        }
 
-          .button-group-right {
+        .button-group-right {
+          @media (max-width: $bp-small) {
             width: 100%;
           }
 
-          button {
+          .btn-primary {
+            margin-left: 0.75rem
+          }
+        }
+
+        button {
+          @media (max-width: $bp-small) {
             width: 100%;
             margin: 0.5rem 0 0 !important;
           }
@@ -161,6 +170,7 @@
       .form-text {
         font-size: 0.875rem;
         margin: 0.75rem 0 0;
+        line-height: 1.571;
 
         a {
           color: $mediumgrey;

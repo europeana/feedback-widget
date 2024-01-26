@@ -210,12 +210,11 @@ const validateEmailInput = () => {
             @click="skipEmail"
           >
             {{ $t('skipSend') }}</button
-          ><!-- This comment removes white space
-          --><button
+          >
+          <button
             v-if="showNextButton"
             data-qa="feedback next button"
-            variant="primary"
-            class="btn btn-primary button-next-step mt-3 ms-2"
+            class="btn btn-primary button-next-step mt-3"
             type="submit"
             :disabled="disableNextButton"
             @click="validateTextArea"
@@ -225,7 +224,7 @@ const validateEmailInput = () => {
           <button
             v-if="showSendButton"
             data-qa="feedback send button"
-            class="btn btn-primary mt-3 ms-2"
+            class="btn btn-primary mt-3"
             type="submit"
             :disabled="disableSendButton"
             @click="validateEmailInput"
@@ -235,7 +234,7 @@ const validateEmailInput = () => {
           <button
             v-if="showCloseButton"
             data-qa="feedback close button"
-            class="btn btn-primary mt-3 ms-2"
+            class="btn btn-primary mt-3"
             @click.prevent="$emit('hide')"
           >
             {{ $t('close') }}
@@ -245,10 +244,10 @@ const validateEmailInput = () => {
       <a
         :href="localePath('/faq')"
         target="_blank"
-        class="faq-link mt-4 mb-2 p-0 w-100 text-decoration-none"
+        class="faq-link d-inline-flex align-items-center mt-4 mb-2 p-0 w-100 text-decoration-none"
       >
-        {{ $t('faq') }}
-        <ExternalLinkIcon class="icon-external-link" width="16px" height="16px" viewBox="0 0 32 32" />
+        <span>{{ $t('faq') }}</span>
+        <ExternalLinkIcon class="icon-external-link ms-1" width="16px" height="16px" viewBox="0 0 32 32" />
       </a>
     </div>
   </form>
