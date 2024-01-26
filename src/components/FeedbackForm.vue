@@ -5,13 +5,13 @@ import CancelCircleIcon from '@europeana/style/img/icons/cancel_circle.svg'
 import CheckCircleIcon from '@europeana/style/img/icons/check_circle.svg'
 import ExternalLinkIcon from '@europeana/style/img/icons/external-link.svg'
 
+import FeedbackTextarea from './FeedbackTextarea.vue'
+
 const config = inject('config')
 
 const currentStep = ref(1)
 const email = ref('')
-const emailInput = ref(null)
 const feedback = ref('')
-const feedbackTextarea = ref(null)
 const requestSuccess = ref(null)
 const sending = ref(false)
 
@@ -32,18 +32,7 @@ const showSkipButton = computed(() => currentStep.value === 2)
 
 const localePath = (path) => `/en${path}`
 
-const wordLength = (text) => text?.trim()?.match(/\w+/g)?.length || 0
-
 const goToStep = (step) => (currentStep.value = step)
-
-const handleInputFeedback = () => {
-  if (wordLength(feedback.value) < 5) {
-    // TODO: i18n
-    feedbackTextarea.value.setCustomValidity('Your feedback has to consist of 5 words at minimum')
-  } else {
-    feedbackTextarea.value.setCustomValidity('')
-  }
-}
 
 const postFeedbackMessage = () => {
   const postData = {
@@ -99,19 +88,7 @@ const submitForm = async () => {
     <div class="d-flex flex-wrap">
       <div class="form-fields">
         <div v-if="currentStep === 1">
-          <textarea
-            v-model="feedback"
-            id="feedback-widget-feedback-input"
-            class="form-control"
-            ref="feedbackTextarea"
-            autofocus
-            required
-            name="feedback"
-            :placeholder="$t('validFeedback')"
-            rows="5"
-            aria-describedby="input-live-feedback"
-            @input="handleInputFeedback"
-          />
+          <FeedbackTextarea v-model="feedback" />
           <div
             class="b-form-invalid-feedback"
             id="input-live-feedback"
@@ -123,7 +100,6 @@ const submitForm = async () => {
         <div v-if="currentStep === 2" id="step2">
           <input
             v-model="email"
-            ref="emailInput"
             autofocus
             type="email"
             name="email"
