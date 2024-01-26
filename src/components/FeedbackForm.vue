@@ -148,14 +148,14 @@ const validateEmailInput = () => {
         <div
           v-if="currentStep == 3"
           id="step3"
-          class="feedback-success d-flex align-items-center mb-3"
+          class="feedback-success d-flex align-items-center mb-3 mb-sm-0"
         >
           <span 
             v-if="requestSuccess"           
             class="d-flex align-items-center"
           >
-            <CheckCircleIcon class="icon-check-circle me-3" />
-            <span>
+            <CheckCircleIcon class="icon-check-circle" />
+            <span class="ms-3">
               <p class="mb-0">{{ $t('success') }}</p>
               <p class="mb-0">{{ $t('thankYou') }}</p>
             </span>
@@ -164,8 +164,8 @@ const validateEmailInput = () => {
             v-else-if="requestSuccess === false"           
             class="d-flex align-items-center"
           >
-            <CancelCircleIcon class="icon-cancel-circle me-3" width="20px" height="20px" viewBox="0 0 24 24" />
-            <span class="mb-0">{{ $t('failed') }}</span>
+            <CancelCircleIcon class="icon-cancel-circle" width="20px" height="20px" viewBox="0 0 24 24" />
+            <span class="mb-0 ms-3">{{ $t('failed') }}</span>
           </span>
         </div>
       </div>
