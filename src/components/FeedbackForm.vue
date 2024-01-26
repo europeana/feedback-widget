@@ -125,14 +125,6 @@ const validateEmailInput = () => {
             :aria-invalid="feedbackTextareaValidityState ? null : true"
             @input="handleInputFeedback"
           />
-          <div
-            v-if="!feedbackTextareaValidityState"
-            class="d-inline-block invalid-feedback"
-            id="input-live-feedback"
-            data-qa="feedback message invalid"
-          >
-            {{ $t('validFeedback') }}
-          </div>
         </div>
         <div v-if="currentStep === 2" id="step2">
           <input
@@ -147,14 +139,6 @@ const validateEmailInput = () => {
             aria-describedby="input-live-feedback"
             :aria-invalid="emailInputValidityState ? null : true"
           />
-          <div
-            v-if="!emailInputValidityState"
-            class="d-inline-block invalid-feedback"
-            id="input-live-feedback"
-            data-qa="feedback email invalid"
-          >
-            {{ $t('validEmail') }}
-          </div>
           <div class="form-text" id="input-live-help">
             <p class="mb-0">
               {{ $t('emailOptional') }}
