@@ -3,11 +3,6 @@ import { computed, ref, onMounted, onUnmounted } from 'vue'
 import FeedbackIcon from '@europeana/style/img/icons/feedback.svg'
 
 const props = defineProps({
-  // TODO: clean up hide prop as it's unused?
-  hide: {
-    type: String,
-    default: () => 'en'
-  },
   buttonFocus: {
     type: Boolean,
     default: false
