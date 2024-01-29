@@ -69,9 +69,6 @@
     border-radius: 0.3rem;
     background-color: $white;
     color: $mediumgrey;
-    transition:
-      opacity 0.15s linear,
-      transform 0.3s ease-out;
     position: fixed;
     left: 1rem;
     right: 1rem;
@@ -79,6 +76,27 @@
     margin: 0;
     overflow: auto;
     max-height: 100vh;
+    animation: transform 300ms ease-out, appear 150ms linear;
+
+    @keyframes transform {
+      from {
+        transform: translate(0, 50px);
+      }
+
+      to {
+        transform: none;
+      }
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
 
     @media (min-width: $bp-small) {
       left: auto;
