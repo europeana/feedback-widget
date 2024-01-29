@@ -1,0 +1,25 @@
+{
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "emailOptional": "Nous souhaiterions peut-être faire un suivi. Entrez votre e-mail si vous souhaitez que nous vous contactions.",
+    "failed": "La demande a échoué. Veuillez réessayer.",
+    "faq": "Aller à la foire aux questions",
+    "feedback": "Commentaires",
+    "form": {
+        "placeholders": {
+            "email": "Entrez votre adresse email",
+            "feedback": "Entrez vos commentaires ici"
+        }
+    },
+    "next": "Suivant",
+    "policies": "En continuant, vous acceptez notre {0} et reconnaissez notre {1} .",
+    "privacyPolicy": "Politique de confidentialité",
+    "send": "Envoyer",
+    "skipSend": "Ignorer et envoyer",
+    "success": "Votre commentaire a été envoyé.",
+    "termsOfService": "Conditions d'utilisation",
+    "thankYou": "Merci!",
+    "title": "Envoyer des commentaires",
+    "validEmail": "Entrez une adresse mail valide",
+    "validFeedback": "Vos commentaires doivent comprendre au moins 5 mots"
+}
