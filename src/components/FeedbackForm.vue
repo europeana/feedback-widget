@@ -161,7 +161,7 @@ const submitForm = async () => {
             </p>
           </div>
         </div>
-        <div v-if="currentStep == 3" id="step3" class="feedback-success d-flex align-items-center">
+        <div v-if="currentStep == 3" id="step3" class="feedback-success d-flex align-items-center" role="alert" aria-atomic="true">
           <span v-if="requestSuccess">
             <CheckCircleIcon class="icon-check-circle mr-3" />
             <p class="mb-0">{{ $t('success') }}</p>
