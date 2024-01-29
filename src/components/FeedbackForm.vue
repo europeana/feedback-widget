@@ -131,7 +131,6 @@ const skipEmail = () =>{
             class="form-control"
             :class="{ 'is-invalid': !feedbackTextareaValidityState }"
             ref="feedbackTextarea"
-            autofocus
             required
             name="feedback"
             :placeholder="$t('validFeedback')"
@@ -149,7 +148,6 @@ const skipEmail = () =>{
             class="form-control"
             :class="{ 'is-invalid': !emailInputValidityState }"
             ref="emailInput"
-            autofocus
             autocomplete="email"
             type="email"
             name="email"
