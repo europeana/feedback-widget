@@ -7,7 +7,7 @@ import CheckCircleIcon from '@europeana/style/img/icons/check_circle.svg'
 import ExternalLinkIcon from '@europeana/style/img/icons/external-link.svg'
 
 const config = inject('config')
-const { t } = useI18n()
+const { locale, t } = useI18n()
 
 const currentStep = ref(1)
 const email = ref('')
@@ -32,7 +32,7 @@ const showSendButton = computed(
 )
 const showSkipButton = computed(() => currentStep.value === 2)
 
-const localePath = (path) => `/en${path}`
+const docsUrl = (path) => `https://www.europeana.eu/${locale.value}${path}`
 
 const wordLength = (text) => text?.trim()?.match(/\w+/g)?.length || 0
 
@@ -142,10 +142,10 @@ const submitForm = async () => {
             <p class="mb-0">
               {{ $t('emailOptional') }}
               <i18n-t keypath="policies" tag="span">
-                <a :href="localePath('/rights')" target="_blank">
+                <a :href="docsUrl('/rights')" target="_blank">
                   {{ $t('termsOfService') }}
                 </a>
-                <a :href="localePath('/rights/privacy-policy')" target="_blank">
+                <a :href="docsUrl('/rights/privacy-policy')" target="_blank">
                   {{ $t('privacyPolicy') }}
                 </a>
               </i18n-t>
@@ -216,7 +216,7 @@ const submitForm = async () => {
         </div>
       </div>
       <a
-        :href="localePath('/faq')"
+        :href="docsUrl('/faq')"
         target="_blank"
         class="faq-link mt-4 mb-2 p-0 w-100 text-decoration-none"
       >
