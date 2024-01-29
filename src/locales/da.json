@@ -1,19 +1,25 @@
 {
-  "emailOptional": "Vi ønsker måske at følge op. Indtast din e-mail, hvis du er glad for, at vi kontakter dig.",
-  "failed": "Anmodningen mislykkedes. Prøv igen.",
-  "faq": "Gå til ofte stillede spørgsmål",
-  "form": {
-    "placeholders": {
-      "email": "Indtast din e-mailadresse",
-      "feedback": "Indtast din feedback her"
-    }
-  },
-  "policies": "Ved at fortsætte accepterer du vores {0} og anerkender vores {1} .",
-  "privacyPolicy": "Fortrolighedspolitik",
-  "success": "Din feedback er sendt.",
-  "termsOfService": "Vilkår for brug",
-  "thankYou": "Tak!",
-  "title": "Send feedback",
-  "validEmail": "Indtast en gyldig email addresse",
-  "validFeedback": "Din feedback skal mindst bestå af 5 ord"
+    "cancel": "Annuller",
+    "close": "Luk",
+    "emailOptional": "Vi ønsker måske at følge op. Indtast din e-mail, hvis du er glad for, at vi kontakter dig.",
+    "failed": "Anmodningen mislykkedes. Prøv igen.",
+    "faq": "Gå til ofte stillede spørgsmål",
+    "feedback": "Feedback",
+    "form": {
+        "placeholders": {
+            "email": "Indtast din e-mailadresse",
+            "feedback": "Indtast din feedback her"
+        }
+    },
+    "next": "Næste",
+    "policies": "Ved at fortsætte accepterer du vores {0} og anerkender vores {1} .",
+    "privacyPolicy": "Fortrolighedspolitik",
+    "send": "Sende",
+    "skipSend": "Spring over og send",
+    "success": "Din feedback er sendt.",
+    "termsOfService": "Vilkår for brug",
+    "thankYou": "Tak!",
+    "title": "Send feedback",
+    "validEmail": "Indtast en gyldig email addresse",
+    "validFeedback": "Din feedback skal mindst bestå af 5 ord"
 }

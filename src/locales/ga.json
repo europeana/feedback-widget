@@ -1,19 +1,25 @@
 {
-  "emailOptional": "B’fhéidir gur mhaith linn obair leantach a dhéanamh. Cuir isteach do r-phost má tá tú sásta go ndéanfaimis teagmháil leat.",
-  "failed": "Theip ar an iarraidh. Arís, le do thoil.",
-  "faq": "Téigh go dtí ceisteanna coitianta",
-  "form": {
-    "placeholders": {
-      "email": "Cuir isteach do sheoladh ríomhphoist",
-      "feedback": "Cuir isteach d'aiseolas anseo"
-    }
-  },
-  "policies": "Trí leanúint ar aghaidh, aontaíonn tú lenár {0} agus aithníonn tú ár {1} .",
-  "privacyPolicy": "Beartas Príobháideachais",
-  "success": "Tá d'aiseolas seolta.",
-  "termsOfService": "Tearmaí Seirbhís",
-  "thankYou": "Go raibh maith agat!",
-  "title": "Seol Aiseolas",
-  "validEmail": "Iontráil seoladh bailí ríomhphoist",
-  "validFeedback": "Caithfidh 5 fhocal ar a laghad a bheith i d’aiseolas"
+    "cancel": "Cealaigh",
+    "close": "Dún",
+    "emailOptional": "B’fhéidir gur mhaith linn obair leantach a dhéanamh. Cuir isteach do r-phost má tá tú sásta go ndéanfaimis teagmháil leat.",
+    "failed": "Theip ar an iarraidh. Arís, le do thoil.",
+    "faq": "Téigh go dtí ceisteanna coitianta",
+    "feedback": "Aiseolas",
+    "form": {
+        "placeholders": {
+            "email": "Cuir isteach do sheoladh ríomhphoist",
+            "feedback": "Cuir isteach d'aiseolas anseo"
+        }
+    },
+    "next": "Ar Aghaidh",
+    "policies": "Trí leanúint ar aghaidh, aontaíonn tú lenár {0} agus aithníonn tú ár {1} .",
+    "privacyPolicy": "Beartas Príobháideachais",
+    "send": "Seol",
+    "skipSend": "Scipeáil agus seol",
+    "success": "Tá d'aiseolas seolta.",
+    "termsOfService": "Tearmaí Seirbhís",
+    "thankYou": "Go raibh maith agat!",
+    "title": "Seol Aiseolas",
+    "validEmail": "Iontráil seoladh bailí ríomhphoist",
+    "validFeedback": "Caithfidh 5 fhocal ar a laghad a bheith i d’aiseolas"
 }

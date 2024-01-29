@@ -1,19 +1,25 @@
 {
-  "emailOptional": "Saatamme haluta seurata asiaa. Kirjoita sähköpostiosoitteesi, jos olet iloinen siitä, että voimme ottaa sinuun yhteyttä.",
-  "failed": "Pyyntö epäonnistui. Yritä uudelleen.",
-  "faq": "Siirry usein kysyttyihin kysymyksiin",
-  "form": {
-    "placeholders": {
-      "email": "Syötä sähköpostiosoitteesi",
-      "feedback": "Kirjoita palautteesi tähän"
-    }
-  },
-  "policies": "Jatkamalla hyväksyt {0} ja tunnustamme {1} .",
-  "privacyPolicy": "Tietosuojakäytäntö",
-  "success": "Palautteesi on lähetetty.",
-  "termsOfService": "Käyttöehdot",
-  "thankYou": "Kiitos!",
-  "title": "Lähetä palautetta",
-  "validEmail": "syötä voimassa oleva sähköpostiosoite",
-  "validFeedback": "Palautteen tulee koostua vähintään viidestä sanasta"
+    "cancel": "Peruuta",
+    "close": "Sulje",
+    "emailOptional": "Saatamme haluta seurata asiaa. Kirjoita sähköpostiosoitteesi, jos olet iloinen siitä, että voimme ottaa sinuun yhteyttä.",
+    "failed": "Pyyntö epäonnistui. Yritä uudelleen.",
+    "faq": "Siirry usein kysyttyihin kysymyksiin",
+    "feedback": "Palaute",
+    "form": {
+        "placeholders": {
+            "email": "Syötä sähköpostiosoitteesi",
+            "feedback": "Kirjoita palautteesi tähän"
+        }
+    },
+    "next": "Seuraava",
+    "policies": "Jatkamalla hyväksyt {0} ja tunnustamme {1} .",
+    "privacyPolicy": "Tietosuojakäytäntö",
+    "send": "Lähettää",
+    "skipSend": "Ohita ja lähetä",
+    "success": "Palautteesi on lähetetty.",
+    "termsOfService": "Käyttöehdot",
+    "thankYou": "Kiitos!",
+    "title": "Lähetä palautetta",
+    "validEmail": "syötä voimassa oleva sähköpostiosoite",
+    "validFeedback": "Palautteen tulee koostua vähintään viidestä sanasta"
 }
