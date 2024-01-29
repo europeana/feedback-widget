@@ -121,7 +121,6 @@ const validateEmailInput = () => {
             name="feedback"
             :placeholder="$t('validFeedback')"
             rows="5"
-            aria-describedby="efw-input-live-feedback"
             aria-required="true"
             :aria-invalid="feedbackTextareaValidityState ? null : true"
             @input="handleInputFeedback"
