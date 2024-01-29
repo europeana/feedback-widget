@@ -1,6 +1,7 @@
 {
   "cancel": "Atcelt",
   "close": "Aizvērt",
+  "emailAddress": "E-pasta adrese",
   "emailOptional": "Mēs varētu vēlēties sekot. Ievadiet savu e-pasta adresi, ja esat priecīgs, ka mēs ar jums sazināsimies.",
   "failed": "Pieprasījums neizdevās. Lūdzu mēģiniet vēlreiz.",
   "faq": "Dodieties uz bieži uzdotajiem jautājumiem",
