@@ -109,6 +109,10 @@ const validateTextArea = () => {
 const validateEmailInput = () => {
   emailInputValidityState.value = emailInput.value?.validity.valid
 }
+
+const skipEmail = () =>{
+  email.value = '';
+}
 </script>
 
 <template>
