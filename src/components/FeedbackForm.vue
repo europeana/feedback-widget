@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, ref, nextTick } from 'vue'
+import { computed, inject, ref, nextTick, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import CancelCircleIcon from '@europeana/style/img/icons/cancel_circle.svg'
@@ -18,6 +18,10 @@ const requestSuccess = ref(null)
 const sending = ref(false)
 const feedbackTextareaValidityState = ref(true)
 const emailInputValidityState = ref(true)
+
+onMounted(() => {
+  feedbackTextarea.value.focus()
+})
 
 const disableNextButton = computed(
   () => (currentStep.value === 1 && feedback.value === '') || sending.value
