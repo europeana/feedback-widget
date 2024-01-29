@@ -1,6 +1,7 @@
 {
   "cancel": "Avbryt",
   "close": "Stäng",
+  "emailAddress": "E-postadress",
   "emailOptional": "Vi kanske vill följa upp detta. Ange din e-postadress om du vill att vi ska kontakta dig.",
   "failed": "Begäran misslyckades. Var god försök igen.",
   "faq": "Gå till vanliga frågor",

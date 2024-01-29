@@ -1,6 +1,7 @@
 {
   "cancel": "Peruuta",
   "close": "Sulje",
+  "emailAddress": "Sähköpostiosoite",
   "emailOptional": "Saatamme haluta seurata asiaa. Kirjoita sähköpostiosoitteesi, jos olet iloinen siitä, että voimme ottaa sinuun yhteyttä.",
   "failed": "Pyyntö epäonnistui. Yritä uudelleen.",
   "faq": "Siirry usein kysyttyihin kysymyksiin",

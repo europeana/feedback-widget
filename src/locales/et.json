@@ -1,6 +1,7 @@
 {
   "cancel": "Tühista",
   "close": "Sulge",
+  "emailAddress": "E-posti aadress",
   "emailOptional": "Võime soovida jätkata. Sisestage oma e-posti aadress, kui olete rahul, et meiega ühendust võtame.",
   "failed": "Taotlus nurjus. Palun proovi uuesti.",
   "faq": "Minge korduma kippuvate küsimuste juurde",
