@@ -8,6 +8,7 @@ import FeedbackForm from '@/components/FeedbackForm.vue'
     aria-labelledby="dialogHeader"
     class="europeana-feedback-dialog shadow"
     content-class="shadow"
+    @keydown.esc="$emit('hide')"
   >
     <div id="dialogHeader" class="feedback-header">
       <h2>
