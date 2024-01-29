@@ -1,6 +1,7 @@
 {
   "cancel": "Cancelar",
   "close": "Cerrar",
+  "emailAddress": "Dirección de correo electrónico",
   "emailOptional": "Es posible que queremos hacer un seguimiento. Introduce tu correo electrónico si estás de acuerdo en que nos pongamos en contacto contigo.",
   "failed": "La solicitud falló. Inténtalo de nuevo.",
   "faq": "Ir a preguntas frecuentes",
