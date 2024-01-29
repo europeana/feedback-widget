@@ -1,0 +1,26 @@
+{
+    "cancel": "Anulează",
+    "close": "Închidere",
+    "emailOptional": "S-ar putea să dorim să urmărim acest lucru. Introduceți adresa dvs. de e-mail dacă sunteți de acord să vă contactăm.",
+    "failed": "Solicitarea nu a reușit. Încercați din nou.",
+    "faq": "Accesați întrebările frecvente",
+    "feedback": "Feedback",
+    "form": {
+        "placeholders": {
+            "email": "Introduceți adresa de e-mail",
+            "feedback": "Introduceți feedback-ul aici"
+        }
+    },
+    "next": "Următorul",
+    "policies": "Continuând, sunteți de acord cu {0} și acceptați {1}.",
+    "privacyPolicy": "Politica de Confidențialitate",
+    "send": "Trimite",
+    "skipSend": "Săriți și trimiteți",
+    "success": "Feedbackul dvs. a fost trimis.",
+    "termsOfService": "Termenii serviciului",
+    "thankYou": "Mulțumesc!",
+    "title": "Trimite feedback",
+    "validEmail": "Introduceți o adresă de email validă",
+    "validFeedback": "Feedback-ul tău trebuie să fie format din minim 5 cuvinte.",
+    "emailAddress": "Adresă de e-mail"
+}
