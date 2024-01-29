@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, ref } from 'vue'
+import { computed, inject, ref, nextTick, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import CancelCircleIcon from '@europeana/style/img/icons/cancel_circle.svg'
@@ -18,6 +18,10 @@ const requestSuccess = ref(null)
 const sending = ref(false)
 const feedbackTextareaValidityState = ref(true)
 const emailInputValidityState = ref(true)
+
+onMounted(() => {
+  feedbackTextarea.value.focus()
+})
 
 const disableNextButton = computed(
   () => (currentStep.value === 1 && feedback.value === '') || sending.value
@@ -93,6 +97,12 @@ const submitForm = async () => {
   }
   if (currentStep.value < 3) {
     goToStep(currentStep.value + 1)
+
+    if(currentStep.value === 2) {
+      nextTick(() => {
+        emailInput.value.focus()
+      })
+    }
   }
 }
 
@@ -103,6 +113,10 @@ const validateTextArea = () => {
 const validateEmailInput = () => {
   emailInputValidityState.value = emailInput.value?.validity.valid
 }
+
+const skipEmail = () =>{
+  email.value = '';
+}
 </script>
 
 <template>
@@ -110,13 +124,13 @@ const validateEmailInput = () => {
     <div class="d-flex flex-wrap">
       <div class="form-fields">
         <div v-if="currentStep === 1">
+          <label for="feedback-widget-feedback-input" class="d-block">{{ $t('feedback') }}</label>
           <textarea
             v-model="feedback"
             id="efw-feedback-input"
             class="form-control"
             :class="{ 'is-invalid': !feedbackTextareaValidityState }"
             ref="feedbackTextarea"
-            autofocus
             required
             name="feedback"
             :placeholder="$t('validFeedback')"
@@ -127,12 +141,14 @@ const validateEmailInput = () => {
           />
         </div>
         <div v-if="currentStep === 2">
+          <label for="feedback-widget-email-input" class="d-block">{{ $t('emailAddress') }}</label>
           <input
+            id="feedback-widget-email-input"
             v-model="email"
             class="form-control"
             :class="{ 'is-invalid': !emailInputValidityState }"
             ref="emailInput"
-            autofocus
+            autocomplete="email"
             type="email"
             name="email"
             :placeholder="$t('form.placeholders.email')"
@@ -153,7 +169,7 @@ const validateEmailInput = () => {
             </p>
           </div>
         </div>
-        <div v-if="currentStep == 3" class="feedback-success d-flex align-items-center mb-3 mb-sm-0">
+        <div v-if="currentStep == 3" class="feedback-success d-flex align-items-center mb-3 mb-sm-0" role="alert" aria-atomic="true">
           <span
             v-if="requestSuccess"
             class="d-flex align-items-center"

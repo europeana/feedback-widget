@@ -2,17 +2,22 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import FeedbackIcon from '@europeana/style/img/icons/feedback.svg'
 
-defineProps({
-  hide: {
-    type: String,
-    default: () => 'en'
+const props = defineProps({
+  buttonFocus: {
+    type: Boolean,
+    default: false
   }
 })
 
+const button = ref("button")
 const bigButton = ref(true)
 
 onMounted(() => {
   window.addEventListener('scroll', shrinkButton, { once: true });
+
+  if (props.buttonFocus === true) {
+    button.value.focus()
+  }
 })
 
 onUnmounted(() => {

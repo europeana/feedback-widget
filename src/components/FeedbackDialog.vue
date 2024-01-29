@@ -7,10 +7,11 @@ import FeedbackForm from '@/components/FeedbackForm.vue'
     role="dialog"
     class="europeana-feedback-dialog shadow"
     content-class="shadow"
+    @keydown.esc="$emit('hide')"
   >
     <div class="feedback-header">
       <h2>
-        <label for="feedback-widget-feedback-input">{{ $t('title') }}</label>
+        {{ $t('title') }}
       </h2>
     </div>
     <FeedbackForm @hide="$emit('hide')" />
