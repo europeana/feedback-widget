@@ -1,15 +1,21 @@
 {
+  "cancel": "Atšaukti",
+  "close": "Uždaryti",
   "emailOptional": "Galbūt norėsime tęsti. Įveskite savo el. Pašto adresą, jei džiaugiatės, kad susisieksime su jumis.",
   "failed": "Užklausa nepavyko. Prašome, pabandykite dar kartą.",
   "faq": "Eikite į dažniausiai užduodamus klausimus",
+  "feedback": "Atsiliepimas",
   "form": {
     "placeholders": {
       "email": "Įveskite savo elektroninio pašto adresą",
       "feedback": "Čia įveskite savo atsiliepimą"
     }
   },
+  "next": "Kitas",
   "policies": "Tęsdami sutinkate su mūsų {0} ir patvirtinate mūsų {1} .",
   "privacyPolicy": "Privatumo politika",
+  "send": "Siųsti",
+  "skipSend": "Praleisti ir siųsti",
   "success": "Jūsų atsiliepimas išsiųstas.",
   "termsOfService": "Paslaugų teikimo sąlygos",
   "thankYou": "Ačiū!",
