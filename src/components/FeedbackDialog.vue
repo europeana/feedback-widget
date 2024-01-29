@@ -5,12 +5,11 @@ import FeedbackForm from '@/components/FeedbackForm.vue'
 <template>
   <div
     role="dialog"
-    aria-labelledby="dialogHeader"
     class="europeana-feedback-dialog shadow"
     content-class="shadow"
     @keydown.esc="$emit('hide')"
   >
-    <div id="dialogHeader" class="feedback-header">
+    <div class="feedback-header">
       <h2>
         {{ $t('title') }}
       </h2>

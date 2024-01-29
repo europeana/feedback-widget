@@ -1,15 +1,21 @@
 {
+  "cancel": "Ikkanċella",
+  "close": "Agħlaq",
   "emailOptional": "Aħna jista 'jkun li nixtiequ nsegwu. Daħħal l-email tiegħek jekk int kuntent li aħna nikkuntattjawk.",
   "failed": "It-talba falliet. Jekk jogħġbok erġa pprova.",
   "faq": "Mur għall-mistoqsijiet frekwenti",
+  "feedback": "Feedback",
   "form": {
     "placeholders": {
       "email": "Daħħal l-indirizz tal-email tiegħek",
       "feedback": "Daħħal il-feedback tiegħek hawn"
     }
   },
+  "next": "Li jmiss",
   "policies": "Billi tkompli, taqbel ma ' {0} tagħna u tirrikonoxxi lil {1} tagħna.",
   "privacyPolicy": "Regoli tal-privatezza",
+  "send": "Tibgħat",
+  "skipSend": "Aqbeż u ibgħat",
   "success": "Il-feedback tiegħek intbagħat.",
   "termsOfService": "Termini tas-Servizz",
   "thankYou": "Grazzi!",

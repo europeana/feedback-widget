@@ -127,7 +127,7 @@ const skipEmail = () =>{
           <label for="feedback-widget-feedback-input" class="d-block">{{ $t('feedback') }}</label>
           <textarea
             v-model="feedback"
-            id="feedback-widget-feedback-input"
+            id="efw-feedback-input"
             class="form-control"
             :class="{ 'is-invalid': !feedbackTextareaValidityState }"
             ref="feedbackTextarea"
@@ -136,13 +136,12 @@ const skipEmail = () =>{
             name="feedback"
             :placeholder="$t('validFeedback')"
             rows="5"
-            aria-describedby="input-live-feedback"
             aria-required="true"
             :aria-invalid="feedbackTextareaValidityState ? null : true"
             @input="handleInputFeedback"
           />
         </div>
-        <div v-if="currentStep === 2" id="step2">
+        <div v-if="currentStep === 2">
           <label for="feedback-widget-email-input" class="d-block">{{ $t('emailAddress') }}</label>
           <input
             id="feedback-widget-email-input"
@@ -155,10 +154,10 @@ const skipEmail = () =>{
             type="email"
             name="email"
             :placeholder="$t('form.placeholders.email')"
-            aria-describedby="input-live-feedback"
+            aria-describedby="efw-input-live-feedback"
             :aria-invalid="emailInputValidityState ? null : true"
           />
-          <div class="form-text" id="input-live-help">
+          <div class="form-text" id="efw-input-live-feedback">
             <p class="mb-0">
               {{ $t('emailOptional') }}
               <i18n-t keypath="policies" tag="span">
@@ -172,8 +171,8 @@ const skipEmail = () =>{
             </p>
           </div>
         </div>
-        <div v-if="currentStep == 3" id="step3" class="feedback-success d-flex align-items-center mb-3 mb-sm-0" role="alert" aria-atomic="true">
-          <span 
+        <div v-if="currentStep == 3" class="feedback-success d-flex align-items-center mb-3 mb-sm-0" role="alert" aria-atomic="true">
+          <span
             v-if="requestSuccess"
             class="d-flex align-items-center"
           >
@@ -183,8 +182,8 @@ const skipEmail = () =>{
               <p class="mb-0">{{ $t('thankYou') }}</p>
             </span>
           </span>
-          <span 
-            v-else-if="requestSuccess === false"           
+          <span
+            v-else-if="requestSuccess === false"
             class="d-flex align-items-center"
           >
             <CancelCircleIcon class="icon-cancel-circle" width="20px" height="20px" viewBox="0 0 24 24" />
