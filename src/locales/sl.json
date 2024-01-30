@@ -6,12 +6,6 @@
   "failed": "Zahteva ni uspela. Prosim poskusite ponovno.",
   "faq": "Pojdite na pogosto zastavljena vprašanja",
   "feedback": "Povratne informacije",
-  "form": {
-    "placeholders": {
-      "email": "Vnesite svoj e-poštni naslov",
-      "feedback": "Tukaj vnesite svoje povratne informacije"
-    }
-  },
   "next": "Naslednji",
   "policies": "Z nadaljevanjem se strinjate z našimi {0} in potrjujete naše {1} .",
   "privacyPolicy": "Pravilnik o zasebnosti",

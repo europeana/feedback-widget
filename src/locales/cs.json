@@ -6,12 +6,6 @@
   "failed": "Požadavek se nezdařil. Zkuste to znovu.",
   "faq": "Přejít na často kladené dotazy",
   "feedback": "Zpětná vazba",
-  "form": {
-    "placeholders": {
-      "email": "Zadejte svou e-mailovou adresu",
-      "feedback": "Zde zadejte svou zpětnou vazbu"
-    }
-  },
   "next": "Další",
   "policies": "Pokračováním souhlasíte s naším {0} a berete na vědomí naše {1}.",
   "privacyPolicy": "Zásady ochrany osobních údajů",
