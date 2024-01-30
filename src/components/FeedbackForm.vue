@@ -37,7 +37,6 @@ const showSendButton = computed(
   () => currentStep.value === 2 || (currentStep.value === 3 && !requestSuccess.value)
 )
 const showSkipButton = computed(() => currentStep.value === 2)
-const faqUrl = computed(() => config.faqUrl)
 
 const docsUrl = (path) => `https://www.europeana.eu/${locale.value}${path}`
 
@@ -243,8 +242,8 @@ const skipEmail = () =>{
         </div>
       </div>
       <a
-        v-if="faqUrl"
-        :href="faqUrl"
+        v-if="config.faqUrl"
+        :href="config.faqUrl"
         target="_blank"
         class="faq-link d-inline-flex align-items-center mt-4 mb-2 p-0 w-100 text-decoration-none"
       >
