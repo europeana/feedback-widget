@@ -6,12 +6,6 @@
   "failed": "Pieprasījums neizdevās. Lūdzu mēģiniet vēlreiz.",
   "faq": "Dodieties uz bieži uzdotajiem jautājumiem",
   "feedback": "Atsauksmes",
-  "form": {
-    "placeholders": {
-      "email": "ievadiet savu e-pasta adresi",
-      "feedback": "Ievadiet atsauksmes šeit"
-    }
-  },
   "next": "Nākamais",
   "policies": "Turpinot jūs piekrītat mūsu {0} un atzīstat mūsu {1} .",
   "privacyPolicy": "Privātuma politika",

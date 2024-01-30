@@ -6,12 +6,6 @@
   "failed": "Theip ar an iarraidh. Arís, le do thoil.",
   "faq": "Téigh go dtí ceisteanna coitianta",
   "feedback": "Aiseolas",
-  "form": {
-    "placeholders": {
-      "email": "Cuir isteach do sheoladh ríomhphoist",
-      "feedback": "Cuir isteach d'aiseolas anseo"
-    }
-  },
   "next": "Ar Aghaidh",
   "policies": "Trí leanúint ar aghaidh, aontaíonn tú lenár {0} agus aithníonn tú ár {1} .",
   "privacyPolicy": "Beartas Príobháideachais",

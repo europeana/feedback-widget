@@ -6,12 +6,6 @@
   "failed": "It-talba falliet. Jekk jogħġbok erġa pprova.",
   "faq": "Mur għall-mistoqsijiet frekwenti",
   "feedback": "Feedback",
-  "form": {
-    "placeholders": {
-      "email": "Daħħal l-indirizz tal-email tiegħek",
-      "feedback": "Daħħal il-feedback tiegħek hawn"
-    }
-  },
   "next": "Li jmiss",
   "policies": "Billi tkompli, taqbel ma ' {0} tagħna u tirrikonoxxi lil {1} tagħna.",
   "privacyPolicy": "Regoli tal-privatezza",

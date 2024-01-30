@@ -6,12 +6,6 @@
   "failed": "La demande a échoué. Veuillez réessayer.",
   "faq": "Aller à la foire aux questions",
   "feedback": "Commentaires",
-  "form": {
-    "placeholders": {
-      "email": "Entrez votre adresse email",
-      "feedback": "Entrez vos commentaires ici"
-    }
-  },
   "next": "Suivant",
   "policies": "En continuant, vous acceptez notre {0} et reconnaissez notre {1} .",
   "privacyPolicy": "Politique de confidentialité",

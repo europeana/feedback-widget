@@ -6,12 +6,6 @@
   "failed": "Begäran misslyckades. Var god försök igen.",
   "faq": "Gå till vanliga frågor",
   "feedback": "Feedback",
-  "form": {
-    "placeholders": {
-      "email": "Ange din e-postadress",
-      "feedback": "Ange din feedback här"
-    }
-  },
   "next": "Nästa",
   "policies": "Genom att fortsätta godkänner du vår {0} och godkänner vår {1} .",
   "privacyPolicy": "Integritetspolicy",

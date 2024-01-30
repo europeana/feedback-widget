@@ -6,12 +6,6 @@
   "failed": "Żądanie nie powiodło się. Proszę spróbować ponownie.",
   "faq": "Przejdź do najczęściej zadawanych pytań",
   "feedback": "Twoja opinia",
-  "form": {
-    "placeholders": {
-      "email": "Wpisz swój adres e-mail",
-      "feedback": "Wpisz tutaj swoją opinię"
-    }
-  },
   "next": "Następny",
   "policies": "Kontynuując, zgadzasz się na nasze {0} i przyjmujesz do wiadomości nasze {1}.",
   "privacyPolicy": "Polityka prywatności",

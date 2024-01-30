@@ -6,12 +6,6 @@
   "failed": "O pedido falhou. Por favor, tente novamente.",
   "faq": "Ir para perguntas frequentes",
   "feedback": "Comentários",
-  "form": {
-    "placeholders": {
-      "email": "Digite seu endereço de e-mail",
-      "feedback": "Insira aqui o seu comentário"
-    }
-  },
   "next": "Próximo",
   "policies": "Ao continuar, você concorda com nossos {0} e reconhece nossos {1} .",
   "privacyPolicy": "Política de Privacidade",
