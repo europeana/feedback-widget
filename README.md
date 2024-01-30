@@ -3,9 +3,6 @@
 Widget for sending feedback from, and about, [Europeana](https://www.europeana.eu/)
 websites.
 
-Implemented as a [Vue 3](https://vuejs.org/) component and embeddable as an HTML
-[custom element](https://developer.mozilla.org/en-US/docs/Web/API/Web_components#custom_elements).
-
 
 ## Usage
 
