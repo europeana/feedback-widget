@@ -128,6 +128,7 @@ const skipEmail = () =>{
           <textarea
             v-model="feedback"
             id="efw-feedback-input"
+            data-qa="feedback-textarea"
             class="form-control"
             :class="{ 'is-invalid': !feedbackTextareaValidityState }"
             ref="feedbackTextarea"
@@ -144,6 +145,7 @@ const skipEmail = () =>{
           <label for="feedback-widget-email-input" class="d-block">{{ $t('emailAddress') }}</label>
           <input
             id="feedback-widget-email-input"
+            data-qa="feedback-email"
             v-model="email"
             class="form-control"
             :class="{ 'is-invalid': !emailInputValidityState }"
