@@ -1,15 +1,22 @@
 {
+  "cancel": "Peruuta",
+  "close": "Sulje",
+  "emailAddress": "Sähköpostiosoite",
   "emailOptional": "Saatamme haluta seurata asiaa. Kirjoita sähköpostiosoitteesi, jos olet iloinen siitä, että voimme ottaa sinuun yhteyttä.",
   "failed": "Pyyntö epäonnistui. Yritä uudelleen.",
   "faq": "Siirry usein kysyttyihin kysymyksiin",
+  "feedback": "Palaute",
   "form": {
     "placeholders": {
       "email": "Syötä sähköpostiosoitteesi",
       "feedback": "Kirjoita palautteesi tähän"
     }
   },
+  "next": "Seuraava",
   "policies": "Jatkamalla hyväksyt {0} ja tunnustamme {1} .",
   "privacyPolicy": "Tietosuojakäytäntö",
+  "send": "Lähettää",
+  "skipSend": "Ohita ja lähetä",
   "success": "Palautteesi on lähetetty.",
   "termsOfService": "Käyttöehdot",
   "thankYou": "Kiitos!",

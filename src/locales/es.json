@@ -1,15 +1,22 @@
 {
+  "cancel": "Cancelar",
+  "close": "Cerrar",
+  "emailAddress": "Dirección de correo electrónico",
   "emailOptional": "Es posible que queremos hacer un seguimiento. Introduce tu correo electrónico si estás de acuerdo en que nos pongamos en contacto contigo.",
   "failed": "La solicitud falló. Inténtalo de nuevo.",
   "faq": "Ir a preguntas frecuentes",
+  "feedback": "Comentarios",
   "form": {
     "placeholders": {
       "email": "Ingrese su dirección de correo electrónico",
       "feedback": "Ingrese sus comentarios aquí"
     }
   },
+  "next": "Próximo",
   "policies": "Al continuar, usted acepta nuestro {0} y reconoce nuestro {1}.",
   "privacyPolicy": "Política de privacidad",
+  "send": "Enviar",
+  "skipSend": "Saltar y enviar",
   "success": "Su comentario ha sido enviado.",
   "termsOfService": "Términos de servicio",
   "thankYou": "Gracias.",

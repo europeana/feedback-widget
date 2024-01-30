@@ -1,15 +1,22 @@
 {
+  "cancel": "Avbryt",
+  "close": "Stäng",
+  "emailAddress": "E-postadress",
   "emailOptional": "Vi kanske vill följa upp detta. Ange din e-postadress om du vill att vi ska kontakta dig.",
   "failed": "Begäran misslyckades. Var god försök igen.",
   "faq": "Gå till vanliga frågor",
+  "feedback": "Feedback",
   "form": {
     "placeholders": {
       "email": "Ange din e-postadress",
       "feedback": "Ange din feedback här"
     }
   },
+  "next": "Nästa",
   "policies": "Genom att fortsätta godkänner du vår {0} och godkänner vår {1} .",
   "privacyPolicy": "Integritetspolicy",
+  "send": "Skicka",
+  "skipSend": "Hoppa över och skicka",
   "success": "Din feedback har skickats.",
   "termsOfService": "Användarvillkor",
   "thankYou": "Tack!",
