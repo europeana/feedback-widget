@@ -6,12 +6,6 @@
   "failed": "Solicitarea nu a reușit. Încercați din nou.",
   "faq": "Accesați întrebările frecvente",
   "feedback": "Feedback",
-  "form": {
-    "placeholders": {
-      "email": "Introduceți adresa de e-mail",
-      "feedback": "Introduceți feedback-ul aici"
-    }
-  },
   "next": "Următorul",
   "policies": "Continuând, sunteți de acord cu {0} și acceptați {1}.",
   "privacyPolicy": "Politica de Confidențialitate",

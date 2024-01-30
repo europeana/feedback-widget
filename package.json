@@ -1,7 +1,7 @@
 {
   "name": "@europeana/feedback-widget",
   "description": "Europeana feedback widget",
-  "version": "0.1.0-rc.1",
+  "version": "0.1.0",
   "type": "module",
   "files": [
     "dist"
@@ -21,7 +21,9 @@
     "preview": "vite preview",
     "test:unit": "vitest",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "preversion": "npm run build",
+    "version": "node ./bin/version.js && git add README.md"
   },
   "dependencies": {
     "@europeana/style": "1.138.1",
@@ -45,6 +47,7 @@
     "nodemon": "^3.0.3",
     "prettier": "^3.0.3",
     "sass": "^1.69.7",
+    "ssri": "^10.0.5",
     "vite": "^5.0.10",
     "vite-svg-loader": "^5.1.0",
     "vitest": "^1.0.4"

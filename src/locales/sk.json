@@ -6,12 +6,6 @@
   "failed": "Žiadosť zlyhala. Prosím skúste znova.",
   "faq": "Prejdite na často kladené otázky",
   "feedback": "Spätná väzba",
-  "form": {
-    "placeholders": {
-      "email": "Zadajte svoju e-mailovú adresu",
-      "feedback": "Sem zadajte svoju spätnú väzbu"
-    }
-  },
   "next": "Ďalšie",
   "policies": "Pokračovaním súhlasíte s našimi {0} a beriete na vedomie naše {1}.",
   "privacyPolicy": "Zásady ochrany osobných údajov",

@@ -6,12 +6,6 @@
   "failed": "La richiesta è fallita. Per favore riprova.",
   "faq": "Vai alle domande frequenti",
   "feedback": "Feedback",
-  "form": {
-    "placeholders": {
-      "email": "Inserisci il tuo indirizzo email",
-      "feedback": "Inserisci qui il tuo risposta"
-    }
-  },
   "next": "Avanti",
   "policies": "Continuando, accetti i nostri {0} e riconosci la nostra {1}.",
   "privacyPolicy": "Informativa sulla privacy",

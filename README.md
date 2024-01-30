@@ -3,9 +3,6 @@
 Widget for sending feedback from, and about, [Europeana](https://www.europeana.eu/)
 websites.
 
-Implemented as a [Vue 3](https://vuejs.org/) component and embeddable as an HTML
-[custom element](https://developer.mozilla.org/en-US/docs/Web/API/Web_components#custom_elements).
-
 
 ## Usage
 
@@ -13,11 +10,15 @@ Implemented as a [Vue 3](https://vuejs.org/) component and embeddable as an HTML
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget/dist/europeana-feedback-widget.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.1.0/dist/europeana-feedback-widget.css" />
   </head>
   <body>
     <div id="europeana-feedback-widget"></div>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget/dist/europeana-feedback-widget.js"></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.1.0/dist/europeana-feedback-widget.js"
+      integrity="sha384-w3k1iYmZcTD//J+fYTbS3BVA2MFsbNV0HkEj2gIVkVEoV67BH4aoroUoVYzF96BT"
+    ></script>
   </body>
 </html>
 ```
@@ -31,6 +32,7 @@ Implemented as a [Vue 3](https://vuejs.org/) component and embeddable as an HTML
 * Check code formatting: `pnpm format`
 * Check code quality: `pnpm lint`
 * Build library: `pnpm build`
+* Version library: `pnpm version patch`
 * Publish library to NPM: `pnpm publish --access public`
 
 

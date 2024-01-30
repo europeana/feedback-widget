@@ -6,12 +6,6 @@
   "failed": "A kérés nem sikerült. Kérlek próbáld újra.",
   "faq": "Ugrás a gyakran ismételt kérdésekre",
   "feedback": "Visszacsatolás",
-  "form": {
-    "placeholders": {
-      "email": "Adja meg e-mail címét",
-      "feedback": "Írja be ide visszajelzését"
-    }
-  },
   "next": "Következő",
   "policies": "A folytatással elfogadja {0} és a {1} .",
   "privacyPolicy": "Adatvédelmi irányelvek",

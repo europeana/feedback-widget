@@ -134,7 +134,6 @@ const skipEmail = () =>{
             ref="feedbackTextarea"
             required
             name="feedback"
-            :placeholder="$t('validFeedback')"
             rows="5"
             aria-required="true"
             :aria-invalid="feedbackTextareaValidityState ? null : true"
@@ -153,7 +152,6 @@ const skipEmail = () =>{
             autocomplete="email"
             type="email"
             name="email"
-            :placeholder="$t('form.placeholders.email')"
             aria-describedby="efw-input-live-feedback"
             :aria-invalid="emailInputValidityState ? null : true"
           />
@@ -244,7 +242,8 @@ const skipEmail = () =>{
         </div>
       </div>
       <a
-        :href="docsUrl('/faq')"
+        v-if="config.faqUrl"
+        :href="config.faqUrl"
         target="_blank"
         class="faq-link d-inline-flex align-items-center mt-4 mb-2 p-0 w-100 text-decoration-none"
       >

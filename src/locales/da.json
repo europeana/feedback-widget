@@ -6,12 +6,6 @@
   "failed": "Anmodningen mislykkedes. Prøv igen.",
   "faq": "Gå til ofte stillede spørgsmål",
   "feedback": "Feedback",
-  "form": {
-    "placeholders": {
-      "email": "Indtast din e-mailadresse",
-      "feedback": "Indtast din feedback her"
-    }
-  },
   "next": "Næste",
   "policies": "Ved at fortsætte accepterer du vores {0} og anerkender vores {1} .",
   "privacyPolicy": "Fortrolighedspolitik",
