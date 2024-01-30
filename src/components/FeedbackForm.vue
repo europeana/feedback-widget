@@ -242,7 +242,8 @@ const skipEmail = () =>{
         </div>
       </div>
       <a
-        :href="docsUrl('/faq')"
+        v-if="config.faqUrl"
+        :href="config.faqUrl"
         target="_blank"
         class="faq-link d-inline-flex align-items-center mt-4 mb-2 p-0 w-100 text-decoration-none"
       >

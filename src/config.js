@@ -1,5 +1,6 @@
 export const defaults = {
   apiUrl: 'https://www.europeana.eu/_api/jira-service-desk/feedback',
+  faqUrl: null,
   locale: 'en'
 }
 
