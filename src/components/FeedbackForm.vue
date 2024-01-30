@@ -133,7 +133,6 @@ const skipEmail = () =>{
             ref="feedbackTextarea"
             required
             name="feedback"
-            :placeholder="$t('validFeedback')"
             rows="5"
             aria-required="true"
             :aria-invalid="feedbackTextareaValidityState ? null : true"
@@ -151,7 +150,6 @@ const skipEmail = () =>{
             autocomplete="email"
             type="email"
             name="email"
-            :placeholder="$t('form.placeholders.email')"
             aria-describedby="efw-input-live-feedback"
             :aria-invalid="emailInputValidityState ? null : true"
           />
