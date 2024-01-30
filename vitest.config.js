@@ -9,7 +9,11 @@ export default mergeConfig(
       environment: 'jsdom',
       exclude: [...configDefaults.exclude, 'e2e/*'],
       root: fileURLToPath(new URL('./', import.meta.url)),
-      setupFiles: ['./vitest.setup.js']
+      setupFiles: ['./vitest.setup.js'],
+      coverage: {
+        enabled: true,
+        provider: 'v8'
+      },
     }
   })
 )
