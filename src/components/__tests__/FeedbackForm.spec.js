@@ -34,6 +34,23 @@ afterAll(() => server.close())
 // Reset handlers after each test `important for test isolation`
 afterEach(() => server.resetHandlers())
 
+//shortcut to step 2
+const goToStep2 = async (wrapper) => {
+  await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+  await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
+  expect(wrapper.vm.currentStep).toBe(2)
+}
+// shortcut to step 3
+const goToStep3 = async (wrapper) => {
+  await goToStep2(wrapper)
+
+  await wrapper.find('[data-qa="feedback skip button"]').trigger('click')
+  await flushPromises()
+
+  expect(wrapper.vm.currentStep).toBe(3)
+}
+
 const factory = (options = {}) => {
   const wrapper = mount(FeedbackForm, {
     global: {
@@ -76,10 +93,7 @@ describe('FeedbackForm', () => {
     it('receives focus', async () => {
       const wrapper = factory({ attachTo: document.body })
 
-      await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
-      await wrapper.find('[data-qa="feedback next button"]').trigger('click')
-
-      expect(wrapper.vm.currentStep).toBe(2)
+      await goToStep2(wrapper)
 
       const emailWitFocus = wrapper.find('[data-qa="feedback email"]:focus')
 
@@ -88,8 +102,8 @@ describe('FeedbackForm', () => {
     describe('when submitted and the input is an invalid email', async () => {
       const wrapper = factory({ attachTo: document.body })
 
-      await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
-      await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+      await goToStep2(wrapper)
+
       await wrapper.find('[data-qa="feedback email"]').setValue('example')
       await wrapper.find('[data-qa="feedback send button"]').trigger('click')
 
@@ -110,9 +124,7 @@ describe('FeedbackForm', () => {
     it('has a link to terms of service and privacy policy', async () => {
       const wrapper = factory({ attachTo: document.body })
 
-      await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
-      await wrapper.find('[data-qa="feedback next button"]').trigger('click')
-      expect(wrapper.vm.currentStep).toBe(2)
+      await goToStep2(wrapper)
 
       const termsLink = wrapper.find(
         '[data-qa="feedback email helptext"] a[href="https://www.europeana.eu/en/rights"]'
@@ -171,8 +183,7 @@ describe('FeedbackForm', () => {
   describe('send button at step 2', async () => {
     const wrapper = factory({ attachTo: document.body })
 
-    await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
-    await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+    await goToStep2(wrapper)
 
     describe('when there is no value for email', () => {
       it('is disabled', async () => {
@@ -230,10 +241,7 @@ describe('FeedbackForm', () => {
       it('closes the dialog', async () => {
         const wrapper = factory({ attachTo: document.body })
 
-        await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
-        await wrapper.find('[data-qa="feedback next button"]').trigger('click')
-
-        expect(wrapper.vm.currentStep).toBe(2)
+        await goToStep2(wrapper)
 
         await wrapper.find('[data-qa="feedback cancel button"]').trigger('click')
 
@@ -249,18 +257,7 @@ describe('FeedbackForm', () => {
           responseStatus.status = 500
           responseStatus.statusText = 'Internal sever error'
 
-          await wrapper
-            .find('[data-qa="feedback textarea"]')
-            .setValue('This website is super great!')
-          await wrapper.find('[data-qa="feedback next button"]').trigger('click')
-
-          expect(wrapper.vm.currentStep).toBe(2)
-
-          await wrapper.find('[data-qa="feedback skip button"]').trigger('click')
-
-          await flushPromises()
-
-          expect(wrapper.vm.currentStep).toBe(3)
+          await goToStep3(wrapper)
 
           await wrapper.find('[data-qa="feedback cancel button"]').trigger('click')
 
@@ -275,17 +272,8 @@ describe('FeedbackForm', () => {
         it('does not exist', async () => {
           const wrapper = factory({ attachTo: document.body })
 
-          await wrapper
-            .find('[data-qa="feedback textarea"]')
-            .setValue('This website is super great!')
-          await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+          await goToStep3(wrapper)
 
-          expect(wrapper.vm.currentStep).toBe(2)
-
-          await wrapper.find('[data-qa="feedback skip button"]').trigger('click')
-          await flushPromises()
-
-          expect(wrapper.vm.currentStep).toBe(3)
           expect(wrapper.find('[data-qa="feedback cancel button"]').exists()).toBe(false)
         })
       })
@@ -299,10 +287,8 @@ describe('FeedbackForm', () => {
 
         expect(wrapper.find('[data-qa="feedback close button"]').exists()).toBe(false)
 
-        await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
-        await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+        await goToStep2(wrapper)
 
-        expect(wrapper.vm.currentStep).toBe(2)
         expect(wrapper.find('[data-qa="feedback close button"]').exists()).toBe(false)
       })
     })
@@ -314,18 +300,8 @@ describe('FeedbackForm', () => {
           responseStatus.status = 500
           responseStatus.statusText = 'Internal sever error'
 
-          await wrapper
-            .find('[data-qa="feedback textarea"]')
-            .setValue('This website is super great!')
-          await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+          await goToStep3(wrapper)
 
-          expect(wrapper.vm.currentStep).toBe(2)
-
-          await wrapper.find('[data-qa="feedback skip button"]').trigger('click')
-
-          await flushPromises()
-
-          expect(wrapper.vm.currentStep).toBe(3)
           expect(wrapper.find('[data-qa="feedback close button"]').exists()).toBe(false)
 
           // Reset to succesful response status
@@ -337,17 +313,7 @@ describe('FeedbackForm', () => {
         it('closes the dialog when clicked', async () => {
           const wrapper = factory({ attachTo: document.body })
 
-          await wrapper
-            .find('[data-qa="feedback textarea"]')
-            .setValue('This website is super great!')
-          await wrapper.find('[data-qa="feedback next button"]').trigger('click')
-
-          expect(wrapper.vm.currentStep).toBe(2)
-
-          await wrapper.find('[data-qa="feedback skip button"]').trigger('click')
-          await flushPromises()
-
-          expect(wrapper.vm.currentStep).toBe(3)
+          await goToStep3(wrapper)
 
           await wrapper.find('[data-qa="feedback close button"]').trigger('click')
 
@@ -361,8 +327,7 @@ describe('FeedbackForm', () => {
     it('displays text including "success"', async () => {
       const wrapper = factory({ attachTo: document.body })
 
-      await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
-      await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+      await goToStep2(wrapper)
 
       expect(wrapper.vm.currentStep).toBe(2)
 
@@ -384,8 +349,7 @@ describe('FeedbackForm', () => {
       responseStatus.status = 500
       responseStatus.statusText = 'Internal sever error'
 
-      await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
-      await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+      await goToStep2(wrapper)
 
       expect(wrapper.vm.currentStep).toBe(2)
 
