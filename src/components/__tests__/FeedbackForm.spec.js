@@ -1,6 +1,8 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, afterAll, afterEach, beforeAll } from 'vitest'
+import { setupServer } from 'msw/node'
+import { HttpResponse, http } from 'msw'
 
-import { mount } from '@vue/test-utils'
+import { mount, flushPromises } from '@vue/test-utils'
 import FeedbackForm from '../FeedbackForm.vue'
 import { useI18n } from "vue-i18n"
 
@@ -11,153 +13,197 @@ useI18n.mockReturnValue({
   t: (key) => key,
 })
 
+const responseStatus = { 
+  status: 200,
+  statusText: "OK"
+}
+
+export const restHandlers = [
+   http.post('https://www.europeana.eu/_api/jira-service-desk/feedback', () => {
+    return new HttpResponse(null, responseStatus)
+  }),
+]
+const server = setupServer(...restHandlers)
+
+// Start server before all tests
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
+
+//  Close server after all tests
+afterAll(() => server.close())
+
+// Reset handlers after each test `important for test isolation`
+afterEach(() => server.resetHandlers())
+
 const factory = (options = {}) => {
-  const wrapper = mount(FeedbackForm, {
-    // global: {
-    //   fetch: vi.fn(),
-    //   provide: {
-    //     inject: {
-    //       apiUrl: 'https://www.europeana.eu/_api/jira-service-desk/feedback',
-    //       faqUrl: null,
-    //       locale: 'en'
-    //     }
-    //   },
-    //   stubs: { 'i18n-t': true}
-    // },
-    ...options})
+  const wrapper = mount(FeedbackForm, options)
   return wrapper
 }
 
 describe('FeedbackForm', () => {
-  describe('next button', () => {
+  it('sets focus on the textarea', () => {
+    const wrapper = factory({ attachTo: document.body })
+
+    const textAreaWitFocus = wrapper.find('[data-qa="feedback textarea"]:focus')
+
+    expect(textAreaWitFocus.exists()).toBe(true)
+  })
+
+  describe('next button at step 1', () => {
+    const wrapper = factory({ attachTo: document.body })
+
     describe('when there is no value for feedback', () => {
       it('is disabled', async() => {
-        const wrapper = factory()
+        await wrapper.find('[data-qa="feedback textarea"]').setValue('')
 
-        await wrapper.get('[data-qa="feedback textarea"]').setValue('')
+        expect(wrapper.find('[data-qa="feedback next button"]').attributes('disabled')).toEqual('')
+        await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
-        expect(wrapper.get('[data-qa="feedback next button"]').attributes('disabled')).toBe('')
+        expect(wrapper.vm.currentStep).toBe(1)
+        expect(wrapper.emitted('submit')).toBeFalsy(true)
       })
     })
-    describe('when there is a value for feedback', () => {
+    describe('when the textarea has input', () => {  
       it('is enabled', async() => {
-        const wrapper = factory()
-
-        await wrapper.get('[data-qa="feedback textarea"]').setValue('This website is great!')
-
-        expect(wrapper.get('[data-qa="feedback next button"]').attributes('disabled')).toBe(undefined)
+        await wrapper.find('[data-qa="feedback textarea"]').setValue('This')
+        expect(wrapper.find('[data-qa="feedback next button"]').attributes('disabled')).toBe(undefined)
       })
-      describe('and it is clicked and it has only 4 words', () => {
-        it('does not go to the next step', async() => {
-          const wrapper = factory({ attachTo: document.body })
-
-          await wrapper.get('[data-qa="feedback textarea"]').setValue('This is great!')
-
-          await wrapper.get('[data-qa="feedback next button"]').trigger('click')
+      describe('when the textarea input has less than 5 words', () => {  
+        it('does not go to the next step when clicked', async() => {
+          await wrapper.find('[data-qa="feedback textarea"]').setValue('This is great')
+          await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
           expect(wrapper.vm.currentStep).toBe(1)
           expect(wrapper.emitted('submit')).toBeFalsy(true)
         })
       })
-      describe('and it is clicked and it has 5 words minimum', () => {
-        it('goes to the next step', async() => {
-          const wrapper = factory({ attachTo: document.body })
+    })
+    describe('when the textarea input has 5 words minimum', () => {
+      it('submits the form and goes to the next step when clicked', async() => {
+        await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+        await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
-          await wrapper.get('[data-qa="feedback textarea"]').setValue('This website is super great!')
-
-          await wrapper.get('[data-qa="feedback next button"]').trigger('click')
-
-          expect(wrapper.vm.currentStep).toBe(2)
-          expect(wrapper.emitted()).toHaveProperty('submit')
-        })
+        expect(wrapper.vm.currentStep).toBe(2)
+        expect(wrapper.emitted()).toHaveProperty('submit')
       })
     })
   })
 
-  describe('send button', () => {
+  describe('send button at step 2', async() => {
+    const wrapper = factory({ attachTo: document.body })
+
+    await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+    await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
     describe('when there is no value for email', () => {
       it('is disabled', async() => {
-        const wrapper = factory()
+        await wrapper.find('[data-qa="feedback email"]').setValue('')
+        await wrapper.find('[data-qa="feedback send button"]').trigger('click')
 
-        await wrapper.vm.goToStep(2)
-        await wrapper.get('[data-qa="feedback email"]').setValue('')
-
-        expect(wrapper.get('[data-qa="feedback send button"]').attributes('disabled')).toBe('')
+        expect(wrapper.find('[data-qa="feedback send button"]').attributes('disabled')).toBe('')
+        expect(wrapper.vm.currentStep).toBe(2)
+        expect(wrapper.emitted('submit')).toHaveLength(1)
       })
     })
     describe('when there is a value for email', () => {
       it('is enabled', async() => {
-        const wrapper = factory()
+        await wrapper.find('[data-qa="feedback email"]').setValue('example')
 
-        await wrapper.vm.goToStep(2)
-        await wrapper.get('[data-qa="feedback email"]').setValue('example@mail.com')
-
-        expect(wrapper.get('[data-qa="feedback send button"]').attributes('disabled')).toBe(undefined)
+        expect(wrapper.find('[data-qa="feedback send button"]').attributes('disabled')).toBe(undefined)
       })
       describe('and it is clicked', () => {
-        it('submits the form', async() => {
-          const wrapper = factory({ attachTo: document.body })
+        describe('and the email value is invalid', () => {
+          it('does not submit the form and stays at step 2', async() => {
+            await wrapper.find('[data-qa="feedback email"]').setValue('example invalid email')
+            await wrapper.find('[data-qa="feedback send button"]').trigger('click')
+  
+            expect(wrapper.emitted('submit')).toHaveLength(1)
+            expect(wrapper.vm.currentStep).toBe(2)
+          })
+        })
+        describe('and the email value is valid', () => {
+          it('submits the form and goes to the next step', async() => {
+            await wrapper.find('[data-qa="feedback email"]').setValue('example@mail.com')
+            await wrapper.find('[data-qa="feedback send button"]').trigger('click')
+            await flushPromises()
 
-          await wrapper.vm.goToStep(2)
-          await wrapper.get('[data-qa="feedback email"]').setValue('example@mail.com')
-
-          await wrapper.get('[data-qa="feedback send button"]').trigger('click')
-
-          expect(wrapper.emitted()).toHaveProperty('submit')
+            expect(wrapper.vm.currentStep).toBe(3)
+            expect(wrapper.emitted('submit')).toHaveLength(2)
+          })
         })
       })
     })
   })
 
-  describe('when mounted', () => {
-    it('sets focus on the textarea', () => {
-      const wrapper = factory({ attachTo: document.body })
-
-      const textAreaWitFocus = wrapper.get('[data-qa="feedback textarea"]:focus')
-
-      expect(textAreaWitFocus.exists()).toBe(true)
-    })
-  })
-
-  describe('docsUrl', () => {
-    it('returns a europeana localised URL', () => {
-      const wrapper = factory()
-
-      expect(wrapper.vm.docsUrl('/example-page')).equals('https://www.europeana.eu/en/example-page')
-    })
-  })
-
-  describe('submitForm', () => {
-    // describe('when step is more than 1', () => {
-    //   it('sends feedback', async() => {
-    //     const wrapper = factory()
-    //     const sendFeedbackSpy = vi.spyOn(wrapper.vm, 'sendFeedback')
-
-    //     await wrapper.vm.goToStep(2)
-    //     wrapper.vm.submitForm()
-
-    //     expect(sendFeedbackSpy).toHaveBeenCalled()
-    //   })
-    // })
-    describe('when step is less than 3', () => {
-      it('sends feedback', async() => {
+  describe('cancel button', () => {
+    describe('when clicked at step 1', () => {
+      it('closes the dialog', async() => {
         const wrapper = factory()
 
-        wrapper.vm.submitForm()
-        expect(wrapper.vm.currentStep).equals(2)
+        await wrapper.find('[data-qa="feedback cancel button"]').trigger('click')
+
+        expect(wrapper.emitted('hide')).toHaveLength(1)
+      })
+    })
+    describe('when clicked at step 2', () => {
+      it('closes the dialog', async() => {
+        const wrapper = factory({ attachTo: document.body })
+
+        await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+        await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
+        expect(wrapper.vm.currentStep).toBe(2)
+
+        await wrapper.find('[data-qa="feedback cancel button"]').trigger('click')
+
+        expect(wrapper.emitted('hide')).toHaveLength(1)
+      })
+    })
+
+    describe('at step 3', () => {
+      describe('when the request fails and when clicked', () => {
+        it('closes the dialog', async() => {
+          const wrapper = factory({ attachTo: document.body })
+          // Set error response status
+          responseStatus.status = 500
+          responseStatus.statusText = 'Internal sever error'
+
+          await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+          await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
+          expect(wrapper.vm.currentStep).toBe(2)
+
+          await wrapper.find('[data-qa="feedback skip button"]').trigger('click')
+
+          await flushPromises()
+
+          expect(wrapper.vm.currentStep).toBe(3)
+
+          await wrapper.find('[data-qa="feedback cancel button"]').trigger('click')
+
+          expect(wrapper.emitted('hide')).toHaveLength(1)
+
+          // Reset to succesful response status
+          responseStatus.status = 200
+          responseStatus.statusText = 'OK'
+        })
+      })
+      describe('when the request succeeds', () => {
+        it('does not exist', async() => {
+          const wrapper = factory({ attachTo: document.body })
+
+
+          await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+          await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
+          expect(wrapper.vm.currentStep).toBe(2)
+
+          await wrapper.find('[data-qa="feedback skip button"]').trigger('click')
+          await flushPromises()
+
+          expect(wrapper.vm.currentStep).toBe(3)
+          expect(wrapper.find('[data-qa="feedback cancel button"]').exists()).toBe(false)
+        })
       })
     })
   })
-
-  // describe('sendFeedback', () => {
-  //   it('posts the feedback message', async() => {
-  //     const wrapper = factory()
-  //     const postFeedbackMessage = vi.spyOn(wrapper.vm, 'postFeedbackMessage')
-
-  //     await wrapper.vm.goToStep(2)
-  //     await wrapper.vm.sendFeedback()
-
-  //     expect(postFeedbackMessage).toHaveBeenCalled()
-  //   })
-  // })
 })
