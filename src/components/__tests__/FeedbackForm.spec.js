@@ -35,17 +35,95 @@ afterAll(() => server.close())
 afterEach(() => server.resetHandlers())
 
 const factory = (options = {}) => {
-  const wrapper = mount(FeedbackForm, options)
+  const wrapper = mount(FeedbackForm, {
+    global: {
+      stubs: { 'i18n-t': { template: '<div><slot /></div>' } }
+    },
+    ...options
+  })
   return wrapper
 }
 
 describe('FeedbackForm', () => {
-  it('sets focus on the textarea', () => {
-    const wrapper = factory({ attachTo: document.body })
+  describe('textarea input field', () => {
+    it('receives focus', () => {
+      const wrapper = factory({ attachTo: document.body })
 
-    const textAreaWitFocus = wrapper.find('[data-qa="feedback textarea"]:focus')
+      const textAreaWitFocus = wrapper.find('[data-qa="feedback textarea"]:focus')
 
-    expect(textAreaWitFocus.exists()).toBe(true)
+      expect(textAreaWitFocus.exists()).toBe(true)
+    })
+    describe('when submitted and the input has less than 5 words', async () => {
+      const wrapper = factory({ attachTo: document.body })
+
+      await wrapper.find('[data-qa="feedback textarea"]').setValue('This is great')
+      await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
+      it('has the "is-invalid" class', async () => {
+        const textAreaInvalid = wrapper.find('[data-qa="feedback textarea"].is-invalid')
+
+        expect(textAreaInvalid.exists()).toBe(true)
+      })
+      it('has the aria-invalid attribute set', async () => {
+        const textAreaInvalid = wrapper.find('[data-qa="feedback textarea"]')
+
+        expect(textAreaInvalid.attributes('aria-invalid')).toEqual('true')
+      })
+    })
+  })
+
+  describe('email input field', () => {
+    it('receives focus', async () => {
+      const wrapper = factory({ attachTo: document.body })
+
+      await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+      await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
+      expect(wrapper.vm.currentStep).toBe(2)
+
+      const emailWitFocus = wrapper.find('[data-qa="feedback email"]:focus')
+
+      expect(emailWitFocus.exists()).toBe(true)
+    })
+    describe('when submitted and the input is an invalid email', async () => {
+      const wrapper = factory({ attachTo: document.body })
+
+      await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+      await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+      await wrapper.find('[data-qa="feedback email"]').setValue('example')
+      await wrapper.find('[data-qa="feedback send button"]').trigger('click')
+
+      it('has the "is-invalid" class', async () => {
+        const emailInvalid = wrapper.find('[data-qa="feedback email"].is-invalid')
+
+        expect(emailInvalid.exists()).toBe(true)
+      })
+      it('has the aria-invalid attribute set', async () => {
+        const emailInvalid = wrapper.find('[data-qa="feedback email"]')
+
+        expect(emailInvalid.attributes('aria-invalid')).toEqual('true')
+      })
+    })
+  })
+
+  describe('email help text', () => {
+    it('has a link to terms of service and privacy policy', async () => {
+      const wrapper = factory({ attachTo: document.body })
+
+      await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+      await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+      expect(wrapper.vm.currentStep).toBe(2)
+
+      const termsLink = wrapper.find(
+        '[data-qa="feedback email helptext"] a[href="https://www.europeana.eu/en/rights"]'
+      )
+      const privacyLink = wrapper.find(
+        '[data-qa="feedback email helptext"] a[href="https://www.europeana.eu/en/rights/privacy-policy"]'
+      )
+
+      expect(termsLink.exists()).toBe(true)
+      expect(privacyLink.exists()).toBe(true)
+    })
   })
 
   describe('next button at step 1', () => {
@@ -211,6 +289,138 @@ describe('FeedbackForm', () => {
           expect(wrapper.find('[data-qa="feedback cancel button"]').exists()).toBe(false)
         })
       })
+    })
+  })
+
+  describe('close button', () => {
+    describe('when at step 1 or 2', () => {
+      it('does not exist', async () => {
+        const wrapper = factory({ attachTo: document.body })
+
+        expect(wrapper.find('[data-qa="feedback close button"]').exists()).toBe(false)
+
+        await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+        await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
+        expect(wrapper.vm.currentStep).toBe(2)
+        expect(wrapper.find('[data-qa="feedback close button"]').exists()).toBe(false)
+      })
+    })
+    describe('at step 3', () => {
+      describe('when the request fails', () => {
+        it('does not exist', async () => {
+          const wrapper = factory({ attachTo: document.body })
+          // Set error response status
+          responseStatus.status = 500
+          responseStatus.statusText = 'Internal sever error'
+
+          await wrapper
+            .find('[data-qa="feedback textarea"]')
+            .setValue('This website is super great!')
+          await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
+          expect(wrapper.vm.currentStep).toBe(2)
+
+          await wrapper.find('[data-qa="feedback skip button"]').trigger('click')
+
+          await flushPromises()
+
+          expect(wrapper.vm.currentStep).toBe(3)
+          expect(wrapper.find('[data-qa="feedback close button"]').exists()).toBe(false)
+
+          // Reset to succesful response status
+          responseStatus.status = 200
+          responseStatus.statusText = 'OK'
+        })
+      })
+      describe('when the request succeeds', () => {
+        it('closes the dialog when clicked', async () => {
+          const wrapper = factory({ attachTo: document.body })
+
+          await wrapper
+            .find('[data-qa="feedback textarea"]')
+            .setValue('This website is super great!')
+          await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
+          expect(wrapper.vm.currentStep).toBe(2)
+
+          await wrapper.find('[data-qa="feedback skip button"]').trigger('click')
+          await flushPromises()
+
+          expect(wrapper.vm.currentStep).toBe(3)
+
+          await wrapper.find('[data-qa="feedback close button"]').trigger('click')
+
+          expect(wrapper.emitted('hide')).toHaveLength(1)
+        })
+      })
+    })
+  })
+
+  describe('When the feedback request succeeds', async () => {
+    it('displays text including "success"', async () => {
+      const wrapper = factory({ attachTo: document.body })
+
+      await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+      await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
+      expect(wrapper.vm.currentStep).toBe(2)
+
+      await wrapper.find('[data-qa="feedback skip button"]').trigger('click')
+      await flushPromises()
+
+      expect(wrapper.vm.currentStep).toBe(3)
+
+      const step3 = wrapper.find('[data-qa="feedback request status message"]')
+
+      expect(step3.text()).includes('success')
+    })
+  })
+
+  describe('When the feedback request fails', async () => {
+    it('displays text including "failed"', async () => {
+      const wrapper = factory({ attachTo: document.body })
+      // Set error response status
+      responseStatus.status = 500
+      responseStatus.statusText = 'Internal sever error'
+
+      await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+      await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+
+      expect(wrapper.vm.currentStep).toBe(2)
+
+      await wrapper.find('[data-qa="feedback skip button"]').trigger('click')
+      await flushPromises()
+
+      expect(wrapper.vm.currentStep).toBe(3)
+
+      const step3 = wrapper.find('[data-qa="feedback request status message"]')
+
+      expect(step3.text()).includes('failed')
+      // Reset to succesful response status
+      responseStatus.status = 200
+      responseStatus.statusText = 'OK'
+    })
+  })
+
+  describe('When an FAQ URL is provided in the config', () => {
+    it('is rendered as a link', () => {
+      const faqUrl = 'https://www.europeana.eu/faq'
+      const wrapper = factory({
+        global: {
+          provide: {
+            config: {
+              apiUrl: 'https://www.europeana.eu/_api/jira-service-desk/feedback',
+              faqUrl,
+              locale: 'en'
+            }
+          }
+        }
+      })
+
+      const faqLink = wrapper.find(`a[href="${faqUrl}"]`)
+
+      expect(faqLink.exists()).toBe(true)
     })
   })
 })

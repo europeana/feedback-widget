@@ -155,7 +155,7 @@ const skipEmail = () => {
             aria-describedby="efw-input-live-feedback"
             :aria-invalid="emailInputValidityState ? null : true"
           />
-          <div class="form-text" id="efw-input-live-feedback">
+          <div class="form-text" id="efw-input-live-feedback" data-qa="feedback email helptext">
             <p class="mb-0">
               {{ $t('emailOptional') }}
               <i18n-t keypath="policies" tag="span">
@@ -171,6 +171,7 @@ const skipEmail = () => {
         </div>
         <div
           v-if="currentStep == 3"
+          data-qa="feedback request status message"
           class="feedback-success d-flex align-items-center mb-3 mb-sm-0"
           role="alert"
           aria-atomic="true"
