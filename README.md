@@ -13,7 +13,7 @@ script, and a target element with id `europeana-feedback-widget`:
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.1.0/dist/europeana-feedback-widget.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.1.0/dist/europeana-feedback-widget.css">
   </head>
   <body>
     <div id="europeana-feedback-widget"></div>
