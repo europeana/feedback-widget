@@ -6,6 +6,9 @@ websites.
 
 ## Usage
 
+To embed the feedback widget in your web page, add the stylesheet link, JS
+script, and a target element with id `europeana-feedback-widget`:
+
 ```html
 <!DOCTYPE html>
 <html>
