@@ -62,7 +62,9 @@
     "url": "git+https://github.com/europeana/feedback-widget.git"
   },
   "contributors": [
-    "Richard Doe <richard.doe@europeana.eu>"
+    "Richard Doe <richard.doe@europeana.eu>",
+    "Leonie Peters <leonie.peters@europeana.eu>",
+    "Lutz Biedinger <lutz.biedinger@europeana.eu>"
   ],
   "keywords": [
     "europeana",
