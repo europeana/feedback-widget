@@ -4,24 +4,24 @@ import { HttpResponse, http } from 'msw'
 
 import { mount, flushPromises } from '@vue/test-utils'
 import FeedbackForm from '../FeedbackForm.vue'
-import { useI18n } from "vue-i18n"
+import { useI18n } from 'vue-i18n'
 
 vi.mock('vue-i18n')
 
 useI18n.mockReturnValue({
   locale: { value: 'en' },
-  t: (key) => key,
+  t: (key) => key
 })
 
-const responseStatus = { 
+const responseStatus = {
   status: 200,
-  statusText: "OK"
+  statusText: 'OK'
 }
 
 export const restHandlers = [
-   http.post('https://www.europeana.eu/_api/jira-service-desk/feedback', () => {
+  http.post('https://www.europeana.eu/_api/jira-service-desk/feedback', () => {
     return new HttpResponse(null, responseStatus)
-  }),
+  })
 ]
 const server = setupServer(...restHandlers)
 
@@ -52,7 +52,7 @@ describe('FeedbackForm', () => {
     const wrapper = factory({ attachTo: document.body })
 
     describe('when there is no value for feedback', () => {
-      it('is disabled', async() => {
+      it('is disabled', async () => {
         await wrapper.find('[data-qa="feedback textarea"]').setValue('')
 
         expect(wrapper.find('[data-qa="feedback next button"]').attributes('disabled')).toEqual('')
@@ -62,13 +62,15 @@ describe('FeedbackForm', () => {
         expect(wrapper.emitted('submit')).toBeFalsy(true)
       })
     })
-    describe('when the textarea has input', () => {  
-      it('is enabled', async() => {
+    describe('when the textarea has input', () => {
+      it('is enabled', async () => {
         await wrapper.find('[data-qa="feedback textarea"]').setValue('This')
-        expect(wrapper.find('[data-qa="feedback next button"]').attributes('disabled')).toBe(undefined)
+        expect(wrapper.find('[data-qa="feedback next button"]').attributes('disabled')).toBe(
+          undefined
+        )
       })
-      describe('when the textarea input has less than 5 words', () => {  
-        it('does not go to the next step when clicked', async() => {
+      describe('when the textarea input has less than 5 words', () => {
+        it('does not go to the next step when clicked', async () => {
           await wrapper.find('[data-qa="feedback textarea"]').setValue('This is great')
           await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
@@ -78,7 +80,7 @@ describe('FeedbackForm', () => {
       })
     })
     describe('when the textarea input has 5 words minimum', () => {
-      it('submits the form and goes to the next step when clicked', async() => {
+      it('submits the form and goes to the next step when clicked', async () => {
         await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
         await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
@@ -88,14 +90,14 @@ describe('FeedbackForm', () => {
     })
   })
 
-  describe('send button at step 2', async() => {
+  describe('send button at step 2', async () => {
     const wrapper = factory({ attachTo: document.body })
 
     await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
     await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
     describe('when there is no value for email', () => {
-      it('is disabled', async() => {
+      it('is disabled', async () => {
         await wrapper.find('[data-qa="feedback email"]').setValue('')
         await wrapper.find('[data-qa="feedback send button"]').trigger('click')
 
@@ -105,23 +107,25 @@ describe('FeedbackForm', () => {
       })
     })
     describe('when there is a value for email', () => {
-      it('is enabled', async() => {
+      it('is enabled', async () => {
         await wrapper.find('[data-qa="feedback email"]').setValue('example')
 
-        expect(wrapper.find('[data-qa="feedback send button"]').attributes('disabled')).toBe(undefined)
+        expect(wrapper.find('[data-qa="feedback send button"]').attributes('disabled')).toBe(
+          undefined
+        )
       })
       describe('and it is clicked', () => {
         describe('and the email value is invalid', () => {
-          it('does not submit the form and stays at step 2', async() => {
+          it('does not submit the form and stays at step 2', async () => {
             await wrapper.find('[data-qa="feedback email"]').setValue('example invalid email')
             await wrapper.find('[data-qa="feedback send button"]').trigger('click')
-  
+
             expect(wrapper.emitted('submit')).toHaveLength(1)
             expect(wrapper.vm.currentStep).toBe(2)
           })
         })
         describe('and the email value is valid', () => {
-          it('submits the form and goes to the next step', async() => {
+          it('submits the form and goes to the next step', async () => {
             await wrapper.find('[data-qa="feedback email"]').setValue('example@mail.com')
             await wrapper.find('[data-qa="feedback send button"]').trigger('click')
             await flushPromises()
@@ -136,7 +140,7 @@ describe('FeedbackForm', () => {
 
   describe('cancel button', () => {
     describe('when clicked at step 1', () => {
-      it('closes the dialog', async() => {
+      it('closes the dialog', async () => {
         const wrapper = factory()
 
         await wrapper.find('[data-qa="feedback cancel button"]').trigger('click')
@@ -145,7 +149,7 @@ describe('FeedbackForm', () => {
       })
     })
     describe('when clicked at step 2', () => {
-      it('closes the dialog', async() => {
+      it('closes the dialog', async () => {
         const wrapper = factory({ attachTo: document.body })
 
         await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
@@ -161,13 +165,15 @@ describe('FeedbackForm', () => {
 
     describe('at step 3', () => {
       describe('when the request fails and when clicked', () => {
-        it('closes the dialog', async() => {
+        it('closes the dialog', async () => {
           const wrapper = factory({ attachTo: document.body })
           // Set error response status
           responseStatus.status = 500
           responseStatus.statusText = 'Internal sever error'
 
-          await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+          await wrapper
+            .find('[data-qa="feedback textarea"]')
+            .setValue('This website is super great!')
           await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
           expect(wrapper.vm.currentStep).toBe(2)
@@ -188,11 +194,12 @@ describe('FeedbackForm', () => {
         })
       })
       describe('when the request succeeds', () => {
-        it('does not exist', async() => {
+        it('does not exist', async () => {
           const wrapper = factory({ attachTo: document.body })
 
-
-          await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
+          await wrapper
+            .find('[data-qa="feedback textarea"]')
+            .setValue('This website is super great!')
           await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
           expect(wrapper.vm.currentStep).toBe(2)

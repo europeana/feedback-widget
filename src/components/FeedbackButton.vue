@@ -9,11 +9,11 @@ const props = defineProps({
   }
 })
 
-const button = ref("button")
+const button = ref('button')
 const bigButton = ref(true)
 
 onMounted(() => {
-  window.addEventListener('scroll', shrinkButton, { once: true });
+  window.addEventListener('scroll', shrinkButton, { once: true })
 
   if (props.buttonFocus === true) {
     button.value.focus()
@@ -21,10 +21,10 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', shrinkButton);
+  window.removeEventListener('scroll', shrinkButton)
 })
 
-const shrinkButton = () => bigButton.value = false;
+const shrinkButton = () => (bigButton.value = false)
 
 const buttonClasses = computed(() => {
   return {
@@ -43,7 +43,12 @@ const buttonClasses = computed(() => {
     @mouseover="bigButton = true"
     @mouseleave="bigButton = false"
   >
-    <FeedbackIcon class="icon-ic-feedback d-inline-flex" width="20px" height="20px" viewBox="0 0 32 32"/>
+    <FeedbackIcon
+      class="icon-ic-feedback d-inline-flex"
+      width="20px"
+      height="20px"
+      viewBox="0 0 32 32"
+    />
     <span class="europeana-feedback-button-text">{{ $t('feedback') }}</span>
   </button>
 </template>

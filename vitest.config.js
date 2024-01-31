@@ -12,7 +12,7 @@ export default mergeConfig(
       setupFiles: ['./vitest.setup.js'],
       coverage: {
         provider: 'v8'
-      },
+      }
     }
   })
 )

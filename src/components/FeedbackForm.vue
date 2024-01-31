@@ -98,7 +98,7 @@ const submitForm = async () => {
   if (currentStep.value < 3) {
     goToStep(currentStep.value + 1)
 
-    if(currentStep.value === 2) {
+    if (currentStep.value === 2) {
       nextTick(() => {
         emailInput.value.focus()
       })
@@ -114,8 +114,8 @@ const validateEmailInput = () => {
   emailInputValidityState.value = emailInput.value?.validity.valid
 }
 
-const skipEmail = () =>{
-  email.value = '';
+const skipEmail = () => {
+  email.value = ''
 }
 </script>
 
@@ -169,22 +169,26 @@ const skipEmail = () =>{
             </p>
           </div>
         </div>
-        <div v-if="currentStep == 3" class="feedback-success d-flex align-items-center mb-3 mb-sm-0" role="alert" aria-atomic="true">
-          <span
-            v-if="requestSuccess"
-            class="d-flex align-items-center"
-          >
+        <div
+          v-if="currentStep == 3"
+          class="feedback-success d-flex align-items-center mb-3 mb-sm-0"
+          role="alert"
+          aria-atomic="true"
+        >
+          <span v-if="requestSuccess" class="d-flex align-items-center">
             <CheckCircleIcon class="icon-check-circle" />
             <span class="ms-3">
               <p class="mb-0">{{ $t('success') }}</p>
               <p class="mb-0">{{ $t('thankYou') }}</p>
             </span>
           </span>
-          <span
-            v-else-if="requestSuccess === false"
-            class="d-flex align-items-center"
-          >
-            <CancelCircleIcon class="icon-cancel-circle" width="20px" height="20px" viewBox="0 0 24 24" />
+          <span v-else-if="requestSuccess === false" class="d-flex align-items-center">
+            <CancelCircleIcon
+              class="icon-cancel-circle"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+            />
             <span class="mb-0 ms-3">{{ $t('failed') }}</span>
           </span>
         </div>
@@ -209,8 +213,8 @@ const skipEmail = () =>{
             :disabled="disableSkipButton"
             @click="skipEmail"
           >
-            {{ $t('skipSend') }}</button
-          >
+            {{ $t('skipSend') }}
+          </button>
           <button
             v-if="showNextButton"
             data-qa="feedback next button"
@@ -248,7 +252,12 @@ const skipEmail = () =>{
         class="faq-link d-inline-flex align-items-center mt-4 mb-2 p-0 w-100 text-decoration-none"
       >
         <span>{{ $t('faq') }}</span>
-        <ExternalLinkIcon class="icon-external-link ms-1" width="16px" height="16px" viewBox="0 0 32 32" />
+        <ExternalLinkIcon
+          class="icon-external-link ms-1"
+          width="16px"
+          height="16px"
+          viewBox="0 0 32 32"
+        />
       </a>
     </div>
   </form>
