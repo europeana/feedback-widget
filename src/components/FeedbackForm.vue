@@ -96,6 +96,7 @@ const submitForm = async () => {
   const valid = feedbackForm.value.checkValidity()
 
   if (!valid) {
+    Array.from(feedbackForm.value.elements).find((el) => !el.valid)?.focus()
     return
   }
 
