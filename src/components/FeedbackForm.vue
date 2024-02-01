@@ -96,7 +96,9 @@ const submitForm = async () => {
   const valid = feedbackForm.value.checkValidity()
 
   if (!valid) {
-    Array.from(feedbackForm.value.elements).find((el) => !el.valid)?.focus()
+    Array.from(feedbackForm.value.elements)
+      .find((el) => !el.valid)
+      ?.focus()
     return
   }
 
@@ -106,7 +108,7 @@ const submitForm = async () => {
   if (currentStep.value < 3) {
     goToStep(currentStep.value + 1)
 
-    if(currentStep.value === 2) {
+    if (currentStep.value === 2) {
       nextTick(() => {
         emailInput.value.focus()
       })
@@ -118,17 +120,28 @@ const handleInvalidField = (field) => {
   invalid.value[field] = true
 }
 
-const skipEmail = () =>{
-  email.value = '';
+const skipEmail = () => {
+  email.value = ''
 }
 </script>
 
 <template>
-  <form class="europeana-feedback-form" data-qa="feedback widget form" novalidate ref="feedbackForm" @submit.prevent="submitForm">
+  <form
+    class="europeana-feedback-form"
+    data-qa="feedback widget form"
+    novalidate
+    ref="feedbackForm"
+    @submit.prevent="submitForm"
+  >
     <div class="d-flex flex-wrap">
       <div class="form-fields">
         <div v-if="currentStep === 1">
-          <label for="feedback-widget-feedback-input" class="d-block">{{ $t('feedback') }}</label>
+          <label for="efw-feedback-input" class="d-block"
+            >{{ $t('feedback') }}
+            <span v-if="invalid.feedback" class="visually-hidden">
+              {{ feedbackTextarea.validationMessage }}
+            </span>
+          </label>
           <textarea
             v-model="feedback"
             id="efw-feedback-input"
@@ -140,7 +153,7 @@ const skipEmail = () =>{
             rows="5"
             aria-required="true"
             :aria-invalid="invalid.feedback"
-            aria-describedby="efw-feedback-textarea-error"
+            aria-errormessage="efw-feedback-textarea-error"
             @invalid="handleInvalidField('feedback')"
             @input="handleInputFeedback"
           />
@@ -153,9 +166,14 @@ const skipEmail = () =>{
           </div>
         </div>
         <div v-if="currentStep === 2">
-          <label for="feedback-widget-email-input" class="d-block">{{ $t('emailAddress') }}</label>
+          <label for="efw-email-input" class="d-block">
+            {{ $t('emailAddress') }}
+            <span v-if="invalid.email" class="visually-hidden">
+              {{ emailInput.validationMessage }}
+            </span>
+          </label>
           <input
-            id="feedback-widget-email-input"
+            id="efw-email-input"
             v-model="email"
             class="form-control"
             :class="{ 'is-invalid': invalid.email }"
@@ -163,15 +181,12 @@ const skipEmail = () =>{
             autocomplete="email"
             type="email"
             name="email"
-            aria-describedby="efw-email-input-error"
+            aria-errormessage="efw-email-input-error"
+            aria-describedby="efw-input-live-feedback"
             @invalid="handleInvalidField('email')"
             :aria-invalid="invalid.email"
           />
-          <div
-            v-if="invalid.email"
-            id="efw-email-input-error"
-            class="b-form-invalid-feedback"
-          >
+          <div v-if="invalid.email" id="efw-email-input-error" class="b-form-invalid-feedback">
             {{ emailInput.validationMessage }}
           </div>
           <div class="form-text" id="efw-input-live-feedback">
@@ -188,22 +203,26 @@ const skipEmail = () =>{
             </p>
           </div>
         </div>
-        <div v-if="currentStep == 3" class="feedback-success d-flex align-items-center mb-3 mb-sm-0" role="alert" aria-atomic="true">
-          <span
-            v-if="requestSuccess"
-            class="d-flex align-items-center"
-          >
+        <div
+          v-if="currentStep == 3"
+          class="feedback-success d-flex align-items-center mb-3 mb-sm-0"
+          role="alert"
+          aria-atomic="true"
+        >
+          <span v-if="requestSuccess" class="d-flex align-items-center">
             <CheckCircleIcon class="icon-check-circle" />
             <span class="ms-3">
               <p class="mb-0">{{ $t('success') }}</p>
               <p class="mb-0">{{ $t('thankYou') }}</p>
             </span>
           </span>
-          <span
-            v-else-if="requestSuccess === false"
-            class="d-flex align-items-center"
-          >
-            <CancelCircleIcon class="icon-cancel-circle" width="20px" height="20px" viewBox="0 0 24 24" />
+          <span v-else-if="requestSuccess === false" class="d-flex align-items-center">
+            <CancelCircleIcon
+              class="icon-cancel-circle"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+            />
             <span class="mb-0 ms-3">{{ $t('failed') }}</span>
           </span>
         </div>
@@ -228,8 +247,8 @@ const skipEmail = () =>{
             :disabled="disableSkipButton"
             @click="skipEmail"
           >
-            {{ $t('skipSend') }}</button
-          >
+            {{ $t('skipSend') }}
+          </button>
           <button
             v-if="showNextButton"
             data-qa="feedback next button"
@@ -265,7 +284,12 @@ const skipEmail = () =>{
         class="faq-link d-inline-flex align-items-center mt-4 mb-2 p-0 w-100 text-decoration-none"
       >
         <span>{{ $t('faq') }}</span>
-        <ExternalLinkIcon class="icon-external-link ms-1" width="16px" height="16px" viewBox="0 0 32 32" />
+        <ExternalLinkIcon
+          class="icon-external-link ms-1"
+          width="16px"
+          height="16px"
+          viewBox="0 0 32 32"
+        />
       </a>
     </div>
   </form>
