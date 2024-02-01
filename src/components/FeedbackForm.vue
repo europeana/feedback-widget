@@ -10,14 +10,14 @@ const config = inject('config')
 const { locale, t } = useI18n()
 
 const currentStep = ref(1)
+const feedbackForm = ref(null)
 const email = ref('')
 const emailInput = ref(null)
 const feedback = ref('')
 const feedbackTextarea = ref(null)
 const requestSuccess = ref(null)
 const sending = ref(false)
-const feedbackTextareaValidityState = ref(true)
-const emailInputValidityState = ref(true)
+const invalid = ref({})
 
 onMounted(() => {
   feedbackTextarea.value.focus()
@@ -92,6 +92,13 @@ const sendFeedback = async () => {
 }
 
 const submitForm = async () => {
+  invalid.value = {}
+  const valid = feedbackForm.value.checkValidity()
+
+  if (!valid) {
+    return
+  }
+
   if (currentStep.value > 1) {
     await sendFeedback()
   }
@@ -106,12 +113,8 @@ const submitForm = async () => {
   }
 }
 
-const validateTextArea = () => {
-  feedbackTextareaValidityState.value = feedbackTextarea.value?.validity.valid
-}
-
-const validateEmailInput = () => {
-  emailInputValidityState.value = emailInput.value?.validity.valid
+const handleInvalidField = (field) => {
+  invalid.value[field] = true
 }
 
 const skipEmail = () =>{
@@ -120,7 +123,7 @@ const skipEmail = () =>{
 </script>
 
 <template>
-  <form class="europeana-feedback-form" data-qa="feedback widget form" @submit.prevent="submitForm">
+  <form class="europeana-feedback-form" data-qa="feedback widget form" novalidate ref="feedbackForm" @submit.prevent="submitForm">
     <div class="d-flex flex-wrap">
       <div class="form-fields">
         <div v-if="currentStep === 1">
@@ -129,15 +132,24 @@ const skipEmail = () =>{
             v-model="feedback"
             id="efw-feedback-input"
             class="form-control"
-            :class="{ 'is-invalid': !feedbackTextareaValidityState }"
+            :class="{ 'is-invalid': invalid.feedback }"
             ref="feedbackTextarea"
             required
             name="feedback"
             rows="5"
             aria-required="true"
-            :aria-invalid="feedbackTextareaValidityState ? null : true"
+            :aria-invalid="invalid.feedback"
+            aria-describedby="efw-feedback-textarea-error"
+            @invalid="handleInvalidField('feedback')"
             @input="handleInputFeedback"
           />
+          <div
+            v-if="invalid.feedback"
+            id="efw-feedback-textarea-error"
+            class="b-form-invalid-feedback"
+          >
+            {{ feedbackTextarea.validationMessage }}
+          </div>
         </div>
         <div v-if="currentStep === 2">
           <label for="feedback-widget-email-input" class="d-block">{{ $t('emailAddress') }}</label>
@@ -145,14 +157,22 @@ const skipEmail = () =>{
             id="feedback-widget-email-input"
             v-model="email"
             class="form-control"
-            :class="{ 'is-invalid': !emailInputValidityState }"
+            :class="{ 'is-invalid': invalid.email }"
             ref="emailInput"
             autocomplete="email"
             type="email"
             name="email"
-            aria-describedby="efw-input-live-feedback"
-            :aria-invalid="emailInputValidityState ? null : true"
+            aria-describedby="efw-email-input-error"
+            @invalid="handleInvalidField('email')"
+            :aria-invalid="invalid.email"
           />
+          <div
+            v-if="invalid.email"
+            id="efw-email-input-error"
+            class="b-form-invalid-feedback"
+          >
+            {{ emailInput.validationMessage }}
+          </div>
           <div class="form-text" id="efw-input-live-feedback">
             <p class="mb-0">
               {{ $t('emailOptional') }}
@@ -215,7 +235,6 @@ const skipEmail = () =>{
             class="btn btn-primary button-next-step mt-3"
             type="submit"
             :disabled="disableNextButton"
-            @click="validateTextArea"
           >
             {{ $t('next') }}
           </button>
@@ -225,7 +244,6 @@ const skipEmail = () =>{
             class="btn btn-primary mt-3"
             type="submit"
             :disabled="disableSendButton"
-            @click="validateEmailInput"
           >
             {{ $t('send') }}
           </button>
