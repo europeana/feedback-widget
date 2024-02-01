@@ -133,6 +133,10 @@
           padding-left: 0.75rem;
           padding-right: 0.75rem;
         }
+
+        :invalid.is-invalid ~ .invalid-feedback {
+          display: block;
+        }
       }
 
       .form-buttons {

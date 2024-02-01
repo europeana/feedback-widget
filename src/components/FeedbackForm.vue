@@ -157,11 +157,7 @@ const skipEmail = () => {
             @invalid="handleInvalidField('feedback')"
             @input="handleInputFeedback"
           />
-          <div
-            v-if="invalid.feedback"
-            id="efw-feedback-textarea-error"
-            class="b-form-invalid-feedback"
-          >
+          <div v-if="invalid.feedback" id="efw-feedback-textarea-error" class="invalid-feedback">
             {{ feedbackTextarea.validationMessage }}
           </div>
         </div>
@@ -186,7 +182,7 @@ const skipEmail = () => {
             @invalid="handleInvalidField('email')"
             :aria-invalid="invalid.email"
           />
-          <div v-if="invalid.email" id="efw-email-input-error" class="b-form-invalid-feedback">
+          <div v-if="invalid.email" id="efw-email-input-error" class="invalid-feedback">
             {{ emailInput.validationMessage }}
           </div>
           <div class="form-text" id="efw-input-live-feedback">
