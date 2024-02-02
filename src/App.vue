@@ -17,7 +17,7 @@ watch(showDialog, (newVal) => {
 <template>
   <div class="europeana-feedback-container">
     <FeedbackDialog v-if="showDialog" @hide="showDialog = false" />
-    <FeedbackButton v-else @click="showDialog = true" :button-focus="buttonFocus"/>
+    <FeedbackButton v-else @click="showDialog = true" :button-focus="buttonFocus" />
   </div>
 </template>
 

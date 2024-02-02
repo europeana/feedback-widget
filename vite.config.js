@@ -15,17 +15,14 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        assetFileNames: "europeana-feedback-widget.[ext]",
-      },
+        assetFileNames: 'europeana-feedback-widget.[ext]'
+      }
     }
   },
   define: {
     'process.env': {}
   },
-  plugins: [
-    vue(),
-    svgLoader()
-  ],
+  plugins: [vue(), svgLoader()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
