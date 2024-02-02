@@ -153,7 +153,6 @@ const skipEmail = () => {
             rows="5"
             aria-required="true"
             :aria-invalid="invalid.feedback"
-            aria-errormessage="efw-feedback-textarea-error"
             @invalid="handleInvalidField('feedback')"
             @input="handleInputFeedback"
           />
@@ -177,7 +176,6 @@ const skipEmail = () => {
             autocomplete="email"
             type="email"
             name="email"
-            aria-errormessage="efw-email-input-error"
             aria-describedby="efw-input-live-feedback"
             @invalid="handleInvalidField('email')"
             :aria-invalid="invalid.email"
