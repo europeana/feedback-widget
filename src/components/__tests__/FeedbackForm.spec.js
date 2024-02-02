@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, afterAll, afterEach, beforeAll } from 'vitest'
 import { setupServer } from 'msw/node'
 import { HttpResponse, http } from 'msw'
-
 import { mount, flushPromises } from '@vue/test-utils'
-import FeedbackForm from '../FeedbackForm.vue'
 import { useI18n } from 'vue-i18n'
+
+import FeedbackForm from '../FeedbackForm.vue'
 
 vi.mock('vue-i18n')
 
@@ -34,7 +34,7 @@ afterAll(() => server.close())
 // Reset handlers after each test `important for test isolation`
 afterEach(() => server.resetHandlers())
 
-//shortcut to step 2
+// shortcut to step 2
 const goToStep2 = async (wrapper) => {
   await wrapper.find('[data-qa="feedback textarea"]').setValue('This website is super great!')
   await wrapper.find('[data-qa="feedback next button"]').trigger('click')
@@ -66,9 +66,9 @@ describe('FeedbackForm', () => {
     it('receives focus', () => {
       const wrapper = factory({ attachTo: document.body })
 
-      const textAreaWitFocus = wrapper.find('[data-qa="feedback textarea"]:focus')
+      const textAreaWithFocus = wrapper.find('[data-qa="feedback textarea"]:focus')
 
-      expect(textAreaWitFocus.exists()).toBe(true)
+      expect(textAreaWithFocus.exists()).toBe(true)
     })
     describe('when submitted and the input has less than 5 words', async () => {
       const wrapper = factory({ attachTo: document.body })
@@ -95,9 +95,9 @@ describe('FeedbackForm', () => {
 
       await goToStep2(wrapper)
 
-      const emailWitFocus = wrapper.find('[data-qa="feedback email"]:focus')
+      const emailWithFocus = wrapper.find('[data-qa="feedback email"]:focus')
 
-      expect(emailWitFocus.exists()).toBe(true)
+      expect(emailWithFocus.exists()).toBe(true)
     })
     describe('when submitted and the input is an invalid email', async () => {
       const wrapper = factory({ attachTo: document.body })
@@ -149,15 +149,15 @@ describe('FeedbackForm', () => {
         await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
         expect(wrapper.vm.currentStep).toBe(1)
-        expect(wrapper.emitted('submit')).toBeFalsy(true)
+        expect(wrapper.emitted('submit')).toBeFalsy()
       })
     })
     describe('when the textarea has input', () => {
       it('is enabled', async () => {
         await wrapper.find('[data-qa="feedback textarea"]').setValue('This')
-        expect(wrapper.find('[data-qa="feedback next button"]').attributes('disabled')).toBe(
-          undefined
-        )
+        expect(
+          wrapper.find('[data-qa="feedback next button"]').attributes('disabled')
+        ).toBeUndefined()
       })
       describe('when the textarea input has less than 5 words', () => {
         it('does not go to the next step when clicked', async () => {
@@ -165,7 +165,7 @@ describe('FeedbackForm', () => {
           await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
           expect(wrapper.vm.currentStep).toBe(1)
-          expect(wrapper.emitted('submit')).toBeFalsy(true)
+          expect(wrapper.emitted('submit')).toBeFalsy()
         })
       })
     })
@@ -199,9 +199,9 @@ describe('FeedbackForm', () => {
       it('is enabled', async () => {
         await wrapper.find('[data-qa="feedback email"]').setValue('example')
 
-        expect(wrapper.find('[data-qa="feedback send button"]').attributes('disabled')).toBe(
-          undefined
-        )
+        expect(
+          wrapper.find('[data-qa="feedback send button"]').attributes('disabled')
+        ).toBeUndefined()
       })
       describe('and it is clicked', () => {
         describe('and the email value is invalid', () => {
