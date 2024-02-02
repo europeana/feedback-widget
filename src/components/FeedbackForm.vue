@@ -138,7 +138,7 @@ const skipEmail = () => {
         <div v-if="currentStep === 1">
           <label for="efw-feedback-input" class="d-block"
             >{{ $t('feedback') }}
-            <span v-if="invalid.feedback" class="visually-hidden">
+            <span v-if="invalid.feedback" data-qa="feedback invalid hidden label" class="visually-hidden">
               {{ feedbackTextarea.validationMessage }}
             </span>
           </label>
@@ -157,14 +157,14 @@ const skipEmail = () => {
             @invalid="handleInvalidField('feedback')"
             @input="handleInputFeedback"
           />
-          <div v-if="invalid.feedback" id="efw-feedback-textarea-error" class="invalid-feedback">
+          <div v-if="invalid.feedback" id="efw-feedback-textarea-error" data-qa="feedback invalid text" class="invalid-feedback">
             {{ feedbackTextarea.validationMessage }}
           </div>
         </div>
         <div v-if="currentStep === 2">
           <label for="efw-email-input" class="d-block">
             {{ $t('emailAddress') }}
-            <span v-if="invalid.email" class="visually-hidden">
+            <span v-if="invalid.email" data-qa="email invalid hidden label" class="visually-hidden">
               {{ emailInput.validationMessage }}
             </span>
           </label>
@@ -182,7 +182,7 @@ const skipEmail = () => {
             @invalid="handleInvalidField('email')"
             :aria-invalid="invalid.email"
           />
-          <div v-if="invalid.email" id="efw-email-input-error" class="invalid-feedback">
+          <div v-if="invalid.email" id="efw-email-input-error" data-qa="email invalid text" class="invalid-feedback">
             {{ emailInput.validationMessage }}
           </div>
           <div class="form-text" id="efw-input-live-feedback" data-qa="feedback email helptext">

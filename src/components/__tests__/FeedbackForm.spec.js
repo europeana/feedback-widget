@@ -146,10 +146,10 @@ describe('FeedbackForm', () => {
         await wrapper.find('[data-qa="feedback textarea"]').setValue('')
 
         expect(wrapper.find('[data-qa="feedback next button"]').attributes('disabled')).toEqual('')
+
         await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
         expect(wrapper.vm.currentStep).toBe(1)
-        expect(wrapper.emitted('submit')).toBeFalsy()
       })
     })
     describe('when the textarea has input', () => {
@@ -159,13 +159,17 @@ describe('FeedbackForm', () => {
           wrapper.find('[data-qa="feedback next button"]').attributes('disabled')
         ).toBeUndefined()
       })
-      describe('when the textarea input has less than 5 words', () => {
-        it('does not go to the next step when clicked', async () => {
-          await wrapper.find('[data-qa="feedback textarea"]').setValue('This is great')
-          await wrapper.find('[data-qa="feedback next button"]').trigger('click')
+      describe('when the textarea input has less than 5 words', async() => {
+        await wrapper.find('[data-qa="feedback textarea"]').setValue('This is great')
+        await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
+        it('does not go to the next step when clicked', () => {
           expect(wrapper.vm.currentStep).toBe(1)
-          expect(wrapper.emitted('submit')).toBeFalsy()
+          expect(wrapper.emitted('submit')).toHaveLength(1)
+        })
+        it('displays an invalid helptext and updates the label', async () => {
+          expect(wrapper.find('[data-qa="feedback invalid text"]').exists()).toBe(true)
+          expect(wrapper.find('label [data-qa="feedback invalid hidden label"]').exists()).toBe(true)
         })
       })
     })
@@ -175,7 +179,7 @@ describe('FeedbackForm', () => {
         await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
         expect(wrapper.vm.currentStep).toBe(2)
-        expect(wrapper.emitted()).toHaveProperty('submit')
+        expect(wrapper.emitted('submit')).toHaveLength(2)
       })
     })
   })
@@ -205,12 +209,16 @@ describe('FeedbackForm', () => {
       })
       describe('and it is clicked', () => {
         describe('and the email value is invalid', () => {
-          it('does not submit the form and stays at step 2', async () => {
+          it('stays at step 2', async () => {
             await wrapper.find('[data-qa="feedback email"]').setValue('example invalid email')
             await wrapper.find('[data-qa="feedback send button"]').trigger('click')
 
-            expect(wrapper.emitted('submit')).toHaveLength(1)
+            expect(wrapper.emitted('submit')).toHaveLength(2)
             expect(wrapper.vm.currentStep).toBe(2)
+          })
+          it('displays an invalid helptext and updates the label', async () => {
+            expect(wrapper.find('[data-qa="email invalid text"]').exists()).toBe(true)
+            expect(wrapper.find('label [data-qa="email invalid hidden label"]').exists()).toBe(true)
           })
         })
         describe('and the email value is valid', () => {
@@ -220,7 +228,7 @@ describe('FeedbackForm', () => {
             await flushPromises()
 
             expect(wrapper.vm.currentStep).toBe(3)
-            expect(wrapper.emitted('submit')).toHaveLength(2)
+            expect(wrapper.emitted('submit')).toHaveLength(3)
           })
         })
       })
