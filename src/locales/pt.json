@@ -7,14 +7,13 @@
   "faq": "Ir para perguntas frequentes",
   "feedback": "Comentários",
   "next": "Próximo",
-  "policies": "Ao continuar, você concorda com nossos {0} e reconhece nossos {1} .",
+  "policies": "Ao continuar, você concorda com nossos {0} e reconhece nossos {1}.",
   "privacyPolicy": "Política de Privacidade",
   "send": "Enviar",
   "skipSend": "Ignorar e enviar",
-  "success": "Seu feedback foi enviado.",
+  "success": "Os seus comentários foram enviados.",
   "termsOfService": "Termos de serviço",
   "thankYou": "Obrigado!",
   "title": "Enviar comentários",
-  "validEmail": "Digite um endereço de e-mail válido",
-  "validFeedback": "Seu feedback deve consistir em no mínimo 5 palavras"
+  "validFeedback": "O seu comentário deve consistir em no mínimo 5 palavras"
 }

@@ -7,7 +7,7 @@
   "faq": "Minge korduma kippuvate küsimuste juurde",
   "feedback": "Tagasiside",
   "next": "Järgmine",
-  "policies": "Jätkates nõustute meie {0} ja kinnitate meie {1} .",
+  "policies": "Jätkates nõustute meie {0} ja kinnitate meie {1}.",
   "privacyPolicy": "Privaatsuspoliitika",
   "send": "Saada",
   "skipSend": "Jäta vahele ja saada",
@@ -15,6 +15,5 @@
   "termsOfService": "Kasutustingimused",
   "thankYou": "Aitäh!",
   "title": "Saada tagasisidet",
-  "validEmail": "Sisestage kehtiv e-posti aadress",
   "validFeedback": "Teie tagasiside peab koosnema vähemalt 5 sõnast"
 }

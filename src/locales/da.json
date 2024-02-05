@@ -7,7 +7,7 @@
   "faq": "Gå til ofte stillede spørgsmål",
   "feedback": "Feedback",
   "next": "Næste",
-  "policies": "Ved at fortsætte accepterer du vores {0} og anerkender vores {1} .",
+  "policies": "Ved at fortsætte accepterer du vores {0} og anerkender vores {1}.",
   "privacyPolicy": "Fortrolighedspolitik",
   "send": "Sende",
   "skipSend": "Spring over og send",
@@ -15,6 +15,5 @@
   "termsOfService": "Vilkår for brug",
   "thankYou": "Tak!",
   "title": "Send feedback",
-  "validEmail": "Indtast en gyldig email addresse",
   "validFeedback": "Din feedback skal mindst bestå af 5 ord"
 }

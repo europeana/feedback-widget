@@ -7,7 +7,7 @@
   "faq": "Gå till vanliga frågor",
   "feedback": "Feedback",
   "next": "Nästa",
-  "policies": "Genom att fortsätta godkänner du vår {0} och godkänner vår {1} .",
+  "policies": "Genom att fortsätta godkänner du vår {0} och godkänner vår {1}.",
   "privacyPolicy": "Integritetspolicy",
   "send": "Skicka",
   "skipSend": "Hoppa över och skicka",
@@ -15,6 +15,5 @@
   "termsOfService": "Användarvillkor",
   "thankYou": "Tack!",
   "title": "Skicka feedback",
-  "validEmail": "Ange en giltig e-postadress",
   "validFeedback": "Din feedback måste bestå av minst 5 ord"
 }

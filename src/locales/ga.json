@@ -7,14 +7,13 @@
   "faq": "Téigh go dtí ceisteanna coitianta",
   "feedback": "Aiseolas",
   "next": "Ar Aghaidh",
-  "policies": "Trí leanúint ar aghaidh, aontaíonn tú lenár {0} agus aithníonn tú ár {1} .",
+  "policies": "Trí leanúint ar aghaidh, aontaíonn tú lenár {0} agus aithníonn tú ár {1}.",
   "privacyPolicy": "Beartas Príobháideachais",
   "send": "Seol",
   "skipSend": "Scipeáil agus seol",
   "success": "Tá d'aiseolas seolta.",
-  "termsOfService": "Tearmaí Seirbhís",
+  "termsOfService": "Téarmaí Seirbhís",
   "thankYou": "Go raibh maith agat!",
   "title": "Seol Aiseolas",
-  "validEmail": "Iontráil seoladh bailí ríomhphoist",
-  "validFeedback": "Caithfidh 5 fhocal ar a laghad a bheith i d’aiseolas"
+  "validFeedback": "Caithfidh 5 fhocal ar a laghad a bheith i do chuid aiseolais"
 }
