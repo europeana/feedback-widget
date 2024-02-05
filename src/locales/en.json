@@ -15,6 +15,5 @@
   "termsOfService": "Terms of Service",
   "thankYou": "Thank you!",
   "title": "Send feedback",
-  "validEmail": "Enter a valid email address",
-  "validFeedback": "Your feedback has to consist of 5 words at minimum"
+  "validFeedback": "Your feedback must contain a minimum of 5 words."
 }
