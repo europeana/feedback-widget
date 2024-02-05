@@ -7,7 +7,7 @@
   "faq": "Pojdite na pogosto zastavljena vprašanja",
   "feedback": "Povratne informacije",
   "next": "Naslednji",
-  "policies": "Z nadaljevanjem se strinjate z našimi {0} in potrjujete naše {1} .",
+  "policies": "Z nadaljevanjem se strinjate z našimi {0} in potrjujete naše {1}.",
   "privacyPolicy": "Pravilnik o zasebnosti",
   "send": "Pošlji",
   "skipSend": "Preskoči in pošlji",
@@ -15,6 +15,5 @@
   "termsOfService": "Pogoji storitve",
   "thankYou": "Hvala!",
   "title": "Pošlji povratno informacijo",
-  "validEmail": "Vnesite veljaven e-poštni naslov",
-  "validFeedback": "Vaše povratne informacije morajo biti sestavljene iz 5 besed najmanj"
+  "validFeedback": "Vaša povratna informacija mora biti sestavljena iz najmanj 5 besed"
 }

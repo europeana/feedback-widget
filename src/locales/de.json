@@ -7,7 +7,7 @@
   "faq": "Gehen Sie zu den häufig gestellten Fragen",
   "feedback": "Feedback",
   "next": "Weiter",
-  "policies": "Indem Sie fortfahren, stimmen Sie unseren {0} und erkennen unsere {1} .",
+  "policies": "Indem Sie fortfahren, stimmen Sie unseren {0} und erkennen unsere {1}.",
   "privacyPolicy": "Datenschutz-Bestimmungen",
   "send": "Senden",
   "skipSend": "Überspringen und senden",
@@ -15,6 +15,5 @@
   "termsOfService": "Nutzungsbedingungen",
   "thankYou": "Vielen Dank!",
   "title": "Feedback abschicken",
-  "validEmail": "Geben Sie eine gültige E-Mail Adresse ein",
   "validFeedback": "Ihr Feedback muss aus mindestens 5 Wörtern bestehen"
 }

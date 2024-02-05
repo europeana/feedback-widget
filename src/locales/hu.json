@@ -7,7 +7,7 @@
   "faq": "Ugrás a gyakran ismételt kérdésekre",
   "feedback": "Visszacsatolás",
   "next": "Következő",
-  "policies": "A folytatással elfogadja {0} és a {1} .",
+  "policies": "A folytatással elfogadja {0} és a {1}.",
   "privacyPolicy": "Adatvédelmi irányelvek",
   "send": "Küld",
   "skipSend": "Kihagyás és küldés",
@@ -15,6 +15,5 @@
   "termsOfService": "Szolgáltatás feltételei",
   "thankYou": "Köszönöm!",
   "title": "Visszajelzés küldése",
-  "validEmail": "Adjon meg egy érvényes email címet",
   "validFeedback": "A visszajelzésnek legalább 5 szóból kell állnia"
 }

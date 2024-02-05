@@ -7,7 +7,7 @@
   "faq": "Ga naar veelgestelde vragen",
   "feedback": "Feedback",
   "next": "Volgende",
-  "policies": "Door verder te gaan, gaat u akkoord met onze {0} en erkent u onze {1} .",
+  "policies": "Door verder te gaan, gaat u akkoord met onze {0} en erkent u onze {1}.",
   "privacyPolicy": "Privacybeleid",
   "send": "Verzenden",
   "skipSend": "Overslaan en verzenden",
@@ -15,6 +15,5 @@
   "termsOfService": "Servicevoorwaarden",
   "thankYou": "Dank u!",
   "title": "Feedback verzenden",
-  "validEmail": "Voer een geldig e-mailadres in",
-  "validFeedback": "Je feedback moet minimaal uit 5 woorden bestaan"
+  "validFeedback": "Uw feedback moet minimaal uit 5 woorden bestaan"
 }
