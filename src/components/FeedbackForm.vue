@@ -10,14 +10,14 @@ const config = inject('config')
 const { locale, t } = useI18n()
 
 const currentStep = ref(1)
+const feedbackForm = ref(null)
 const email = ref('')
 const emailInput = ref(null)
 const feedback = ref('')
 const feedbackTextarea = ref(null)
 const requestSuccess = ref(null)
 const sending = ref(false)
-const feedbackTextareaValidityState = ref(true)
-const emailInputValidityState = ref(true)
+const invalid = ref({})
 
 onMounted(() => {
   feedbackTextarea.value.focus()
@@ -92,6 +92,16 @@ const sendFeedback = async () => {
 }
 
 const submitForm = async () => {
+  invalid.value = {}
+  const valid = feedbackForm.value.checkValidity()
+
+  if (!valid) {
+    Array.from(feedbackForm.value.elements)
+      .find((el) => !el.valid)
+      ?.focus()
+    return
+  }
+
   if (currentStep.value > 1) {
     await sendFeedback()
   }
@@ -106,12 +116,8 @@ const submitForm = async () => {
   }
 }
 
-const validateTextArea = () => {
-  feedbackTextareaValidityState.value = feedbackTextarea.value?.validity.valid
-}
-
-const validateEmailInput = () => {
-  emailInputValidityState.value = emailInput.value?.validity.valid
+const handleInvalidField = (field) => {
+  invalid.value[field] = true
 }
 
 const skipEmail = () => {
@@ -120,41 +126,65 @@ const skipEmail = () => {
 </script>
 
 <template>
-  <form class="europeana-feedback-form" data-qa="feedback widget form" @submit.prevent="submitForm">
+  <form
+    class="europeana-feedback-form"
+    data-qa="feedback widget form"
+    novalidate
+    ref="feedbackForm"
+    @submit.prevent="submitForm"
+  >
     <div class="d-flex flex-wrap">
       <div class="form-fields">
         <div v-if="currentStep === 1">
-          <label for="feedback-widget-feedback-input" class="d-block">{{ $t('feedback') }}</label>
+          <label for="efw-feedback-input" class="d-block"
+            >{{ $t('feedback') }}
+            <span v-if="invalid.feedback" data-qa="feedback invalid hidden label" class="visually-hidden">
+              {{ feedbackTextarea.validationMessage }}
+            </span>
+          </label>
           <textarea
             v-model="feedback"
             id="efw-feedback-input"
             data-qa="feedback textarea"
             class="form-control"
-            :class="{ 'is-invalid': !feedbackTextareaValidityState }"
+            :class="{ 'is-invalid': invalid.feedback }"
             ref="feedbackTextarea"
             required
             name="feedback"
             rows="5"
             aria-required="true"
-            :aria-invalid="feedbackTextareaValidityState ? null : true"
+            :aria-invalid="invalid.feedback"
+            @invalid="handleInvalidField('feedback')"
             @input="handleInputFeedback"
           />
+          <div v-if="invalid.feedback" id="efw-feedback-textarea-error" data-qa="feedback invalid text" class="invalid-feedback">
+            {{ feedbackTextarea.validationMessage }}
+          </div>
         </div>
         <div v-if="currentStep === 2">
-          <label for="feedback-widget-email-input" class="d-block">{{ $t('emailAddress') }}</label>
+          <label for="efw-email-input" class="d-block">
+            {{ $t('emailAddress') }}
+            <span v-if="invalid.email" data-qa="email invalid hidden label" class="visually-hidden">
+              {{ emailInput.validationMessage }}
+            </span>
+          </label>
           <input
-            id="feedback-widget-email-input"
+            id="efw-email-input"
             data-qa="feedback email"
             v-model="email"
             class="form-control"
-            :class="{ 'is-invalid': !emailInputValidityState }"
+            :class="{ 'is-invalid': invalid.email }"
             ref="emailInput"
             autocomplete="email"
             type="email"
             name="email"
             aria-describedby="efw-input-live-feedback"
-            :aria-invalid="emailInputValidityState ? null : true"
+            @invalid="handleInvalidField('email')"
+            :aria-invalid="invalid.email"
           />
+          <div v-if="invalid.email" id="efw-email-input-error" data-qa="email invalid text" class="invalid-feedback">
+            {{ emailInput.validationMessage }}
+          </div>
           <div class="form-text" id="efw-input-live-feedback" data-qa="feedback email helptext">
             <p class="mb-0">
               {{ $t('emailOptional') }}
@@ -222,7 +252,6 @@ const skipEmail = () => {
             class="btn btn-primary button-next-step mt-3"
             type="submit"
             :disabled="disableNextButton"
-            @click="validateTextArea"
           >
             {{ $t('next') }}
           </button>
@@ -232,7 +261,6 @@ const skipEmail = () => {
             class="btn btn-primary mt-3"
             type="submit"
             :disabled="disableSendButton"
-            @click="validateEmailInput"
           >
             {{ $t('send') }}
           </button>
