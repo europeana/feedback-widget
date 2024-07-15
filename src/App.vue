@@ -23,4 +23,7 @@ watch(showDialog, (newVal) => {
 
 <style lang="scss">
 @import '@/assets/style';
+body {
+  background-color: #CCC;
+}
 </style>
