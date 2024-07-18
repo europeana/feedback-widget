@@ -23,7 +23,8 @@ watch(showDialog, (newVal) => {
 
 <style lang="scss">
 @import '@/assets/style';
+@import '@europeana/style/scss/variables';
 body {
-  background-color: #CCC;
+  background-color: $grey;
 }
 </style>
