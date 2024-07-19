@@ -32,18 +32,16 @@
     border-color: $black;
 
     &:hover {
-      background: $white;
-      border-color: $black;
-      color: $black;
+      background: $greyblack;
+      border-color: $greyblack;
     }
 
+    &:focus,
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active {
-      background: $white;
+      background: $black;
       border-color: $black;
-      color: $black;
     }
-  
 
     &:disabled {
       background: $black;
@@ -60,9 +58,10 @@
       background-color: $black;
       border-color: $black;
     }
+
+    &:focus,
     &:not(:disabled):not(.disabled):active,
-    &:not(:disabled):not(.disabled).active,
-    .show > &.dropdown-toggle {
+    &:not(:disabled):not(.disabled).active {
       color: $black;
       border-color: $black;
     }
@@ -91,7 +90,8 @@
       opacity: 0;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: $black;
       border-color: $white;
       color: $white;
