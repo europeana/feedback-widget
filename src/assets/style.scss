@@ -27,24 +27,81 @@
     left: auto;
   }
 
+  .btn-primary {
+    background: $black;
+    border-color: $black;
+
+    &:hover {
+      background: $greyblack;
+      border-color: $greyblack;
+    }
+
+    &:focus,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+      background: $black;
+      border-color: $black;
+    }
+
+    &:disabled {
+      background: $black;
+      border-color: $black;
+      opacity: 0.535;
+    }
+  }
+
+  .btn-outline-primary {
+    border-color: $black;
+    color: $black;
+
+    &:hover:not([disabled]) {
+      background-color: $black;
+      border-color: $black;
+    }
+
+    &:focus,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+      color: $black;
+      border-color: $black;
+    }
+  }
+
   .europeana-feedback-button {
     position: fixed;
+    background-color: $black;
     right: 1rem;
     bottom: 1rem;
     z-index: 1000;
     text-transform: capitalize;
     padding: 0.875rem;
     overflow: hidden;
+    border-color: $white;
     border-radius: 50%;
     transition: border-radius 0.3s ease-out;
     box-shadow: 0 2px 8px rgb(26 26 26 / 25%);
     line-height: 1;
+    border-width: 2px;
 
     .europeana-feedback-button-text {
       display: inline-block;
       max-width: 0;
       transition: max-width 0.35s ease-out, opacity 0.2s ease-out;
       opacity: 0;
+    }
+
+    &:hover,
+    &:focus {
+      background: $black;
+      border-color: $white;
+      color: $white;
+    }
+
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+      background: $black;
+      border-color: $white;
+      color: $white;
     }
 
     &.big {
@@ -174,7 +231,7 @@
         color: $greyblack;
 
         &:focus {
-          border-color: $innovationblue;
+          border-color: $black;
         }
 
         &.is-invalid:focus {
@@ -231,11 +288,11 @@
     }
 
     &:hover {
-      color: $blue;
+      color: $black;
       transition: $standard-transition;
 
       svg path {
-        fill: $blue;
+        fill: $black;
         transition: $standard-transition;
       }
     }
