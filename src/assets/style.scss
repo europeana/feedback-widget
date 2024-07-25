@@ -57,13 +57,15 @@
     &:hover:not([disabled]) {
       background-color: $black;
       border-color: $black;
+      color: $white;
     }
 
     &:focus,
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active {
-      color: $black;
+      color: $white;
       border-color: $black;
+      background-color: $black;
     }
   }
 
