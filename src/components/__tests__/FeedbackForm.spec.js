@@ -130,7 +130,7 @@ describe('FeedbackForm', () => {
         '[data-qa="feedback email helptext"] a[href="https://www.europeana.eu/en/rights"]'
       )
       const privacyLink = wrapper.find(
-        '[data-qa="feedback email helptext"] a[href="https://www.europeana.eu/en/rights/privacy-policy"]'
+        '[data-qa="feedback email helptext"] a[href="https://www.europeana.eu/en/rights/privacy-statement"]'
       )
 
       expect(termsLink.exists()).toBe(true)
