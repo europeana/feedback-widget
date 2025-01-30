@@ -192,7 +192,7 @@ const skipEmail = () => {
                 <a :href="docsUrl('/rights')" target="_blank">
                   {{ $t('termsOfService') }}
                 </a>
-                <a :href="docsUrl('/rights/privacy-policy')" target="_blank">
+                <a :href="docsUrl('/rights/privacy-statement')" target="_blank">
                   {{ $t('privacyPolicy') }}
                 </a>
               </i18n-t>
