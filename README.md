@@ -13,13 +13,13 @@ script, and a target element with id `europeana-feedback-widget`:
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.3.1-rc.1/dist/europeana-feedback-widget.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.3.1/dist/europeana-feedback-widget.css">
   </head>
   <body>
     <div id="europeana-feedback-widget"></div>
     <script
       type="module"
-      src="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.3.1-rc.1/dist/europeana-feedback-widget.js"
+      src="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.3.1/dist/europeana-feedback-widget.js"
       integrity="sha384-RKtCAwC+7A6vLd+njfT8c8ztXWfHuDF1tqwCWHbnmeHV5U4oLWTcTir4iP+WkHNQ"
     ></script>
   </body>
