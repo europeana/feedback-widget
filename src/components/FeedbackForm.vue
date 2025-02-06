@@ -190,7 +190,7 @@ const skipEmail = () => {
               {{ $t('emailOptional') }}
               <i18n-t keypath="policies" tag="span">
                 <a :href="docsUrl('/rights')" target="_blank">
-                  {{ $t('termsOfService') }}
+                  {{ $t('termsAndPolicies') }}
                 </a>
                 <a :href="docsUrl('/rights/privacy-statement')" target="_blank">
                   {{ $t('privacyPolicy') }}
