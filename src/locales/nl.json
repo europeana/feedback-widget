@@ -12,8 +12,9 @@
   "send": "Verzenden",
   "skipSend": "Overslaan en verzenden",
   "success": "Uw feedback is verzonden.",
+  "termsAndPolicies": "Voorwaarden en beleid",
   "termsOfService": "Servicevoorwaarden",
   "thankYou": "Dank u!",
   "title": "Feedback verzenden",
-  "validFeedback": "Uw feedback moet minimaal uit 5 woorden bestaan"
+  "validFeedback": "Uw feedback moet minimaal 5 woorden bevatten."
 }

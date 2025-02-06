@@ -12,8 +12,9 @@
   "send": "Saada",
   "skipSend": "Jäta vahele ja saada",
   "success": "Teie tagasiside on saadetud.",
+  "termsAndPolicies": "Tingimused ja eeskirjad",
   "termsOfService": "Kasutustingimused",
   "thankYou": "Aitäh!",
   "title": "Saada tagasisidet",
-  "validFeedback": "Teie tagasiside peab koosnema vähemalt 5 sõnast"
+  "validFeedback": "Teie tagasiside peab sisaldama vähemalt 5 sõna."
 }

@@ -12,8 +12,9 @@
   "send": "Siųsti",
   "skipSend": "Praleisti ir siųsti",
   "success": "Jūsų atsiliepimas išsiųstas.",
+  "termsAndPolicies": "Sąlygos ir politika",
   "termsOfService": "Paslaugų teikimo sąlygos",
   "thankYou": "Ačiū!",
   "title": "Siųsti atsiliepimą",
-  "validFeedback": "Jūsų atsiliepimą turi sudaryti mažiausiai 5 žodžiai"
+  "validFeedback": "Jūsų atsiliepimą turi sudaryti ne mažiau kaip 5 žodžiai."
 }

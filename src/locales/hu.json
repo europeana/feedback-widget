@@ -12,8 +12,9 @@
   "send": "Küld",
   "skipSend": "Kihagyás és küldés",
   "success": "Visszajelzését elküldtük.",
+  "termsAndPolicies": "Feltételek és szabályzatok",
   "termsOfService": "Szolgáltatás feltételei",
   "thankYou": "Köszönöm!",
   "title": "Visszajelzés küldése",
-  "validFeedback": "A visszajelzésnek legalább 5 szóból kell állnia"
+  "validFeedback": "A visszajelzésnek legalább 5 szót kell tartalmaznia."
 }

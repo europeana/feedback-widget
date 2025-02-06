@@ -12,8 +12,9 @@
   "send": "Envoyer",
   "skipSend": "Ignorer et envoyer",
   "success": "Votre commentaire a été envoyé.",
+  "termsAndPolicies": "Conditions et politiques",
   "termsOfService": "Conditions d'utilisation",
   "thankYou": "Merci!",
   "title": "Envoyer des commentaires",
-  "validFeedback": "Vos commentaires doivent comprendre au moins 5 mots"
+  "validFeedback": "Votre commentaire doit contenir un minimum de 5 mots."
 }

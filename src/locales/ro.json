@@ -12,8 +12,9 @@
   "send": "Trimite",
   "skipSend": "Săriți și trimiteți",
   "success": "Feedbackul dvs. a fost trimis.",
+  "termsAndPolicies": "Termeni și politici",
   "termsOfService": "Termenii serviciului",
   "thankYou": "Mulțumesc!",
   "title": "Trimite feedback",
-  "validFeedback": "Feedback-ul tău trebuie să fie format din minim 5 cuvinte."
+  "validFeedback": "Feedback-ul dvs. trebuie să conțină cel puțin 5 cuvinte."
 }

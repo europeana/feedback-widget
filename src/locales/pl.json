@@ -12,8 +12,9 @@
   "send": "Wyślij",
   "skipSend": "Pomiń i wyślij",
   "success": "Twoja opinia została wysłana.",
+  "termsAndPolicies": "Warunki i zasady",
   "termsOfService": "Warunki usługi",
   "thankYou": "Dziękuję!",
   "title": "Wyślij opinię",
-  "validFeedback": "Twoja opinia musi składać się z co najmniej 5 słów"
+  "validFeedback": "Twoja opinia musi zawierać co najmniej 5 słów."
 }

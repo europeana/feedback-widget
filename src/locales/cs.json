@@ -12,8 +12,9 @@
   "send": "Poslat",
   "skipSend": "Přeskočit a odeslat",
   "success": "Vaše zpětná vazba byla odeslána.",
+  "termsAndPolicies": "Podmínky a zásady",
   "termsOfService": "Podmínky používání",
   "thankYou": "Děkujeme!",
   "title": "Odeslat zpětnou vazbu",
-  "validFeedback": "Vaše zpětná vazba musí obsahovat minimálně 5 slov"
+  "validFeedback": "Vaše zpětná vazba musí obsahovat minimálně 5 slov."
 }
