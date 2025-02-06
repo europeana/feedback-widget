@@ -12,8 +12,8 @@
   "send": "Senden",
   "skipSend": "Überspringen und senden",
   "success": "Ihr Feedback wurde gesendet.",
-  "termsOfService": "Nutzungsbedingungen",
+  "termsAndPolicies": "Bedingungen und Richtlinien",
   "thankYou": "Vielen Dank!",
   "title": "Feedback abschicken",
-  "validFeedback": "Ihr Feedback muss aus mindestens 5 Wörtern bestehen"
+  "validFeedback": "Ihr Feedback muss mindestens 5 Wörter enthalten."
 }

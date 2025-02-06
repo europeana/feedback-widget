@@ -12,8 +12,8 @@
   "send": "Skicka",
   "skipSend": "Hoppa över och skicka",
   "success": "Din feedback har skickats.",
-  "termsOfService": "Användarvillkor",
+  "termsAndPolicies": "Villkor och policyer",
   "thankYou": "Tack!",
   "title": "Skicka feedback",
-  "validFeedback": "Din feedback måste bestå av minst 5 ord"
+  "validFeedback": "Din feedback måste innehålla minst 5 ord."
 }

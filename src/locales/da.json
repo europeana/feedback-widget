@@ -12,8 +12,8 @@
   "send": "Sende",
   "skipSend": "Spring over og send",
   "success": "Din feedback er sendt.",
-  "termsOfService": "Vilkår for brug",
+  "termsAndPolicies": "Vilkår og politikker",
   "thankYou": "Tak!",
   "title": "Send feedback",
-  "validFeedback": "Din feedback skal mindst bestå af 5 ord"
+  "validFeedback": "Din feedback skal indeholde minimum 5 ord."
 }

@@ -12,8 +12,8 @@
   "send": "Pošlji",
   "skipSend": "Preskoči in pošlji",
   "success": "Vaše povratne informacije so bile poslane.",
-  "termsOfService": "Pogoji storitve",
+  "termsAndPolicies": "Pogoji in pravilniki",
   "thankYou": "Hvala!",
   "title": "Pošlji povratno informacijo",
-  "validFeedback": "Vaša povratna informacija mora biti sestavljena iz najmanj 5 besed"
+  "validFeedback": "Vaše povratne informacije morajo vsebovati najmanj 5 besed."
 }
