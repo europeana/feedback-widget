@@ -121,7 +121,7 @@ describe('FeedbackForm', () => {
   })
 
   describe('email help text', () => {
-    it('has a link to terms of service and privacy policy', async () => {
+    it('has a link to Terms & Policies and Privacy statement', async () => {
       const wrapper = factory({ attachTo: document.body })
 
       await goToStep2(wrapper)
