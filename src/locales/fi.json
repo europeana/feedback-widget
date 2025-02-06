@@ -12,8 +12,8 @@
   "send": "Lähettää",
   "skipSend": "Ohita ja lähetä",
   "success": "Palautteesi on lähetetty.",
-  "termsOfService": "Käyttöehdot",
+  "termsAndPolicies": "Ehdot ja käytännöt",
   "thankYou": "Kiitos!",
   "title": "Lähetä palautetta",
-  "validFeedback": "Palautteesi tulee sisältää vähintään 5 sanaa"
+  "validFeedback": "Palautteessa on oltava vähintään 5 sanaa."
 }
