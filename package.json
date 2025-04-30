@@ -1,7 +1,7 @@
 {
   "name": "@europeana/feedback-widget",
   "description": "Europeana feedback widget",
-  "version": "3.3.3",
+  "version": "0.3.3",
   "type": "module",
   "files": [
     "dist"
