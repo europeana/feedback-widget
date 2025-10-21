@@ -1,13 +1,13 @@
 <script setup>
 import { computed, inject, ref, nextTick, onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { I18nT } from 'vue-i18n'
 
 import CancelCircleIcon from '@europeana/style/img/icons/cancel_circle.svg'
 import CheckCircleIcon from '@europeana/style/img/icons/check_circle.svg'
 import ExternalLinkIcon from '@europeana/style/img/icons/external-link.svg'
 
+const i18n = inject('i18n')
 const config = inject('config')
-const { locale, t } = useI18n()
 
 const currentStep = ref(1)
 const feedbackForm = ref(null)
@@ -38,7 +38,7 @@ const showSendButton = computed(
 )
 const showSkipButton = computed(() => currentStep.value === 2)
 
-const docsUrl = (path) => `https://www.europeana.eu/${locale.value}${path}`
+const docsUrl = (path) => `https://www.europeana.eu/${i18n.locale.value}${path}`
 
 const wordLength = (text) => text?.trim()?.match(/\w+/g)?.length || 0
 
@@ -46,7 +46,7 @@ const goToStep = (step) => (currentStep.value = step)
 
 const handleInputFeedback = () => {
   if (wordLength(feedback.value) < 5) {
-    feedbackTextarea.value.setCustomValidity(t('validFeedback'))
+    feedbackTextarea.value.setCustomValidity(i18n.t('validFeedback'))
   } else {
     feedbackTextarea.value.setCustomValidity('')
   }
@@ -137,8 +137,12 @@ const skipEmail = () => {
       <div class="form-fields">
         <div v-if="currentStep === 1">
           <label for="efw-feedback-input" class="d-block"
-            >{{ $t('feedback') }}
-            <span v-if="invalid.feedback" data-qa="feedback invalid hidden label" class="visually-hidden">
+            >{{ i18n.t('feedback') }}
+            <span
+              v-if="invalid.feedback"
+              data-qa="feedback invalid hidden label"
+              class="visually-hidden"
+            >
               {{ feedbackTextarea.validationMessage }}
             </span>
           </label>
@@ -157,13 +161,18 @@ const skipEmail = () => {
             @invalid="handleInvalidField('feedback')"
             @input="handleInputFeedback"
           />
-          <div v-if="invalid.feedback" id="efw-feedback-textarea-error" data-qa="feedback invalid text" class="invalid-feedback">
+          <div
+            v-if="invalid.feedback"
+            id="efw-feedback-textarea-error"
+            data-qa="feedback invalid text"
+            class="invalid-feedback"
+          >
             {{ feedbackTextarea.validationMessage }}
           </div>
         </div>
         <div v-if="currentStep === 2">
           <label for="efw-email-input" class="d-block">
-            {{ $t('emailAddress') }}
+            {{ i18n.t('emailAddress') }}
             <span v-if="invalid.email" data-qa="email invalid hidden label" class="visually-hidden">
               {{ emailInput.validationMessage }}
             </span>
@@ -182,18 +191,23 @@ const skipEmail = () => {
             @invalid="handleInvalidField('email')"
             :aria-invalid="invalid.email"
           />
-          <div v-if="invalid.email" id="efw-email-input-error" data-qa="email invalid text" class="invalid-feedback">
+          <div
+            v-if="invalid.email"
+            id="efw-email-input-error"
+            data-qa="email invalid text"
+            class="invalid-feedback"
+          >
             {{ emailInput.validationMessage }}
           </div>
           <div class="form-text" id="efw-input-live-feedback" data-qa="feedback email helptext">
             <p class="mb-0">
-              {{ $t('emailOptional') }}
+              {{ i18n.t('emailOptional') }}
               <i18n-t keypath="policies" tag="span">
                 <a :href="docsUrl('/rights')" target="_blank">
-                  {{ $t('termsAndPolicies') }}
+                  {{ i18n.t('termsAndPolicies') }}
                 </a>
                 <a :href="docsUrl('/rights/privacy-statement')" target="_blank">
-                  {{ $t('privacyPolicy') }}
+                  {{ i18n.t('privacyPolicy') }}
                 </a>
               </i18n-t>
             </p>
@@ -209,8 +223,8 @@ const skipEmail = () => {
           <span v-if="requestSuccess" class="d-flex align-items-center">
             <CheckCircleIcon class="icon-check-circle" />
             <span class="ms-3">
-              <p class="mb-0">{{ $t('success') }}</p>
-              <p class="mb-0">{{ $t('thankYou') }}</p>
+              <p class="mb-0">{{ i18n.t('success') }}</p>
+              <p class="mb-0">{{ i18n.t('thankYou') }}</p>
             </span>
           </span>
           <span v-else-if="requestSuccess === false" class="d-flex align-items-center">
@@ -220,7 +234,7 @@ const skipEmail = () => {
               height="20px"
               viewBox="0 0 24 24"
             />
-            <span class="mb-0 ms-3">{{ $t('failed') }}</span>
+            <span class="mb-0 ms-3">{{ i18n.t('failed') }}</span>
           </span>
         </div>
       </div>
@@ -234,7 +248,7 @@ const skipEmail = () => {
           class="btn btn-outline-primary mt-3"
           @click.prevent="$emit('hide')"
         >
-          {{ $t('cancel') }}
+          {{ i18n.t('cancel') }}
         </button>
         <div class="button-group-right">
           <button
@@ -244,7 +258,7 @@ const skipEmail = () => {
             :disabled="disableSkipButton"
             @click="skipEmail"
           >
-            {{ $t('skipSend') }}
+            {{ i18n.t('skipSend') }}
           </button>
           <button
             v-if="showNextButton"
@@ -253,7 +267,7 @@ const skipEmail = () => {
             type="submit"
             :disabled="disableNextButton"
           >
-            {{ $t('next') }}
+            {{ i18n.t('next') }}
           </button>
           <button
             v-if="showSendButton"
@@ -262,7 +276,7 @@ const skipEmail = () => {
             type="submit"
             :disabled="disableSendButton"
           >
-            {{ $t('send') }}
+            {{ i18n.t('send') }}
           </button>
           <button
             v-if="showCloseButton"
@@ -270,7 +284,7 @@ const skipEmail = () => {
             class="btn btn-primary mt-3"
             @click.prevent="$emit('hide')"
           >
-            {{ $t('close') }}
+            {{ i18n.t('close') }}
           </button>
         </div>
       </div>
@@ -280,7 +294,7 @@ const skipEmail = () => {
         target="_blank"
         class="faq-link d-inline-flex align-items-center mt-4 mb-2 p-0 w-100 text-decoration-none"
       >
-        <span>{{ $t('faq') }}</span>
+        <span>{{ i18n.t('faq') }}</span>
         <ExternalLinkIcon
           class="icon-external-link ms-1"
           width="16px"

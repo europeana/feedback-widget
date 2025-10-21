@@ -1,5 +1,9 @@
 <script setup>
+import { inject } from 'vue'
+
 import FeedbackForm from '@/components/FeedbackForm.vue'
+
+const i18n = inject('i18n')
 </script>
 
 <template>
@@ -11,7 +15,7 @@ import FeedbackForm from '@/components/FeedbackForm.vue'
   >
     <div class="feedback-header">
       <h2>
-        {{ $t('title') }}
+        {{ i18n.t('title') }}
       </h2>
     </div>
     <FeedbackForm @hide="$emit('hide')" />

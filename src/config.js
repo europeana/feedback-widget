@@ -4,6 +4,8 @@ export const defaults = {
   locale: 'en'
 }
 
+export const mountSelector = '#europeana-feedback-widget'
+
 export const createConfig = (mountSelector) =>
   Object.keys(defaults).reduce((memo, cKey) => {
     const mountElement = document.querySelector(mountSelector)

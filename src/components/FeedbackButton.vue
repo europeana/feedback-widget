@@ -1,6 +1,8 @@
 <script setup>
-import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { computed, inject, onMounted, onUnmounted, ref } from 'vue'
 import FeedbackIcon from '@europeana/style/img/icons/feedback.svg'
+
+const i18n = inject('i18n')
 
 const props = defineProps({
   buttonFocus: {
@@ -37,7 +39,7 @@ const buttonClasses = computed(() => {
   <button
     ref="button"
     type="button"
-    :aria-label="$t('feedback')"
+    :aria-label="i18n.t('feedback')"
     class="btn btn-primary btn-lg europeana-feedback-button text-decoration-none"
     :class="buttonClasses"
     @mouseover="bigButton = true"
@@ -49,6 +51,6 @@ const buttonClasses = computed(() => {
       height="20px"
       viewBox="0 0 32 32"
     />
-    <span class="europeana-feedback-button-text">{{ $t('feedback') }}</span>
+    <span class="europeana-feedback-button-text">{{ i18n.t('feedback') }}</span>
   </button>
 </template>
