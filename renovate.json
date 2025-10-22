@@ -1,0 +1,7 @@
+{
+  "extends": [
+    "config:recommended"
+  ],
+  "prConcurrentLimit": 5,
+  "lockFileMaintenance": { "enabled": true }
+}
