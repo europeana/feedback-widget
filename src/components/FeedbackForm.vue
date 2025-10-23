@@ -202,7 +202,7 @@ const skipEmail = () => {
           <div class="form-text" id="efw-input-live-feedback" data-qa="feedback email helptext">
             <p class="mb-0">
               {{ i18n.t('emailOptional') }}
-              <i18n-t keypath="policies" tag="span">
+              <i18n-t keypath="policies" tag="span" :i18n="i18n">
                 <a :href="docsUrl('/rights')" target="_blank">
                   {{ i18n.t('termsAndPolicies') }}
                 </a>
