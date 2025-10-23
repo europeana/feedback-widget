@@ -2,16 +2,10 @@ import { describe, it, expect, vi, afterAll, afterEach, beforeAll } from 'vitest
 import { setupServer } from 'msw/node'
 import { HttpResponse, http } from 'msw'
 import { mount, flushPromises } from '@vue/test-utils'
-import { useI18n } from 'vue-i18n'
 
-import FeedbackForm from '../FeedbackForm.vue'
+import FeedbackForm from './FeedbackForm.vue'
 
 vi.mock('vue-i18n')
-
-useI18n.mockReturnValue({
-  locale: { value: 'en' },
-  t: (key) => key
-})
 
 const responseStatus = {
   status: 200,
@@ -159,7 +153,7 @@ describe('FeedbackForm', () => {
           wrapper.find('[data-qa="feedback next button"]').attributes('disabled')
         ).toBeUndefined()
       })
-      describe('when the textarea input has less than 5 words', async() => {
+      describe('when the textarea input has less than 5 words', async () => {
         await wrapper.find('[data-qa="feedback textarea"]').setValue('This is great')
         await wrapper.find('[data-qa="feedback next button"]').trigger('click')
 
@@ -169,7 +163,9 @@ describe('FeedbackForm', () => {
         })
         it('displays an invalid helptext and updates the label', async () => {
           expect(wrapper.find('[data-qa="feedback invalid text"]').exists()).toBe(true)
-          expect(wrapper.find('label [data-qa="feedback invalid hidden label"]').exists()).toBe(true)
+          expect(wrapper.find('label [data-qa="feedback invalid hidden label"]').exists()).toBe(
+            true
+          )
         })
       })
     })

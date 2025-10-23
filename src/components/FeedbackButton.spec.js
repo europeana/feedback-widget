@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import FeedbackButton from '../FeedbackButton.vue'
+import FeedbackButton from './FeedbackButton.vue'
 
 describe('FeedbackButton', () => {
   it('is labelled "Feedback"', () => {
