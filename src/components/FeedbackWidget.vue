@@ -2,7 +2,6 @@
 import { defineProps, provide, ref, watch } from 'vue'
 
 import { createConfig, defaults, mountSelector as defaultMountSelector } from '@/config.js'
-import { createI18n } from 'vue-i18n'
 import * as messages from '@/locales/index.js'
 
 import FeedbackButton from '@/components/FeedbackButton.vue'
@@ -17,14 +16,23 @@ const props = defineProps({
 
 const config = createConfig(props.mountSelector)
 
-const i18n = createI18n({
-  legacy: false,
+const i18n = {
   locale: config.locale,
   fallbackLocale: defaults.locale,
-  silentFallbackWarn: true,
-  globalInjection: false,
-  messages
-}).global
+  messages,
+  t(key, locale = this.locale) {
+    const textForLocale = key.split('.').reduce((memo, keyPart) => {
+      memo = memo?.[keyPart]
+      return memo
+    }, messages[locale])
+
+    if (textForLocale || (locale === this.fallbackLocale)) {
+      return textForLocale
+    } else {
+      return this.t(key, this.fallbackLocale)
+    }
+  }
+}
 
 provide('config', config)
 provide('i18n', i18n)
