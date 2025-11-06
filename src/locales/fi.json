@@ -7,7 +7,7 @@
   "faq": "Siirry usein kysyttyihin kysymyksiin",
   "feedback": "Palaute",
   "next": "Seuraava",
-  "policies": "Jatkamalla hyväksyt {0} ja tunnustamme {1}.",
+  "policies": "Jatkamalla hyväksyt {termsAndPolicies} ja tunnustamme {privacyStatement}.",
   "privacyPolicy": "Tietosuojalausunto",
   "send": "Lähettää",
   "skipSend": "Ohita ja lähetä",

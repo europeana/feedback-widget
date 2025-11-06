@@ -7,7 +7,7 @@
   "faq": "Minge korduma kippuvate küsimuste juurde",
   "feedback": "Tagasiside",
   "next": "Järgmine",
-  "policies": "Jätkates nõustute meie {0} ja kinnitate meie {1}.",
+  "policies": "Jätkates nõustute meie {termsAndPolicies} ja kinnitate meie {privacyStatement}.",
   "privacyPolicy": "Privaatsusavaldus",
   "send": "Saada",
   "skipSend": "Jäta vahele ja saada",

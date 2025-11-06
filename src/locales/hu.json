@@ -7,7 +7,7 @@
   "faq": "Ugrás a gyakran ismételt kérdésekre",
   "feedback": "Visszajelzés",
   "next": "Következő",
-  "policies": "A folytatással elfogadja {0} és a {1}.",
+  "policies": "A folytatással elfogadja {termsAndPolicies} és a {privacyStatement}.",
   "privacyPolicy": "Adatvédelmi nyilatkozat",
   "send": "Küld",
   "skipSend": "Kihagyás és küldés",

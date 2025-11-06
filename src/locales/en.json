@@ -7,7 +7,7 @@
   "faq": "Go to frequently asked questions",
   "feedback": "Feedback",
   "next": "Next",
-  "policies": "By continuing, you agree to our {0} and acknowledge our {1}.",
+  "policies": "By continuing, you agree to our {termsAndPolicies} and acknowledge our {privacyStatement}.",
   "privacyPolicy": "Privacy Statement",
   "send": "Send",
   "skipSend": "Skip and send",

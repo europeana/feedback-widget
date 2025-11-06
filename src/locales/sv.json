@@ -7,7 +7,7 @@
   "faq": "Gå till vanliga frågor",
   "feedback": "Feedback",
   "next": "Nästa",
-  "policies": "Genom att fortsätta godkänner du vår {0} och godkänner vår {1}.",
+  "policies": "Genom att fortsätta godkänner du vår {termsAndPolicies} och godkänner vår {privacyStatement}.",
   "privacyPolicy": "Integritetspolicy",
   "send": "Skicka",
   "skipSend": "Hoppa över och skicka",

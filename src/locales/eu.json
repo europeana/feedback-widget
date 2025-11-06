@@ -7,7 +7,7 @@
   "faq": "Joan maiz egindako galderak",
   "feedback": "Iritzia",
   "next": "Hurrengoa",
-  "policies": "Jarraituz gero, gure {0} onartzen duzu eta gure {1} onartzen duzu.",
+  "policies": "Jarraituz gero, gure {termsAndPolicies} onartzen duzu eta gure {privacyStatement} onartzen duzu.",
   "privacyPolicy": "Pribatutasun-adierazpena",
   "send": "Bidali",
   "skipSend": "Saltatu eta bidali",
