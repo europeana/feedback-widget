@@ -4,7 +4,7 @@ import { h } from 'vue'
 
 export default {
   props: {
-    element: {
+    tag: {
       type: String,
       default: 'span'
     },
@@ -18,7 +18,7 @@ export default {
 
     return () =>
       h(
-        props.element,
+        props.tag,
         props.text.split(new RegExp(`({${slotNames.join('}|{')}})`)).map((chunk) => {
           for (const slotName of slotNames) {
             if (chunk === `{${slotName}}`) {
