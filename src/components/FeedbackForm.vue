@@ -1,6 +1,6 @@
 <script setup>
 import { computed, inject, ref, nextTick, onMounted } from 'vue'
-import { I18nT } from 'vue-i18n'
+import TextInterpolation from './TextInterpolation.vue'
 
 import CancelCircleIcon from '@europeana/style/img/icons/cancel_circle.svg'
 import CheckCircleIcon from '@europeana/style/img/icons/check_circle.svg'
@@ -38,7 +38,7 @@ const showSendButton = computed(
 )
 const showSkipButton = computed(() => currentStep.value === 2)
 
-const docsUrl = (path) => `https://www.europeana.eu/${i18n.locale.value}${path}`
+const docsUrl = (path) => `https://www.europeana.eu/${i18n.locale}${path}`
 
 const wordLength = (text) => text?.trim()?.match(/\w+/g)?.length || 0
 
@@ -202,14 +202,18 @@ const skipEmail = () => {
           <div class="form-text" id="efw-input-live-feedback" data-qa="feedback email helptext">
             <p class="mb-0">
               {{ i18n.t('emailOptional') }}
-              <i18n-t keypath="policies" tag="span" :i18n="i18n">
-                <a :href="docsUrl('/rights')" target="_blank">
-                  {{ i18n.t('termsAndPolicies') }}
-                </a>
-                <a :href="docsUrl('/rights/privacy-statement')" target="_blank">
-                  {{ i18n.t('privacyPolicy') }}
-                </a>
-              </i18n-t>
+              <TextInterpolation :text="i18n.t('policies')" tag="span">
+                <template #termsAndPolicies>
+                  <a :href="docsUrl('/rights')" target="_blank">
+                    {{ i18n.t('termsAndPolicies') }}
+                  </a>
+                </template>
+                <template #privacyStatement>
+                  <a :href="docsUrl('/rights/privacy-statement')" target="_blank">
+                    {{ i18n.t('privacyPolicy') }}
+                  </a>
+                </template>
+              </TextInterpolation>
             </p>
           </div>
         </div>

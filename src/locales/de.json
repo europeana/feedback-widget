@@ -7,7 +7,7 @@
   "faq": "Gehen Sie zu den häufig gestellten Fragen",
   "feedback": "Feedback",
   "next": "Weiter",
-  "policies": "Indem Sie fortfahren, stimmen Sie unseren {0} und erkennen unsere {1}.",
+  "policies": "Indem Sie fortfahren, stimmen Sie unseren {termsAndPolicies} und erkennen unsere {privacyStatement}.",
   "privacyPolicy": "Datenschutzerklärung",
   "send": "Senden",
   "skipSend": "Überspringen und senden",

@@ -1,11 +1,9 @@
-import { describe, it, expect, vi, afterAll, afterEach, beforeAll } from 'vitest'
+import { describe, it, expect, afterAll, afterEach, beforeAll } from 'vitest'
 import { setupServer } from 'msw/node'
 import { HttpResponse, http } from 'msw'
 import { mount, flushPromises } from '@vue/test-utils'
 
 import FeedbackForm from './FeedbackForm.vue'
-
-vi.mock('vue-i18n')
 
 const responseStatus = {
   status: 200,
@@ -48,7 +46,18 @@ const goToStep3 = async (wrapper) => {
 const factory = (options = {}) => {
   const wrapper = mount(FeedbackForm, {
     global: {
-      stubs: { 'i18n-t': { template: '<div><slot /></div>' } }
+      provide: {
+        i18n: {
+          locale: 'en',
+          t: (tKey) => {
+            if (tKey === 'policies') {
+              return '{termsAndPolicies} {privacyStatement}'
+            } else {
+              return tKey
+            }
+          }
+        }
+      }
     },
     ...options
   })

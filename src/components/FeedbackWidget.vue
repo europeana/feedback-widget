@@ -2,7 +2,7 @@
 import { defineProps, provide, ref, watch } from 'vue'
 
 import { createConfig, defaults, mountSelector as defaultMountSelector } from '@/config.js'
-import { createI18n } from 'vue-i18n'
+import { createI18n } from '@/utils/i18n.js'
 import * as messages from '@/locales/index.js'
 
 import FeedbackButton from '@/components/FeedbackButton.vue'
@@ -18,13 +18,10 @@ const props = defineProps({
 const config = createConfig(props.mountSelector)
 
 const i18n = createI18n({
-  legacy: false,
   locale: config.locale,
   fallbackLocale: defaults.locale,
-  silentFallbackWarn: true,
-  globalInjection: false,
   messages
-}).global
+})
 
 provide('config', config)
 provide('i18n', i18n)

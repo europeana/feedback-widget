@@ -7,7 +7,7 @@
   "faq": "Aller à la foire aux questions",
   "feedback": "Commentaires",
   "next": "Suivant",
-  "policies": "En continuant, vous acceptez notre {0} et reconnaissez notre {1}.",
+  "policies": "En continuant, vous acceptez notre {termsAndPolicies} et reconnaissez notre {privacyStatement}.",
   "privacyPolicy": "Déclaration de confidentialité",
   "send": "Envoyer",
   "skipSend": "Ignorer et envoyer",

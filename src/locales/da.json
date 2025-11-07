@@ -7,7 +7,7 @@
   "faq": "Gå til ofte stillede spørgsmål",
   "feedback": "Feedback",
   "next": "Næste",
-  "policies": "Ved at fortsætte accepterer du vores {0} og anerkender vores {1}.",
+  "policies": "Ved at fortsætte accepterer du vores {termsAndPolicies} og anerkender vores {privacyStatement}.",
   "privacyPolicy": "Erklæring om beskyttelse af personlige oplysninger",
   "send": "Sende",
   "skipSend": "Spring over og send",
