@@ -34,7 +34,7 @@ importers:
         specifier: ^2.4.3
         version: 2.4.6
       body-parser:
-        specifier: ^1.20.2
+        specifier: ^1.20.3
         version: 1.20.3
       concurrently:
         specifier: ^8.2.2
