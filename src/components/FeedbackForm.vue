@@ -225,7 +225,12 @@ const skipEmail = () => {
           aria-atomic="true"
         >
           <span v-if="requestSuccess" class="d-flex align-items-center">
-            <CheckCircleIcon class="icon-check-circle" />
+            <CheckCircleIcon
+              class="icon-check-circle"
+              width="1.5rem"
+              height="1.5rem"
+              viewBox="0 0 24 24"
+            />
             <span class="ms-3">
               <p class="mb-0">{{ i18n.t('success') }}</p>
               <p class="mb-0">{{ i18n.t('thankYou') }}</p>
@@ -234,8 +239,8 @@ const skipEmail = () => {
           <span v-else-if="requestSuccess === false" class="d-flex align-items-center">
             <CancelCircleIcon
               class="icon-cancel-circle"
-              width="20px"
-              height="20px"
+              width="1.25rem"
+              height="1.25rem"
               viewBox="0 0 24 24"
             />
             <span class="mb-0 ms-3">{{ i18n.t('failed') }}</span>
@@ -301,8 +306,8 @@ const skipEmail = () => {
         <span>{{ i18n.t('faq') }}</span>
         <ExternalLinkIcon
           class="icon-external-link ms-1"
-          width="16px"
-          height="16px"
+          width="1rem"
+          height="1rem"
           viewBox="0 0 32 32"
         />
       </a>
