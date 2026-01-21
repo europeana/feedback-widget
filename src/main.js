@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 
-import { mountSelector } from './config.js'
 import App from './App.vue'
 
-createApp(App).mount(mountSelector)
+const mountSelector = '#europeana-feedback-widget'
+
+const container = document.querySelector(mountSelector)
+
+createApp(App, container.dataset).mount(mountSelector)

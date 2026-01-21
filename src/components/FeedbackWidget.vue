@@ -1,29 +1,22 @@
 <script setup>
 import { defineProps, provide, ref, watch } from 'vue'
 
-import { createConfig, defaults, mountSelector as defaultMountSelector } from '@/config.js'
 import { createI18n } from '@/utils/i18n.js'
 import * as messages from '@/locales/index.js'
+import { configProps } from '@/config.js'
 
 import FeedbackButton from '@/components/FeedbackButton.vue'
 import FeedbackDialog from '@/components/FeedbackDialog.vue'
 
-const props = defineProps({
-  mountSelector: {
-    type: String,
-    default: defaultMountSelector
-  }
-})
-
-const config = createConfig(props.mountSelector)
+const props = defineProps(configProps)
 
 const i18n = createI18n({
-  locale: config.locale,
-  fallbackLocale: defaults.locale,
+  locale: props.locale,
+  fallbackLocale: props.fallbackLocale,
   messages
 })
 
-provide('config', config)
+provide('config', props)
 provide('i18n', i18n)
 
 const showDialog = ref(false)
