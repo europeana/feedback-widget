@@ -10,8 +10,10 @@ const responseStatus = {
   statusText: 'OK'
 }
 
+const apiUrl = 'https://www.example.org/feedback';
+
 export const restHandlers = [
-  http.post('https://www.europeana.eu/_api/jira-service-desk/feedback', () => {
+  http.post('https://www.example.org/feedback', () => {
     return new HttpResponse(null, responseStatus)
   })
 ]
@@ -47,6 +49,7 @@ const factory = (options = {}) => {
   const wrapper = mount(FeedbackForm, {
     global: {
       provide: {
+        config: { apiUrl },
         i18n: {
           locale: 'en',
           t: (tKey) => {
@@ -387,7 +390,7 @@ describe('FeedbackForm', () => {
         global: {
           provide: {
             config: {
-              apiUrl: 'https://www.europeana.eu/_api/jira-service-desk/feedback',
+              apiUrl: 'https://www.example.org/feedback',
               faqUrl,
               locale: 'en'
             }
