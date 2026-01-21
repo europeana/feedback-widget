@@ -10,7 +10,7 @@ const responseStatus = {
   statusText: 'OK'
 }
 
-const apiUrl = 'https://www.example.org/feedback';
+const apiUrl = 'https://www.example.org/feedback'
 
 export const restHandlers = [
   http.post('https://www.example.org/feedback', () => {
