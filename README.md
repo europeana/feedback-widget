@@ -6,6 +6,29 @@ websites.
 
 ## Usage
 
+### In an existing Vue 3 app
+
+Install the package:
+```shell
+npm install --save @europeana/feedback-widget
+```
+
+Import into your Vue component:
+```vue
+<script setup>
+import EuropeanaFeedbackWidget from "@europeana/feedback-widget";
+import "@europeana/feedback-widget/css";
+</script>
+```
+
+Render:
+```vue
+<template>
+  <EuropeanaFeedbackWidget />
+</template>
+
+### Elsewhere
+
 To embed the feedback widget in your web page, add the stylesheet link, JS
 script, and a target element with id `europeana-feedback-widget`:
 
@@ -19,7 +42,7 @@ script, and a target element with id `europeana-feedback-widget`:
     <div id="europeana-feedback-widget"></div>
     <script
       type="module"
-      src="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.4.0/dist/europeana-feedback-widget.js"
+      src="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.4.0/dist/europeana-feedback-widget.app.js"
       integrity="sha384-DudYnR5wo4wxA5BczsGlOjzuJUMSegYTQZ8Qa0DdllZg9KRb42VHqcF41fxrDRMR"
     ></script>
   </body>

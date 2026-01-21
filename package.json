@@ -6,10 +6,18 @@
   "files": [
     "dist"
   ],
-  "module": "./dist/europeana-feedback-widget.js",
   "exports": {
     ".": {
-      "import": "./dist/europeana-feedback-widget.js"
+      "import": "./dist/europeana-feedback-widget.component.js"
+    },
+    "./app": {
+      "import": "./dist/europeana-feedback-widget.app.js"
+    },
+    "./component": {
+      "import": "./dist/europeana-feedback-widget.component.js"
+    },
+    "./css": {
+      "import": "./dist/europeana-feedback-widget.css"
     }
   },
   "style": "./dist/europeana-feedback-widget.css",
@@ -17,7 +25,9 @@
     "dev": "concurrently \"npm:dev:backend\" \"npm:dev:frontend\"",
     "dev:backend": "nodemon -w dev/server.js dev/server.js",
     "dev:frontend": "vite",
-    "build": "vite build",
+    "build": "pnpm build:component && pnpm build:app",
+    "build:app": "vite build --config vite.build.app.js",
+    "build:component": "vite build --config vite.build.component.js",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:coverage": "vitest --coverage",
