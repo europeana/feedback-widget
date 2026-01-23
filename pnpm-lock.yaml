@@ -22,8 +22,8 @@ importers:
         specifier: 1.14.0
         version: 1.14.0
       '@vitejs/plugin-vue':
-        specifier: 4.6.2
-        version: 4.6.2(vite@5.4.21(sass@1.93.2)(terser@5.44.0))(vue@3.5.25)
+        specifier: 6.0.3
+        version: 6.0.3(vite@5.4.21(sass@1.93.2)(terser@5.44.0))(vue@3.5.25)
       '@vitest/coverage-v8':
         specifier: 1.6.1
         version: 1.6.1(vitest@1.6.1(jsdom@23.2.0)(sass@1.93.2)(terser@5.44.0))
@@ -502,6 +502,9 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
+  '@rolldown/pluginutils@1.0.0-beta.53':
+    resolution: {integrity: sha512-vENRlFU4YbrwVqNDZ7fLvy+JR1CRkyr01jhSiDpE1u6py3OMzQfztQU2jxykW3ALNxO4kSlqIDeYyD0Y9RcQeQ==}
+
   '@rollup/rollup-android-arm-eabi@4.52.5':
     resolution: {integrity: sha512-8c1vW4ocv3UOMp9K+gToY5zL2XiiVw3k7f1ksf4yO1FlDFQ1C2u72iACFnSOceJFsWskc2WZNqeRhFRPzv+wtQ==}
     cpu: [arm]
@@ -631,11 +634,11 @@ packages:
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
 
-  '@vitejs/plugin-vue@4.6.2':
-    resolution: {integrity: sha512-kqf7SGFoG+80aZG6Pf+gsZIVvGSCKE98JbiWqcCV9cThtg91Jav0yvYFC9Zb+jKetNGF6ZKeoaxgZfND21fWKw==}
-    engines: {node: ^14.18.0 || >=16.0.0}
+  '@vitejs/plugin-vue@6.0.3':
+    resolution: {integrity: sha512-TlGPkLFLVOY3T7fZrwdvKpjprR3s4fxRln0ORDo1VQ7HHyxJwTlrjKU3kpVWTlaAjIEuCTokmjkZnr8Tpc925w==}
+    engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
-      vite: ^4.0.0 || ^5.0.0
+      vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
       vue: ^3.2.25
 
   '@vitest/coverage-v8@1.6.1':
@@ -2615,6 +2618,8 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@rolldown/pluginutils@1.0.0-beta.53': {}
+
   '@rollup/rollup-android-arm-eabi@4.52.5':
     optional: true
 
@@ -2693,8 +2698,9 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vitejs/plugin-vue@4.6.2(vite@5.4.21(sass@1.93.2)(terser@5.44.0))(vue@3.5.25)':
+  '@vitejs/plugin-vue@6.0.3(vite@5.4.21(sass@1.93.2)(terser@5.44.0))(vue@3.5.25)':
     dependencies:
+      '@rolldown/pluginutils': 1.0.0-beta.53
       vite: 5.4.21(sass@1.93.2)(terser@5.44.0)
       vue: 3.5.25
 
