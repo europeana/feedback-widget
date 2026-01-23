@@ -36,14 +36,14 @@ script, and a target element with id `europeana-feedback-widget`:
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.5.1/dist/europeana-feedback-widget.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.5.2/dist/europeana-feedback-widget.css">
   </head>
   <body>
     <div id="europeana-feedback-widget"></div>
     <script
       type="module"
-      src="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.5.1/dist/europeana-feedback-widget.app.js"
-      integrity="sha384-323Vd3CwtH6tRpgRCi9egn+e7ny8pKlwA7eklyM/J9J0+VT2pIyK3+la4h5lWenQ"
+      src="https://cdn.jsdelivr.net/npm/@europeana/feedback-widget@0.5.2/dist/europeana-feedback-widget.app.js"
+      integrity="sha384-LRaUwt97QyyQwI1wIyco0XyoTCEbFmTHuG/0dNpYEj/lMGGDSdev3AXeu08VG/2I"
     ></script>
   </body>
 </html>
