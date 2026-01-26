@@ -46,7 +46,7 @@ const goToStep = (step) => (currentStep.value = step)
 
 const handleInputFeedback = () => {
   if (wordLength(feedback.value) < 5) {
-    feedbackTextarea.value.setCustomValidity(i18n.t('validFeedback'))
+    feedbackTextarea.value.setCustomValidity(i18n.value.t('validFeedback'))
   } else {
     feedbackTextarea.value.setCustomValidity('')
   }
