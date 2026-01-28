@@ -1,9 +1,4 @@
-import { createApp } from 'vue'
+import { initFeedbackWidgetApp } from '@/utils/init.js'
+import FeedbackWidget from '@/components/FeedbackWidget.vue'
 
-import App from './App.vue'
-
-const mountSelector = '#europeana-feedback-widget'
-
-const container = document.querySelector(mountSelector)
-
-createApp(App, container.dataset).mount(mountSelector)
+initFeedbackWidgetApp(FeedbackWidget)
