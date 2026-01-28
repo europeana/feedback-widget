@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 import { describe, it, expect, afterAll, afterEach, beforeAll } from 'vitest'
 import { setupServer } from 'msw/node'
 import { HttpResponse, http } from 'msw'
@@ -49,8 +50,8 @@ const factory = (options = {}) => {
   const wrapper = mount(FeedbackForm, {
     global: {
       provide: {
-        config: { apiUrl },
-        i18n: {
+        config: ref({ apiUrl }),
+        i18n: ref({
           locale: 'en',
           t: (tKey) => {
             if (tKey === 'policies') {
@@ -58,11 +59,8 @@ const factory = (options = {}) => {
             } else {
               return tKey
             }
-          },
-          value: {
-            t: (tKey) => tKey
           }
-        }
+        })
       }
     },
     ...options

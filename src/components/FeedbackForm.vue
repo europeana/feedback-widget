@@ -6,8 +6,8 @@ import CancelCircleIcon from '@europeana/style/img/icons/cancel_circle.svg'
 import CheckCircleIcon from '@europeana/style/img/icons/check_circle.svg'
 import ExternalLinkIcon from '@europeana/style/img/icons/external-link.svg'
 
-const i18n = inject('i18n')
 const config = inject('config')
+const i18n = inject('i18n')
 
 const currentStep = ref(1)
 const feedbackForm = ref(null)
@@ -38,7 +38,7 @@ const showSendButton = computed(
 )
 const showSkipButton = computed(() => currentStep.value === 2)
 
-const docsUrl = (path) => `https://www.europeana.eu/${i18n.locale}${path}`
+const docsUrl = (path) => `https://www.europeana.eu/${i18n.value.locale}${path}`
 
 const wordLength = (text) => text?.trim()?.match(/\w+/g)?.length || 0
 
@@ -63,7 +63,7 @@ const postFeedbackMessage = () => {
     postData.email = email.value
   }
 
-  return fetch(config.apiUrl, {
+  return fetch(config.value.apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

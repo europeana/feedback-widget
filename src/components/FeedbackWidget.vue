@@ -1,5 +1,5 @@
 <script setup>
-import { computed, defineProps, provide, ref, watch } from 'vue'
+import { computed, defineProps, provide, ref, watch, watchEffect } from 'vue'
 
 import { createI18n } from '@/utils/i18n.js'
 import * as messages from '@/locales/index.js'
@@ -18,9 +18,23 @@ const i18n = computed(() => {
   })
 })
 
+const config = ref({})
+
+const setConfigFromProps = () => {
+  config.value = {
+    apiUrl: props.apiUrl,
+    fallbackLocale: props.fallbackLocale,
+    faqUrl: props.faqUrl,
+    locale: props.locale
+  }
+}
+
+setConfigFromProps()
+watchEffect(setConfigFromProps)
+
 provide(
   'config',
-  computed(() => props)
+  computed(() => config.value)
 )
 provide(
   'i18n',
