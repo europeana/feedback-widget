@@ -53,12 +53,12 @@ const factory = (options = {}) => {
         i18n: {
           locale: 'en',
           t: (tKey) => {
-              if (tKey === 'policies') {
-                return '{termsAndPolicies} {privacyStatement}'
-              } else {
-                return tKey
-              }
-            },
+            if (tKey === 'policies') {
+              return '{termsAndPolicies} {privacyStatement}'
+            } else {
+              return tKey
+            }
+          },
           value: {
             t: (tKey) => tKey
           }
