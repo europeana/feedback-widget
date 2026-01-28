@@ -4,6 +4,7 @@ import { defineProps, ref } from 'vue'
 import FeedbackWidget from '@/components/FeedbackWidget.vue'
 
 import { configProps } from '@/config.js'
+import { locales } from '@/utils/i18n.js'
 
 const props = defineProps(configProps)
 
@@ -39,7 +40,11 @@ const handleFormSubmit = () => {
             </div>
             <div>
               <label for="fallbackLocale" class="d-block">Fallback locale</label>
-              <input id="fallbackLocale" v-model="form.fallbackLocale" class="form-control" />
+              <select class="form-control" id="fallbackLocale" v-model="form.fallbackLocale">
+                <option v-for="locale in locales" :key="locale" :value="locale">
+                  {{ locale }}
+                </option>
+              </select>
             </div>
             <div>
               <label for="faqUrl" class="d-block">FAQ URL</label>
@@ -47,7 +52,11 @@ const handleFormSubmit = () => {
             </div>
             <div>
               <label for="locale" class="d-block">Locale</label>
-              <input id="locale" v-model="form.locale" class="form-control" />
+              <select class="form-control" id="locale" v-model="form.locale">
+                <option v-for="locale in locales" :key="locale" :value="locale">
+                  {{ locale }}
+                </option>
+              </select>
             </div>
           </div>
         </div>

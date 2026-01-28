@@ -1,3 +1,7 @@
+import * as messages from '@/locales/index.js'
+
+export const locales = Object.keys(messages)
+
 export const createI18n = (options = {}) => {
   return {
     locale: 'en',
