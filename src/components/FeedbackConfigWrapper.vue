@@ -17,7 +17,7 @@ const config = ref({
 const form = ref({ ...config.value })
 
 const handleFormSubmit = () => {
-  config.value = form.value
+  config.value = { ...form.value }
 }
 </script>
 
