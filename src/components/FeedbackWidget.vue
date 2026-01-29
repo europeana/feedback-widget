@@ -10,14 +10,6 @@ import FeedbackDialog from '@/components/FeedbackDialog.vue'
 
 const props = defineProps(configProps)
 
-const i18n = computed(() => {
-  return createI18n({
-    locale: props.locale,
-    fallbackLocale: props.fallbackLocale,
-    messages
-  })
-})
-
 const config = ref({})
 
 const setConfigFromProps = () => {
@@ -32,14 +24,16 @@ const setConfigFromProps = () => {
 setConfigFromProps()
 watchEffect(setConfigFromProps)
 
-provide(
-  'config',
-  computed(() => config.value)
-)
-provide(
-  'i18n',
-  computed(() => i18n.value)
-)
+const i18n = computed(() => {
+  return createI18n({
+    locale: config.value.locale,
+    fallbackLocale: config.value.fallbackLocale,
+    messages
+  })
+})
+
+provide('config', config)
+provide('i18n', i18n)
 
 const showDialog = ref(false)
 const buttonFocus = ref(false)
