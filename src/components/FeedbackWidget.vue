@@ -1,5 +1,5 @@
 <script setup>
-import { computed, defineProps, provide, ref, watch } from 'vue'
+import { computed, defineProps, provide, ref, watch, watchEffect } from 'vue'
 
 import { createI18n } from '@/utils/i18n.js'
 import * as messages from '@/locales/index.js'
@@ -10,22 +10,30 @@ import FeedbackDialog from '@/components/FeedbackDialog.vue'
 
 const props = defineProps(configProps)
 
+const config = ref({})
+
+const setConfigFromProps = () => {
+  config.value = {
+    apiUrl: props.apiUrl,
+    fallbackLocale: props.fallbackLocale,
+    faqUrl: props.faqUrl,
+    locale: props.locale
+  }
+}
+
+setConfigFromProps()
+watchEffect(setConfigFromProps)
+
 const i18n = computed(() => {
   return createI18n({
-    locale: props.locale,
-    fallbackLocale: props.fallbackLocale,
+    locale: config.value.locale,
+    fallbackLocale: config.value.fallbackLocale,
     messages
   })
 })
 
-provide(
-  'config',
-  computed(() => props)
-)
-provide(
-  'i18n',
-  computed(() => i18n.value)
-)
+provide('config', config)
+provide('i18n', i18n)
 
 const showDialog = ref(false)
 const buttonFocus = ref(false)
