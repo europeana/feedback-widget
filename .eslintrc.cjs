@@ -12,6 +12,6 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   ignorePatterns: [
-    'src/locales/'
+    'src/locales/*.json'
   ]
 }
