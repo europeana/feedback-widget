@@ -66,8 +66,16 @@
   },
   "license": "EUPL-1.2",
   "engines": {
-    "node": "^18",
-    "npm": "^9"
+    "node": "^24.0.0",
+    "pnpm": ">= 11.8.0"
+  },
+  "packageManager": "pnpm@11.8.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.8.0",
+      "onFail": "download"
+    }
   },
   "repository": {
     "type": "git",
