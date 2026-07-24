@@ -5,7 +5,7 @@ const readmeUrl = new URL('../README.md', import.meta.url)
 
 let readme = fs.readFileSync(readmeUrl, { encoding: 'utf8' })
 
-import pkg from '../package.json' assert { type: 'json' }
+import pkg from '../package.json'
 readme = readme.replace(/@europeana\/feedback-widget(@.+)?\/dist\//g, `@europeana/feedback-widget@${pkg.version}/dist/`)
 
 const distScriptUrl = new URL('../dist/europeana-feedback-widget.app.js', import.meta.url)
