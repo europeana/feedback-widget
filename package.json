@@ -51,7 +51,7 @@
     "concurrently": "10.0.3",
     "cors": "2.8.5",
     "eslint": "8.57.1",
-    "eslint-plugin-vue": "9.33.0",
+    "eslint-plugin-vue": "10.11.0",
     "express": "4.22.1",
     "jsdom": "23.2.0",
     "morgan": "1.11.0",
