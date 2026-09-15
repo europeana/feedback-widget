@@ -85,7 +85,7 @@
     border-radius: 50%;
     transition: border-radius 0.3s ease-out;
     box-shadow: 0 2px 8px rgb(26 26 26 / 25%);
-    line-height: 1;
+    white-space: nowrap;
     border-width: 2px;
 
     .europeana-feedback-button-text {

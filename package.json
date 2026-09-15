@@ -22,7 +22,7 @@
   },
   "style": "./dist/europeana-feedback-widget.css",
   "scripts": {
-    "dev": "concurrently \"npm:dev:backend\" \"npm:dev:frontend\"",
+    "dev": "concurrently \"pnpm:dev:backend\" \"pnpm:dev:frontend\"",
     "dev:backend": "nodemon -w dev/server.js dev/server.js",
     "dev:frontend": "vite",
     "build": "pnpm build:component && pnpm build:app",
