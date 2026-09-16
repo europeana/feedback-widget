@@ -218,8 +218,8 @@ importers:
         version: 3.5.40
     devDependencies:
       '@rushstack/eslint-patch':
-        specifier: 1.14.0
-        version: 1.14.0
+        specifier: 1.16.1
+        version: 1.16.1
       '@vitejs/plugin-vue':
         specifier: 6.0.8
         version: 6.0.8(vite@6.4.3(sass@1.101.3)(terser@5.44.0))(vue@3.5.40)
@@ -858,8 +858,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@rushstack/eslint-patch@1.14.0':
-    resolution: {integrity: sha512-WJFej426qe4RWOm9MMtP4V3CV4AucXolQty+GRgAWLgQXmpCuwzs7hEpxxhSc/znXUSxum9d/P/32MW0FlAAlA==}
+  '@rushstack/eslint-patch@1.16.1':
+    resolution: {integrity: sha512-TvZbIpeKqGQQ7X0zSCvPH9riMSFQFSggnfBjFZ1mEoILW+UuXCKwOoPcgjMwiUtRqFZ8jWhPJc4um14vC6I4ag==}
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -3008,7 +3008,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.52.5':
     optional: true
 
-  '@rushstack/eslint-patch@1.14.0': {}
+  '@rushstack/eslint-patch@1.16.1': {}
 
   '@trysound/sax@0.2.0': {}
 
