@@ -33,7 +33,7 @@
     "test:coverage": "vitest --coverage",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "preversion": "npm run build",
+    "preversion": "pnpm run build",
     "version": "node ./bin/version.js && git add README.md"
   },
   "dependencies": {
