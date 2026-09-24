@@ -269,8 +269,8 @@ importers:
         specifier: 1.101.3
         version: 1.101.3
       ssri:
-        specifier: 10.0.6
-        version: 10.0.6
+        specifier: 14.0.0
+        version: 14.0.0
       vite:
         specifier: 6.4.3
         version: 6.4.3(sass@1.101.3)(terser@5.44.0)
@@ -2201,9 +2201,9 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
-  ssri@10.0.6:
-    resolution: {integrity: sha512-MGrFH9Z4NP9Iyhqn16sDtBpRRNJ0Y2hNa6D65h736fVSaPCHr4DM4sWUNvVaSuC+0OBGhwsrydQwmgfg5LncqQ==}
-    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+  ssri@14.0.0:
+    resolution: {integrity: sha512-jQxKI0yx0ZnTKrqjKkLDV2DXkBQn3k49JVmVqDGcDwKDtGDbImD/GXsq04KD0VVzCQQ9wZJYal3RwR1GzWTSow==}
+    engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
 
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
@@ -4506,7 +4506,7 @@ snapshots:
   source-map@0.6.1:
     optional: true
 
-  ssri@10.0.6:
+  ssri@14.0.0:
     dependencies:
       minipass: 7.1.2
 
